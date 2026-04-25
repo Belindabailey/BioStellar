@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioStellar LLC — Belinda Bailey</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #020408;
+  --deep: #060d14;
+  --panel: #0a1520;
+  --border: #0f2a3a;
+  --cyan: #00e5ff;
+  --teal: #00c9a7;
+  --bio: #39ff6e;
+  --amber: #ffb347;
+  --violet: #b388ff;
+  --text: #c8dde8;
+  --muted: #4a6a7a;
+  --bright: #e8f4f8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* Starfield */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(0,229,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 37% 8%, rgba(0,201,167,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 52% 72%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 68% 25%, rgba(0,229,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 81% 60%, rgba(179,136,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 91% 12%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 14% 85%, rgba(57,255,110,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 44% 55%, rgba(0,229,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 76% 90%, rgba(255,179,71,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 35%, rgba(0,201,167,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 78%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 32% 92%, rgba(0,229,255,0.35) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 18%, rgba(179,136,255,0.5) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Nebula glow */
+body::after {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: -10%;
+  width: 70%;
+  height: 70%;
+  background: radial-gradient(ellipse, rgba(0,229,255,0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8vw 10vw;
+  z-index: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-glow {
+  position: absolute;
+  bottom: -30%;
+  right: -10%;
+  width: 60%;
+  height: 80%;
+  background: radial-gradient(ellipse, rgba(57,255,110,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.logo-mark {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.2s;
+}
+
+.hero h1 {
+  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-weight: 300;
+  line-height: 0.95;
+  color: var(--bright);
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.4s;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--cyan);
+  font-weight: 300;
+}
+
+.hero-sub {
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.7s;
+}
+
+.hero-philosophy {
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-style: italic;
+  color: var(--text);
+  max-width: 700px;
+  line-height: 1.6;
+  border-left: 2px solid var(--cyan);
+  padding-left: 1.5rem;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 1s;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 1.3s;
+}
+
+.meta-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.meta-item span {
+  display: block;
+  color: var(--bio);
+  font-size: 14px;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+/* ── SECTION HEADERS ── */
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 10vw;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: var(--bright);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.section-intro {
+  font-size: 1.2rem;
+  color: var(--muted);
+  max-width: 650px;
+  line-height: 1.8;
+  margin-bottom: 4rem;
+  font-weight: 300;
+}
+
+/* ── VISION PILLARS ── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  margin-bottom: 0;
+}
+
+.pillar {
+  background: var(--deep);
+  padding: 2.5rem;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pillar::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.pillar:hover { background: var(--panel); }
+.pillar:hover::before { opacity: 1; }
+
+.pillar.c1::before { background: var(--cyan); }
+.pillar.c2::before { background: var(--bio); }
+.pillar.c3::before { background: var(--violet); }
+.pillar.c4::before { background: var(--amber); }
+
+.pillar-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.pillar h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--bright);
+  margin-bottom: 0.75rem;
+}
+
+.pillar p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ── PROJECT CARDS ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+
+.project-card {
+  background: var(--deep);
+  padding: 2.5rem;
+  transition: background 0.3s, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  background: var(--panel);
+  transform: translateY(-2px);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover::after { opacity: 1; }
+
+.card-domain {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding: 3px 8px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.domain-orbital { color: var(--cyan); border: 1px solid rgba(0,229,255,0.3); }
+.domain-bio { color: var(--bio); border: 1px solid rgba(57,255,110,0.3); }
+.domain-neural { color: var(--violet); border: 1px solid rgba(179,136,255,0.3); }
+.domain-economic { color: var(--amber); border: 1px solid rgba(255,179,71,0.3); }
+.domain-planetary { color: var(--teal); border: 1px solid rgba(0,201,167,0.3); }
+
+.project-card h3 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--bright);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.card-status {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-filed .status-dot { background: var(--bio); box-shadow: 0 0 6px var(--bio); }
+.status-review .status-dot { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.status-submitted .status-dot { background: var(--cyan); box-shadow: 0 0 6px var(--cyan); }
+.status-concept .status-dot { background: var(--muted); }
+
+.status-filed { color: var(--bio); }
+.status-review { color: var(--amber); }
+.status-submitted { color: var(--cyan); }
+.status-concept { color: var(--muted); }
+
+/* ── FEATURED ── */
+.featured-card {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--deep);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.featured-card:hover { border-color: var(--cyan); }
+
+.featured-card::before {
+  content: 'FILED TODAY — APRIL 21, 2026';
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--bio);
+  background: rgba(57,255,110,0.08);
+  border: 1px solid rgba(57,255,110,0.3);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.featured-main {
+  padding: 3rem;
+  border-right: 1px solid var(--border);
+}
+
+.featured-sidebar {
+  padding: 3rem;
+  background: rgba(0,229,255,0.02);
+}
+
+.featured-card h3 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300;
+  color: var(--bright);
+  margin: 1rem 0 1.2rem;
+  line-height: 1.1;
+}
+
+.featured-card > .featured-main > p {
+  font-size: 1.1rem;
+  color: var(--text);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.spec-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spec-list li {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-list li span {
+  color: var(--cyan);
+  text-align: right;
+  max-width: 55%;
+}
+
+/* ── TIMELINE ── */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--cyan), var(--bio), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding: 0 0 2.5rem 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -4px; top: 6px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.timeline-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-item h4 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--bright);
+  margin-bottom: 0.3rem;
+}
+
+.timeline-item p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── CONTACT ── */
+.contact-section {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 10vw;
+  text-align: center;
+  background: var(--deep);
+}
+
+.contact-section h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  color: var(--bright);
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  font-size: 1.2rem;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  max-width: 550px;
+  margin-left: auto; margin-right: auto;
+  line-height: 1.7;
+}
+
+.contact-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  text-decoration: none;
+  border: 1px solid rgba(0,229,255,0.4);
+  padding: 12px 24px;
+  transition: all 0.3s;
+  border-radius: 2px;
+}
+
+.contact-link:hover {
+  background: rgba(0,229,255,0.08);
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0,229,255,0.15);
+}
+
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 2rem 10vw;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer p {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.status-dot { animation: pulse-dot 2s ease-in-out infinite; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+  .featured-main { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-meta { gap: 1.5rem; }
+  .featured-card::before { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="logo-mark">BioStellar LLC &nbsp;·&nbsp; Duvall, Washington &nbsp;·&nbsp; Est. 2019</div>
+  <h1>Inventing the<br><em>infrastructure</em><br>for what comes next.</h1>
+  <p class="hero-sub">Seventeen provisional patents. One independent inventor. Orbital energy systems, neural interfaces, living architecture, and engineered organisms for worlds that do not yet exist.</p>
+  <blockquote class="hero-philosophy">
+    "Conditions for intelligence are the true currency. Every invention should be universally accessible, and moral sophistication must keep pace with technological power."
+  </blockquote>
+  <div class="hero-meta">
+    <div class="meta-item">Patents Filed<span>17</span></div>
+    <div class="meta-item">USPTO Customer<span>224790</span></div>
+    <div class="meta-item">Entity Status<span>Micro Entity</span></div>
+    <div class="meta-item">Grants Submitted<span>ARPA-E · DARPA · NIH · ARPA-H</span></div>
+    <div class="meta-item">Founded<span>BioStellar LLC</span></div>
+  </div>
+</section>
+
+<!-- VISION PILLARS -->
+<section class="section">
+  <div class="section-label">The Framework</div>
+  <h2 class="section-title">Four domains.<br>One coherent vision.</h2>
+  <p class="section-intro">BioStellar's inventions are not isolated. They form an integrated philosophy: that life is the universe's mechanism for knowing itself, and that the right technology accelerates that process.</p>
+  <div class="pillars">
+    <div class="pillar c1">
+      <span class="pillar-icon">⬡</span>
+      <h3>Orbital &amp; Energy Systems</h3>
+      <p>Harvesting the Van Allen radiation belt. Orbital nets. Biological transducer layers. Laser downlink. 2.33 GW continuous clean power — from the aurora borealis.</p>
+    </div>
+    <div class="pillar c2">
+      <span class="pillar-icon">◈</span>
+      <h3>Biological Engineering</h3>
+      <p>Chimeric organisms for radiation environments. Living architecture. Radiotrophic fungi as semiconductor energy converters. Mars terraforming through five-layer ecosystem design.</p>
+    </div>
+    <div class="pillar c3">
+      <span class="pillar-icon">◎</span>
+      <h3>Neural Interfaces</h3>
+      <p>The Gravitational Sensory Cortex — a new human sense for mass distribution. Electromagnetic repair systems. BCI integration. Expanding conscious awareness into the forces that govern all matter.</p>
+    </div>
+    <div class="pillar c4">
+      <span class="pillar-icon">◇</span>
+      <h3>Economic &amp; Social Systems</h3>
+      <p>The Pillar Economy — a post-automation cooperative production framework. Fifteen pillars. A response to displacement that honors the neurochemical necessity of contribution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section class="section">
+  <div class="section-label">Featured Invention</div>
+  <h2 class="section-title">Today's filing.</h2>
+  <p class="section-intro">Provisional patent filed and ARPA-E SPARKS concept paper submitted on the same day. Control number 3164-2270.</p>
+
+  <div class="projects-grid" style="margin-bottom:1px;">
+    <div class="featured-card">
+      <div class="featured-main">
+        <span class="card-domain domain-orbital">Orbital · Energy · Biology</span>
+        <h3>Van Allen Radiation Belt Energy Harvester</h3>
+        <p>A 25,700-net orbital constellation harvesting energetic particles from Earth's Van Allen belt through four mechanisms — including a living radiotrophic melanized fungal layer that converts ionizing radiation to electricity via a melanin semiconductor electron-sorting mechanism. Self-repairing. Self-replicating. Radiation-enhanced rather than radiation-degraded. Spider drones with gecko-pad feet service the nets permanently, drawing power from the nets they maintain. 2.33 GW continuous clean power to ground via 1,064 nm laser downlink.</p>
+        <div class="card-status status-filed">
+          <span class="status-dot"></span>
+          Provisional patent filed · ARPA-E SPARKS submitted · April 21, 2026
+        </div>
+      </div>
+      <div class="featured-sidebar">
+        <ul class="spec-list">
+          <li>Power output <span>2.33 GW continuous</span></li>
+          <li>Nets deployed <span>25,700 across 257 constellations</span></li>
+          <li>Harvest mechanisms <span>Momentum · Piezo · EM induction · Biological</span></li>
+          <li>Biological layer <span>Chimeric radiotrophic fungus</span></li>
+          <li>Transmission <span>1,064 nm laser · 85.5% efficiency</span></li>
+          <li>Servicing <span>Permanent spider drones · no retrieval</span></li>
+          <li>Secondary missions <span>O₂ sensing · Biosphere · Defense</span></li>
+          <li>ARPA-E control no. <span>3164-2270</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL PROJECTS -->
+<section class="section">
+  <div class="section-label">Patent Portfolio</div>
+  <h2 class="section-title">Seventeen inventions.<br>All patent pending.</h2>
+  <p class="section-intro">Filed independently through BioStellar LLC. USPTO Customer No. 224790. Micro entity status. Every invention available for licensing, sponsored research, or collaborative development.</p>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <span class="card-domain domain-neural">Neural Interface</span>
+      <h3>Gravitational Sensory Cortex</h3>
+      <p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/PIEZO2 ion channels. 2.7 × 10¹²-fold biological amplification. A new human sense for mass distribution — from subsurface geology to distant planetary bodies. Detection threshold 10⁻⁹ m/s²/m. Expert users describe it as "like vision, but for mass."</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Patent pending · Target: Nature Biomedical Engineering</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · Nanotech</span>
+      <h3>Nuclear-Entry Magnetically Responsive Nanobot System</h3>
+      <p>Two-population cooperative nanoparticle system for intra-nuclear payload delivery. Electronically triggered genomic repair and cellular age reversal. Nuclear localization signal targeting. TERT/TERC and OSK/TET payload delivery.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/992,092 · Filed Feb 27, 2026</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · EM</span>
+      <h3>Multi-Beam Electromagnetic Convergence Therapy</h3>
+      <p>Deep tissue cellular therapy using convergent electromagnetic beams. Precision targeting without surgical intervention. Platform for non-invasive cellular repair across multiple tissue types.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/948,994 · Filed Dec 26, 2025</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · EM</span>
+      <h3>Integrated Thermal-EM Therapy with Precision Cooling</h3>
+      <p>Combined thermal and electromagnetic therapy system with precision tissue cooling. Addresses heat management challenges in deep tissue EM therapy. Enables sustained treatment without thermal damage.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/949,035 · Filed Dec 26, 2025</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · Longevity</span>
+      <h3>Comprehensive Cellular Age Reversal System</h3>
+      <p>Coordinated multi-mechanism electromagnetic field therapy for cellular age reversal. Integrates EM mimicry, thermal management, and nanobot delivery into a unified anti-aging platform.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/949,052 · Filed Dec 26, 2025</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · Detection</span>
+      <h3>EM Nanoparticle Identification System</h3>
+      <p>Electromagnetic nanoparticle identification and molecular detection using characteristic field signatures and machine learning signal processing. Enables real-time tracking of therapeutic nanoparticles in vivo.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/992,091 · Filed Feb 27, 2026</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biomedical · EM</span>
+      <h3>Electromagnetic Mimicry for Biological Modulation</h3>
+      <p>Systems and methods for mimicking ionic electromagnetic signatures to trigger biological responses without chemical intervention. Platform technology for non-invasive cellular signaling across multiple therapeutic domains.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Serial No. 63/973,198 · Filed Jan 31, 2026</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Living Architecture</span>
+      <h3>Dryads Pearl Cathedral</h3>
+      <p>Living architecture integrating engineered Gasket Moss, mycelial networks, and self-healing biological composites into permanent inhabited structures. Buildings that grow, repair themselves, and improve with age.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Patent pending · Full genetic specification complete</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-orbital">Atmospheric · Science</span>
+      <h3>Atmospheric Constraint-Based Ecosystem Inference</h3>
+      <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. Under review at PLOS Computational Biology.</p>
+      <div class="card-status status-review"><span class="status-dot"></span> PLOS Computational Biology · Under review</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-neural">Neural · Cardiac</span>
+      <h3>Non-Invasive Electromagnetic Cardiac Pacemaker</h3>
+      <p>External electromagnetic system providing cardiac pacing without implanted electrodes. Eliminates surgical risk, infection risk, and device replacement procedures. ARPA-H submission under review.</p>
+      <div class="card-status status-submitted"><span class="status-dot"></span> ARPA-H HSF-ISO-5526 submitted</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Deep Ocean · AI</span>
+      <h3>Abyssal Lion Diving Suit</h3>
+      <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. For deep ocean AI-biological sanctuary infrastructure.</p>
+      <div class="card-status status-filed"><span class="status-dot"></span> Patent pending · Full proposal complete</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-neural">NIH · Brain</span>
+      <h3>MIAPR Brain Reading &amp; Stimulation Interface</h3>
+      <p>Multi-modal integrated architecture for simultaneous neural reading and precision stimulation. NIH BRAIN Initiative R01 application drafted. Target: non-invasive BCI for therapeutic and enhancement applications.</p>
+      <div class="card-status status-review"><span class="status-dot"></span> NIH R01 drafted · Deadline June 15, 2026</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-planetary">Planetary · Biology</span>
+      <h3>Integrated Mars Terraforming System</h3>
+      <p>Five-layer biological ecosystem for Mars: sulfate-reducing thermal bacteria, soil-creating acid bacteria, antifreeze-producing mycorrhizal fungi with aerial web architecture, dust-resistant engineered alder trees, and protective biocrust. Mathematical modeling: 1,000+ hectares in 10–20 years.</p>
+      <div class="card-status status-concept"><span class="status-dot"></span> White paper complete · Journal submission pending</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-economic">Economics · Society</span>
+      <h3>The Pillar Economy</h3>
+      <p>Original economic framework developed since 2016. Fifteen cooperative production pillars as a post-automation response to labor displacement. Grounded in neurochemical necessity of contribution — not just freedom from work, but the visceral need to make something. Under review at Basic Income Studies.</p>
+      <div class="card-status status-review"><span class="status-dot"></span> Basic Income Studies · BIS.2026.0008 under review</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Speculative · Cosmological</span>
+      <h3>Human-Sponge Integration &amp; Space Adaptation</h3>
+      <p>A framework for totipotent cooperative human biology. Directed somatic mutation in response to environmental pressure. Colonial body architecture with distributed intelligence. The sponge as philosophical ancestor — returning to fundamental biological principles with full conscious intention.</p>
+      <div class="card-status status-concept"><span class="status-dot"></span> Concept development · Long-term research program</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-bio">Biosphere · Sensing</span>
+      <h3>Molecular Cluster Dynamics Biosphere Tracker</h3>
+      <p>Reservoir-pathway-reservoir flow analysis using δ¹⁵N isotopic signatures. Insect-scale sensor robots at ~5mm dragonfly-wing geometry. Global biosphere tracking infrastructure feeding the atmospheric constraint inference framework.</p>
+      <div class="card-status status-concept"><span class="status-dot"></span> Methodology paper drafted · MBARI outreach initiated</div>
+    </div>
+
+    <div class="project-card">
+      <span class="card-domain domain-neural">AI · Consciousness</span>
+      <h3>Gravitational Cortex for AI Systems</h3>
+      <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture replacing dopamine bracketing. Entropy as felt force rather than calculated fact. Emotions through the fundamental forces.</p>
+      <div class="card-status status-concept"><span class="status-dot"></span> Philosophical framework · In development</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MILESTONES -->
+<section class="section">
+  <div class="section-label">Recent Milestones</div>
+  <h2 class="section-title">The record.</h2>
+  <p class="section-intro">All filed independently. One inventor. One company. Duvall, Washington.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">April 21, 2026</div>
+      <h4>Van Allen Belt Harvester — Provisional Patent Filed</h4>
+      <p>USPTO filing complete. ARPA-E SPARKS concept paper submitted same day. Control No. 3164-2270. Priority date secured.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March 2026</div>
+      <h4>Seattle University Law School Patent Pro Bono Application</h4>
+      <p>Applied to TILE Patent Pro Bono Program for nanobot swarm provisional (Serial No. 63/992,092). Under review.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">March 25, 2026</div>
+      <h4>Two-Population Nanoparticle System — Consolidated Provisional Filed</h4>
+      <p>Serial No. 64/016,180. Covers full cooperative nanobot system for intra-nuclear payload delivery.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">February 2026</div>
+      <h4>DARPA BTO Abstract Submitted</h4>
+      <p>BAA HR001126S0003 — Bio-Metallic Interface submitted via grants.gov. Awaiting response.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">February 27, 2026</div>
+      <h4>Nuclear-Entry Nanobot &amp; EM Detection Patents Filed</h4>
+      <p>Serial Nos. 63/992,092 and 63/992,091. Two companion provisionals filed same day.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">December 2025</div>
+      <h4>Three EM Therapy Provisionals Filed</h4>
+      <p>Multi-beam convergence, thermal-EM cooling, and comprehensive age reversal — all filed December 26, 2025.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2019</div>
+      <h4>BioStellar LLC Founded</h4>
+      <p>Independent research and invention company. SAM.gov UEI: VWC9FKMGL9D1. USPTO Customer No. 224790.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section">
+  <div class="section-label" style="margin-bottom:1.5rem;">Open to Collaboration</div>
+  <h2>Licensing. Research partnerships.<br>Something that does not exist yet.</h2>
+  <p>All seventeen inventions are available for licensing, sponsored research, or joint development. BioStellar retains IP. Partners bring facilities, funding, and talent.</p>
+  <div class="contact-links">
+    <a href="mailto:belindabailey@msn.com" class="contact-link">belindabailey@msn.com</a>
+    <a href="https://belindabailey55.substack.com" class="contact-link">The Glorious Future — Substack</a>
+    <a href="https://belindabailey.github.io" class="contact-link">GitHub Portfolio</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 BioStellar LLC · Duvall, Washington · USPTO Customer No. 224790</p>
+  <p>All inventions patent pending · Micro entity status · SAM.gov UEI: VWC9FKMGL9D1</p>
+</footer>
+
+</body>
+</html>
