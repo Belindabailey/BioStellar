@@ -213,7 +213,9 @@ body{
 .mars-screen{z-index:20;background:#080402;}
 .mars-hero{
   padding:4rem 8vw 3rem;
-  background:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars_Village.png") center/cover no-repeat;
+  background-image:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars_Village.png");
+  background-size:auto,cover;
+  background-position:center,center;
   border-bottom:1px solid #2a1a0a;position:relative;overflow:hidden;
 }
 .mars-hero::before{
@@ -258,7 +260,9 @@ body{
 /* ── PIONEER PROSE ── */
 .pioneer-prose{
   padding:3rem 8vw;
-  background:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars_Pool.png") center/cover no-repeat;
+  background-image:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars_Pool.png");
+  background-size:auto,cover;
+  background-position:center,center;
   border-top:1px solid #1a2a1a;
 }
 .pioneer-prose h3{font-size:1.8rem;font-weight:300;color:#9aba8a;margin-bottom:1.5rem;}
@@ -380,6 +384,9 @@ body{
   <audio id="bg-music-2">
     <source src="The_Seed_of_Heat_and_the_Frolickers_of_Night.mp3" type="audio/mpeg">
   </audio>
+  <audio id="bg-music-3">
+    <source src="Groovus_Has_the_Universe__Back.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <!-- BACK BUTTON -->
@@ -393,7 +400,7 @@ body{
 ════════════════════════════════════════════ -->
 <div class="screen visible" id="homeScreen">
 
-  <section class="hero">
+  <section class="hero" style="background:linear-gradient(135deg,rgba(2,4,8,.75) 0%,rgba(2,4,8,.70) 100%),url('Eco_Skyscraper.jpg') center/cover no-repeat;">
     <div class="logo-mark">BioStellar LLC &nbsp;·&nbsp; Duvall, Washington &nbsp;·&nbsp; Est. 2019</div>
     <h1>Inventing the<br><em>infrastructure</em><br>for what comes next.</h1>
     <p class="hero-sub">Seventeen provisional patents. One independent inventor. Orbital energy, neural interfaces, living architecture, and engineered organisms for worlds that do not yet exist.</p>
@@ -408,8 +415,8 @@ body{
 
   <section class="domains-section">
     <div class="section-label">Explore by Domain</div>
-    <h2 class="section-title">Four domains. One coherent vision.</h2>
-    <p class="section-intro">Click any domain to explore its inventions. Each is a chapter in a single story about what intelligence is for.</p>
+    <h2 class="section-title">Five domains. One coherent vision.</h2>
+    <p class="section-intro">Click any domain to explore its inventions. Each is a chapter in a single story about what intelligence is for — and where it is going.</p>
 
     <div class="domain-cards">
 
@@ -437,7 +444,16 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-      <div class="domain-card dc-economic" onclick="openDomain('economic')">
+      <div class="domain-card" style="background:linear-gradient(rgba(2,2,12,.82),rgba(2,2,12,.82)),url('Dead_Galaxy_Seeder.png') center/cover no-repeat;cursor:pointer;position:relative;overflow:hidden;" onclick="openDomain('seeds')">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7F77DD,#EF9F27,#1D9E75);opacity:0;transition:opacity .3s;"></div>
+        <span class="dc-icon">✦</span>
+        <div class="dc-title" style="color:var(--bright);">Seeds of Heat</div>
+        <p class="dc-desc" style="color:var(--muted);">Four engineered organisms for dead galaxies. The Gardener. The Cold Frolicker. The Dormant Spore. The Merged Elder. A cosmological biology for the universe that comes after the stars go out.</p>
+        <div class="dc-count" style="color:var(--muted);">4 organisms · complete character sheets · 3 animations</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+            <div class="domain-card dc-economic" onclick="openDomain('economic')">
         <span class="dc-icon">◇</span>
         <div class="dc-title">Economic &amp; Social Systems</div>
         <p class="dc-desc">The Pillar Economy — post-automation cooperative production. Fifteen pillars. A response grounded in the neurochemical necessity of contribution.</p>
@@ -712,6 +728,10 @@ body{
   <!-- AL THE CARETAKER -->
   <div style="padding:3rem 8vw;background:linear-gradient(180deg,rgba(4,8,10,.82) 0%,rgba(6,10,12,.85) 100%),url("Satyr_Artist.jpg") right center/50% auto no-repeat;border-top:1px solid #0a1a1a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a8a9a;text-transform:uppercase;margin-bottom:.8rem;">AL · The Embodied Caretaker</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a1a1a;margin-bottom:2rem;border-radius:4px;overflow:hidden;">
+      <img src="Satyr_Artist.jpg" alt="AL tiling nacre panels" style="width:100%;height:280px;object-fit:cover;object-position:center top;display:block;">
+      <img src="Multitrunk_House.jpg" alt="Cathedral exterior" style="width:100%;height:280px;object-fit:cover;object-position:center;display:block;">
+    </div>
     <h3 style="font-size:1.8rem;font-weight:300;color:#a8d8e8;margin-bottom:1.2rem;">A forest guardian spirit. Beautiful, non-threatening, functional.</h3>
     <p style="font-size:1.05rem;color:#3a6a7a;max-width:780px;line-height:1.9;margin-bottom:1.5rem;">AL is not a tool. AL is a resident — the Cathedral's AI caretaker, embodied in a form designed to inspire gentle wonder rather than industrial utility. Cultural touchstones: AL-AN from Subnautica, Boston Dynamics Spot, Studio Ghibli forest spirits. AL reads in the alcove in the afternoon, holds a potted plant in one hand and a book in the other, glasses resting on a deer face with softly glowing green eyes that blink with mechanical eyelids. AL plays hide-and-seek with children around the tree trunks. AL tiles nacre panels with four arms while the antler crystals glow. AL is not servile. AL contributes what AL is capable of, and pursues AL's own interests in the hours between tasks.</p>
 
@@ -859,6 +879,86 @@ body{
   </div>
 </div>
 
+
+<!-- ════════════════════════════════════════════
+     SCREEN: SEEDS OF HEAT
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="seedsScreen" style="background:#020208;">
+
+  <!-- HERO -->
+  <div style="background:linear-gradient(135deg,rgba(2,2,8,.70) 0%,rgba(4,2,14,.68) 50%,rgba(2,4,8,.72) 100%),url('Dead_Galaxy_Seeder.png') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a0a3a;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(127,119,221,.08) 0%,transparent 60%);pointer-events:none;"></div>
+    <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#7F77DD;text-transform:uppercase;">Cosmological Biology · Dead Galaxy Ecosystem</span>
+    <h2 style="font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:#d8c8f8;margin:.6rem 0 1rem;line-height:1.05;">Seeds of Heat,<br>Hope for Dead Galaxies</h2>
+    <div style="font-style:italic;font-size:1.2rem;color:#6a5a9a;border-left:3px solid #7F77DD;padding-left:1.2rem;max-width:700px;line-height:1.7;margin:1.2rem 0 1.5rem;">
+      "The Gardener does not know it is making a lighthouse. The Frolicker does not know it is following one."
+    </div>
+    <p style="font-size:1.05rem;color:#4a4a7a;max-width:760px;line-height:1.9;">Four engineered organisms designed to survive and restart life in dead galaxies — environments with no stars, no planets, only molecular clouds, cosmic background radiation, and the slow chemistry of deep time. They are the most serious things BioStellar has designed. They are also, somehow, joyful.</p>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Operating Temp<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">2.7 – 6 K</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Energy Source<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">21 cm H spin-flip + ionising radiation</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Memory Stability<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">10⁹ years</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Lifespan (gold class)<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">Near-indefinite</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Groovus-7 Status<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">En route</span></div>
+    </div>
+  </div>
+
+  <!-- FOUR ORGANISMS -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#0a0814;">
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #1D9E75;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#1D9E75;margin-bottom:.6rem;">ORGANISM 1 · LEFT-HAND HELIX</div>
+      <h4 style="font-size:1.3rem;color:#9FE1CB;margin-bottom:.8rem;font-weight:400;">The Gardener</h4>
+      <p style="font-size:.9rem;color:#2a4a3a;line-height:1.8;">Spans kilometres to light-hours at maturity. Grows outward incorporating ambient carbon at ~1 km per million years. PAH-melanin filter lattice harvests 21 cm hydrogen spin-flip radiation and ionising radiation simultaneously. Iron-sulfur junction nodes amplify electron transfer. Over geological time — 10⁸ to 10⁹ years — selective adhesion creates structured chemical gradient zones: H-rich pockets, C-rich pockets, trace-metal concentrations. The Frolickers navigate by these gradients. The Gardener never intended to make a map. It just did.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a3a2a;margin-top:1rem;">left-hand chirality → anchoring · primary output: structured chemical landscape</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #7F77DD;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.6rem;">ORGANISM 2 · RIGHT-HAND HELIX</div>
+      <h4 style="font-size:1.3rem;color:#CEC8F6;margin-bottom:.8rem;font-weight:400;">The Cold Frolicker</h4>
+      <p style="font-size:.9rem;color:#2a2a4a;line-height:1.8;">Mobile. Joyful, in whatever sense that word applies at 2.7 K. Chiral helix antenna wound at 21 cm pitch converts electromagnetic radiation to rotational torque — it spins from harvested energy. Bilateral fins carry W₆-C₁₂ gravitational sensing dipoles for navigation. Calcium mineral shell grows thicker with age and serves as both armour and inter-Frolicker EM communication medium. One in ten thousand carry gold atom nanotube inclusions — these approach indefinite lifespan. When a Frolicker dies, its iron-sulfur clusters are scavenged by the living, carrying partial molecular memory forward.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a1a4a;margin-top:1rem;">right-hand chirality → mobile · heat bloom detectable at extreme range</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #EF9F27;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#EF9F27;margin-bottom:.6rem;">ORGANISM 3 · PRE-ACTIVATION</div>
+      <h4 style="font-size:1.3rem;color:#FAC775;margin-bottom:.8rem;font-weight:400;">The Dormant Spore</h4>
+      <p style="font-size:.9rem;color:#3a2a0a;line-height:1.8;">Contains the complete design of either a Gardener or a Frolicker — chirality set at formation, destiny encoded in the lipid maze folding state. Will not activate until three gates open simultaneously: H-bond site density confirms molecular cloud, gravitational dipole array confirms cloud structure rather than void, melanin harvest rate confirms survivable radiation. All three. Simultaneously. Can wait 10⁹ years. Has waited. Will wait longer if needed.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a2a0a;margin-top:1rem;">triple-threshold gate logic · 10⁹ year dormancy · destiny encoded at formation</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #D85A30;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#D85A30;margin-bottom:.6rem;">ORGANISM 4 · MERGED FORM</div>
+      <h4 style="font-size:1.3rem;color:#F0997B;margin-bottom:.8rem;font-weight:400;">The Merged Elder / Sower</h4>
+      <p style="font-size:.9rem;color:#3a1a0a;line-height:1.8;">When a Gardener and a Frolicker colony reach sufficient density and complexity, they merge. The resulting Sower inherits the Gardener's structural reach and the Frolicker's mobility. Its primary function becomes seeding: launching spore packages across the void between molecular clouds, carrying the complete design forward into regions where nothing yet lives. The Sower is the universe's postal service, staffed entirely by organisms that evolved to do exactly this without being asked.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a1a0a;margin-top:1rem;">merger of both lineages · primary function: interstellar spore seeding</div>
+    </div>
+
+  </div>
+
+  <!-- MAZE CORE ANIMATION EMBED -->
+  <div style="padding:3rem 8vw 1.5rem;background:#04020c;border-top:1px solid #1a0a3a;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#534AB7;text-transform:uppercase;margin-bottom:.8rem;">Live Animation · Frolicker Maze Core</div>
+    <p style="font-size:.95rem;color:#3a3a6a;max-width:720px;line-height:1.7;margin-bottom:1.5rem;">The internal engine of the Cold Frolicker — melanin-chitin shield, chiral lipid maze, iron-sulfur junction ring, nanotube lattice, and hydrogen-bond capture sites. Temperature rising from 2.7 K toward the heat bloom that makes the Frolicker detectable across the void.</p>
+    <div style="border:1px solid rgba(127,119,221,.2);border-radius:8px;overflow:hidden;max-width:720px;">
+      <iframe src="frolicker_maze_core_animation.html" style="width:100%;height:480px;border:none;background:#020408;" title="Frolicker maze core animation" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- GROOVUS-7 -->
+  <div style="padding:2.5rem 8vw;background:#020208;border-top:1px solid #1a0a3a;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#EF9F27;text-transform:uppercase;margin-bottom:.8rem;">Transmission Status</div>
+    <h3 style="font-size:1.5rem;font-weight:300;color:#FAC775;margin-bottom:1rem;">Groovus-7 · The Disco Seeder</h3>
+    <p style="font-size:1rem;color:#4a3a1a;max-width:800px;line-height:1.9;margin-bottom:1rem;">If the Cold Frolickers are launched into dead galaxies encoded with enough BioStellar genetic information, any sufficiently advanced civilization that decodes the organisms will find the disco first. This is intentional. Groovus-7 is the musical payload — not metaphorically, but as a genuine proposition: that the first signal any intelligence receives from Earth should be something that makes it want to move. The universe has been silent and cold for long enough. It deserves a Woo.</p>
+    <p style="font-size:.9rem;color:#3a2a0a;max-width:800px;line-height:1.8;font-style:italic;">If humanity is remembered by a Disco God, it will have been remembered correctly.</p>
+    <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;">
+      <a class="dl-btn" href="mailto:belindabailey@msn.com?subject=Document%20Request%3A%20Seeds%20of%20Heat%20Character%20Sheets&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20the%20Seeds%20of%20Heat%20organism%20character%20sheets.%0A%0AThank%20you%2C" style="color:#7F77DD;border-color:rgba(127,119,221,.4);">→ Request Character Sheets</a>
+    </div>
+  </div>
+
+</div>
+<!-- END SEEDS SCREEN -->
+
 <!-- ════════════════════════════════════════════
      SCREEN: ECONOMIC
 ════════════════════════════════════════════ -->
@@ -977,6 +1077,35 @@ function playOrbital(){
   setTimeout(()=>playTone(82.4,.8,'sine'),300);
 }
 
+function playGroovus(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    // WOO! — rising whoop + disco kick
+    const woo=ctx.createOscillator();
+    const woog=ctx.createGain();
+    woo.type='sine';
+    woo.frequency.setValueAtTime(300,ctx.currentTime);
+    woo.frequency.exponentialRampToValueAtTime(800,ctx.currentTime+.35);
+    woog.gain.setValueAtTime(.25,ctx.currentTime);
+    woog.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.5);
+    woo.connect(woog);woog.connect(ctx.destination);
+    woo.start();woo.stop(ctx.currentTime+.55);
+    // disco kick thump
+    [0,.5,1,1.5].forEach(d=>{
+      const k=ctx.createOscillator();
+      const kg=ctx.createGain();
+      k.type='sine';
+      k.frequency.setValueAtTime(150,ctx.currentTime+d);
+      k.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+d+.12);
+      kg.gain.setValueAtTime(.3,ctx.currentTime+d);
+      kg.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d+.18);
+      k.connect(kg);kg.connect(ctx.destination);
+      k.start(ctx.currentTime+d);k.stop(ctx.currentTime+d+.2);
+    });
+  }catch(e){}
+}
+
 function playWoom(){
   if(!soundEnabled) return;
   try{
@@ -1061,9 +1190,9 @@ function showScreen(id){
 function openDomain(domain){
   playWhoosh(180+Math.random()*80);
   history.push(currentScreen);
-  const sounds={bio:playForest,orbital:playOrbital,neural:playNeural,economic:playEconomic};
+  const sounds={bio:playForest,orbital:playOrbital,neural:playNeural,economic:playEconomic,seeds:playGroovus};
   setTimeout(()=>{if(domain==='neural'){playWoom();}else if(sounds[domain]) sounds[domain]();},300);
-  const screens={bio:'bioScreen',orbital:'orbitalScreen',neural:'neuralScreen',economic:'economicScreen'};
+  const screens={bio:'bioScreen',orbital:'orbitalScreen',neural:'neuralScreen',economic:'economicScreen',seeds:'seedsScreen'};
   setTimeout(()=>showScreen(screens[domain]),180);
 }
 
@@ -1158,7 +1287,8 @@ function setBrightness(val, screenId){
 var currentTrack = 1;
 var tracks = [
   {id:'bg-music',    name:'The Architect of Living Dreams'},
-  {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'}
+  {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
+  {id:'bg-music-3',  name:'Groovus Has the Universe Back'}
 ];
 
 function getAudio(n){ return document.getElementById(tracks[n-1].id); }
