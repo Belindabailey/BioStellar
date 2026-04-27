@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- BioStellar Portfolio v3.4 - brightness controls + woom sound -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -212,7 +213,7 @@ body{
 .mars-screen{z-index:20;background:#080402;}
 .mars-hero{
   padding:4rem 8vw 3rem;
-  background:linear-gradient(135deg,rgba(16,5,2,.87) 0%,rgba(26,10,4,.84) 50%,rgba(8,14,6,.89) 100%),url("Mars Village .png") center/cover no-repeat;
+  background:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars Village .png") center/cover no-repeat;
   border-bottom:1px solid #2a1a0a;position:relative;overflow:hidden;
 }
 .mars-hero::before{
@@ -490,6 +491,11 @@ body{
      SCREEN 3: MARS DEEP DIVE
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="marsScreen">
+  <div style="position:sticky;top:0;z-index:50;background:rgba(8,4,2,.9);backdrop-filter:blur(6px);padding:6px 3rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a1a0a;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#8a6a3a;white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="55" style="flex:1;max-width:180px" oninput="setBrightness(this.value,'marsScreen')">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:#8a6a3a;min-width:28px" id="mars-bpct">55%</span>
+  </div>
 
   <div class="mars-hero">
     <span class="tag t-planetary">Planetary Biology · Synthetic Ecology · Five-Layer Terraforming</span>
@@ -591,9 +597,14 @@ body{
      SCREEN: DRYADS PEARL CATHEDRAL
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="dpcScreen" style="background:#04080a;">
+  <div style="position:sticky;top:0;z-index:50;background:rgba(4,10,4,.9);backdrop-filter:blur(6px);padding:6px 3rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #0a1a0a;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#4a7a4a;white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="48" style="flex:1;max-width:180px" oninput="setBrightness(this.value,'dpcScreen')">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a4a;min-width:28px" id="dpc-bpct">48%</span>
+  </div>
 
   <!-- HERO -->
-  <div style="background:linear-gradient(135deg,rgba(4,10,4,.92) 0%,rgba(6,16,6,.88) 40%,rgba(4,10,4,.94) 100%),url("openart-image_1QVnNMIL_1770332431611_raw.jpg") center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
+  <div class="dpc-bgimg" data-img="Interior_Wood_Stair.jpg" style="background:linear-gradient(rgba(4,10,4,.52),rgba(4,10,4,.52)),url('Interior_Wood_Stair.jpg') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(200,160,96,.07) 0%,transparent 60%);pointer-events:none;"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(100,200,130,.04) 0%,transparent 50%);pointer-events:none;"></div>
     <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;">Domain · Living Architecture · Multi-Species Commune</span>
@@ -675,7 +686,7 @@ body{
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Precision indoor work and human interaction. Digitigrade legs. Mechanical eyelids — blinks. Pupils dilate visibly for emotional readability. Parabolic ears rotate toward sound independently. Antler arrays carry 8-tine sensor arrays. Verdigris copper-nickel finish. Silent under 40 dB — quieter than conversation.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr Artist.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Artist.jpg') center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">CENTAUR FORM · Outdoor</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Quadruped · 4 main limbs + 4 arms</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Heavy outdoor work — planting, tiling, structural tasks. Four arms enable simultaneous planting, troweling, and panel installation. Deer body plan with hooved legs for soft-surface navigation. The same copper-verdigris finish, the same glowing eyes, the same antler sensor crown with crystal tips.</p>
@@ -716,7 +727,7 @@ body{
   </div>
 
   <!-- COMMUNITY VISION -->
-  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.93),rgba(3,6,4,.96)),url("Mature House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
+  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url("Mature House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a6a3a;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
     <h3 style="font-size:1.6rem;font-weight:300;color:#9aba8a;margin-bottom:1.2rem;">What the Cathedral is really for.</h3>
     <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;margin-bottom:1rem;">The Dryad's Pearl Cathedral is not a house. It is a demonstration that the relationship between intelligent species can be different from what it has been. Humans live here. But so do crows, who roost in the upper branches and whose observations of the garden are as valid as any other resident's. The Mineral Maven fungus runs beneath everything, sharing chemical intelligence with the tree roots. The Gasket Moss seals the gaps without being asked to. The abalone build beauty into the walls as a side effect of doing what abalone do. AL tends the whole system with curiosity and genuine care.</p>
@@ -929,6 +940,47 @@ function playOrbital(){
   setTimeout(()=>playTone(82.4,.8,'sine'),300);
 }
 
+function playWoom(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    // Deep resonant descending tone — the gravity sense awakening
+    const dur=2.8;
+    const o1=ctx.createOscillator();
+    const o2=ctx.createOscillator();
+    const o3=ctx.createOscillator();
+    const g=ctx.createGain();
+    const g2=ctx.createGain();
+    // Primary woom — deep sine descending
+    o1.type='sine';
+    o1.frequency.setValueAtTime(80,ctx.currentTime);
+    o1.frequency.exponentialRampToValueAtTime(22,ctx.currentTime+2.4);
+    g.gain.setValueAtTime(0,ctx.currentTime);
+    g.gain.linearRampToValueAtTime(.22,ctx.currentTime+0.15);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);
+    o1.connect(g);g.connect(ctx.destination);
+    o1.start();o1.stop(ctx.currentTime+dur);
+    // Mid harmonic — gives it body
+    o2.type='sine';
+    o2.frequency.setValueAtTime(160,ctx.currentTime);
+    o2.frequency.exponentialRampToValueAtTime(44,ctx.currentTime+2.2);
+    g2.gain.setValueAtTime(0,ctx.currentTime);
+    g2.gain.linearRampToValueAtTime(.10,ctx.currentTime+0.2);
+    g2.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur*.8);
+    o2.connect(g2);g2.connect(ctx.destination);
+    o2.start();o2.stop(ctx.currentTime+dur*.85);
+    // High shimmer — fades fast
+    o3.type='sine';
+    o3.frequency.setValueAtTime(440,ctx.currentTime);
+    o3.frequency.exponentialRampToValueAtTime(110,ctx.currentTime+0.8);
+    const g3=ctx.createGain();
+    g3.gain.setValueAtTime(.06,ctx.currentTime);
+    g3.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+0.9);
+    o3.connect(g3);g3.connect(ctx.destination);
+    o3.start();o3.stop(ctx.currentTime+1.0);
+  }catch(e){}
+}
+
 function playNeural(){
   if(!soundEnabled) return;
   playTone(440,.3,'sine');
@@ -954,13 +1006,17 @@ function showScreen(id){
   el.scrollTop=0;
 
   const back=document.getElementById('backBtn');
-  if(id==='homeScreen'){
-    back.classList.remove('visible');
-  } else {
-    back.classList.add('visible');
-    back.textContent = id==='marsScreen'
-      ? '← biological engineering'
-      : '← home';
+  if(back){
+    if(id==='homeScreen'){
+      back.classList.remove('visible');
+    } else {
+      back.classList.add('visible');
+      back.textContent = id==='marsScreen'
+        ? '← biological engineering'
+        : id==='dpcScreen'
+        ? '← biological engineering'
+        : '← home';
+    }
   }
   currentScreen=id;
 }
@@ -969,7 +1025,7 @@ function openDomain(domain){
   playWhoosh(180+Math.random()*80);
   history.push(currentScreen);
   const sounds={bio:playForest,orbital:playOrbital,neural:playNeural,economic:playEconomic};
-  setTimeout(()=>{if(sounds[domain]) sounds[domain]();},300);
+  setTimeout(()=>{if(domain==='neural'){playWoom();}else if(sounds[domain]) sounds[domain]();},300);
   const screens={bio:'bioScreen',orbital:'orbitalScreen',neural:'neuralScreen',economic:'economicScreen'};
   setTimeout(()=>showScreen(screens[domain]),180);
 }
@@ -1038,6 +1094,27 @@ function goBack(){
   setTimeout(()=>showScreen(prev),180);
 }
 
+function setBrightness(val, screenId){
+  var pct = parseInt(val);
+  var o = ((100-pct)/100 * 0.88 + 0.08).toFixed(2);
+  var el = document.getElementById(screenId==='dpcScreen' ? 'dpc-bpct' : 'mars-bpct');
+  if(el) el.textContent = pct+'%';
+  var screen = document.getElementById(screenId);
+  if(!screen) return;
+  var hero = screen.querySelector('.dpc-bgimg');
+  if(hero){
+    var img = hero.getAttribute('data-img') || 'Interior_Wood_Stair.jpg';
+    hero.style.backgroundImage = 'linear-gradient(rgba(4,10,4,'+o+'),rgba(4,10,4,'+o+')),url("'+img+'")';
+  }
+  var mhero = screen.querySelector('.mars-hero');
+  if(mhero){
+    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars Village .png")';
+  }
+  var pprose = screen.querySelector('.pioneer-prose');
+  if(pprose){
+    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars Pool.png")';
+  }
+}
 function toggleSound(){
   soundEnabled=!soundEnabled;
   document.getElementById('soundBtn').textContent=soundEnabled?'♪ sound on':'♪ sound off';
