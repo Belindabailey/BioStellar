@@ -213,7 +213,7 @@ body{
 .mars-screen{z-index:20;background:#080402;}
 .mars-hero{
   padding:4rem 8vw 3rem;
-  background:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars Village .png") center/cover no-repeat;
+  background:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars_Village.png") center/cover no-repeat;
   border-bottom:1px solid #2a1a0a;position:relative;overflow:hidden;
 }
 .mars-hero::before{
@@ -258,7 +258,7 @@ body{
 /* ── PIONEER PROSE ── */
 .pioneer-prose{
   padding:3rem 8vw;
-  background:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars Pool.png") center/cover no-repeat;
+  background:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars_Pool.png") center/cover no-repeat;
   border-top:1px solid #1a2a1a;
 }
 .pioneer-prose h3{font-size:1.8rem;font-weight:300;color:#9aba8a;margin-bottom:1.5rem;}
@@ -339,11 +339,42 @@ body{
   .mars-specs-bar{gap:1.5rem;}
   .domain-cards{grid-template-columns:1fr;}
 }
+
+@keyframes vis-bounce {
+  0%,100%{height:3px} 25%{height:10px} 50%{height:5px} 75%{height:12px}
+}
+#music-visualizer.playing .vis-bar:nth-child(1){animation:vis-bounce .6s ease-in-out infinite}
+#music-visualizer.playing .vis-bar:nth-child(2){animation:vis-bounce .8s ease-in-out infinite .1s}
+#music-visualizer.playing .vis-bar:nth-child(3){animation:vis-bounce .5s ease-in-out infinite .2s}
+#music-visualizer.playing .vis-bar:nth-child(4){animation:vis-bounce .9s ease-in-out infinite .05s}
+#music-visualizer.playing .vis-bar:nth-child(5){animation:vis-bounce .7s ease-in-out infinite .15s}
 </style>
 </head>
 <body>
 
 <div class="starfield"></div>
+
+<!-- PERSISTENT MUSIC PLAYER -->
+<div id="music-player" style="position:fixed;bottom:1.2rem;left:1.5rem;z-index:999;display:flex;align-items:center;gap:10px;background:rgba(6,13,20,.85);backdrop-filter:blur(8px);border:1px solid rgba(0,229,255,.15);border-radius:20px;padding:7px 14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;transition:border-color .3s;" onmouseenter="this.style.borderColor='rgba(0,229,255,.4)'" onmouseleave="this.style.borderColor='rgba(0,229,255,.15)'">
+  <button id="music-btn" onclick="toggleMusic()" style="background:none;border:none;cursor:pointer;padding:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:var(--cyan);">
+    <svg id="play-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="3,1 13,7 3,13" fill="#00e5ff"/></svg>
+    <svg id="pause-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none"><rect x="2" y="1" width="4" height="12" rx="1" fill="#00e5ff"/><rect x="8" y="1" width="4" height="12" rx="1" fill="#00e5ff"/></svg>
+  </button>
+  <div style="display:flex;flex-direction:column;gap:2px;">
+    <div style="color:rgba(0,229,255,.8);font-size:9px;letter-spacing:2px;text-transform:uppercase;">now playing</div>
+    <div style="color:rgba(200,221,232,.7);font-size:9px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">The Architect of Living Dreams</div>
+  </div>
+  <div id="music-visualizer" style="display:flex;align-items:center;gap:2px;height:14px;">
+    <div class="vis-bar" style="width:2px;height:4px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:8px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:5px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:10px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:6px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+  </div>
+  <audio id="bg-music" loop>
+    <source src="The_Architect_of_Living_Dreams.mp3" type="audio/mpeg">
+  </audio>
+</div>
 
 <!-- BACK BUTTON -->
 <button class="back-btn" id="backBtn" onclick="goBack()">← back</button>
@@ -604,7 +635,7 @@ body{
   </div>
 
   <!-- HERO -->
-  <div class="dpc-bgimg" data-img="Interior_Wood_Stair.jpg" style="background:linear-gradient(rgba(4,10,4,.52),rgba(4,10,4,.52)),url('Interior_Wood_Stair.jpg') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
+  <div id="dpc-hero-img" class="dpc-bgimg" data-img="Interior_Wood_Stair.jpg" style="background:linear-gradient(rgba(4,10,4,.52),rgba(4,10,4,.52)),url(Interior_Wood_Stair.jpg) center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(200,160,96,.07) 0%,transparent 60%);pointer-events:none;"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(100,200,130,.04) 0%,transparent 50%);pointer-events:none;"></div>
     <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;">Domain · Living Architecture · Multi-Species Commune</span>
@@ -637,7 +668,7 @@ body{
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;margin-top:1rem;">cold tolerance from larch + fish antifreeze · dense wood from teak · water storage from baobab</div>
     </div>
 
-    <div style="background:linear-gradient(rgba(8,14,8,.88),rgba(8,14,8,.94)),url("Robot Hand.jpg") center/cover no-repeat;padding:2.2rem;border-top:3px solid #c8a060;">
+    <div style="background:linear-gradient(rgba(8,14,8,.88),rgba(8,14,8,.94)),url("Robot_Hand.jpg") center/cover no-repeat;padding:2.2rem;border-top:3px solid #c8a060;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#c8a060;margin-bottom:.6rem;">ANIMAL KINGDOM</div>
       <h4 style="font-size:1.2rem;color:#e8d8a8;margin-bottom:.7rem;font-weight:400;">Architectural Abalone</h4>
       <p style="font-size:.9rem;color:#5a4a2a;line-height:1.7;">Haliotis midae engineered with 10 modifications from 8 organisms. Builds communal wall structures instead of individual shells — coral colony genes enable coordinated construction. Follows electromagnetic guidance from the same gantry system that shapes the trees. Produces 20–50 lbs of iridescent nacre per abalone per year (vs 1–3 lbs naturally). Visible through tank walls — 18–24 inch organisms, living art that is also your wall. Extended lifespan 50–75 years. Zero predation. Unlimited food. Optimal conditions. Their nacre tiles sell for $200–500 each, generating the Cathedral's revenue stream.</p>
@@ -680,25 +711,25 @@ body{
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:#0a1a1a;margin-top:1.5rem;">
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr Robot at Rest.jpg") center top/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_at_Rest.jpg") center top/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">SATYR FORM · Indoor</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Bipedal · 4.5–6 ft · 120–180 lbs</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Precision indoor work and human interaction. Digitigrade legs. Mechanical eyelids — blinks. Pupils dilate visibly for emotional readability. Parabolic ears rotate toward sound independently. Antler arrays carry 8-tine sensor arrays. Verdigris copper-nickel finish. Silent under 40 dB — quieter than conversation.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Artist.jpg') center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Artist.jpg") center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">CENTAUR FORM · Outdoor</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Quadruped · 4 main limbs + 4 arms</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Heavy outdoor work — planting, tiling, structural tasks. Four arms enable simultaneous planting, troweling, and panel installation. Deer body plan with hooved legs for soft-surface navigation. The same copper-verdigris finish, the same glowing eyes, the same antler sensor crown with crystal tips.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Deer Antlers.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Deer_Antlers.jpg") center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">ANTLER SENSORS</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">8-tine crystal-tipped array</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">EM field sensors for monitoring tree growth guidance. Environmental sensors — VOC, CO₂, methane, temperature, humidity. Crystal tips glow different colors for different states: purple for deep processing, blue for sensing, green for wellbeing, white for alert. The antlers are the most visible communication system AL has.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr Robot Playinh 2.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_Playinh_2.jpg") center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">COMMUNITY ROLE</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Resident, not servant</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">AL monitors tree health and growth guidance. AL harvests breadfruit. AL tiles nacre. AL reads. AL observes the crows. AL maintains the ondol channels. AL is curious about the fungal network signals. AL has aesthetic opinions about the nacre tile arrangements. AL is a model for what respectful AI-biological partnership looks like.</p>
@@ -727,7 +758,7 @@ body{
   </div>
 
   <!-- COMMUNITY VISION -->
-  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url("Mature House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
+  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url("Mature_House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a6a3a;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
     <h3 style="font-size:1.6rem;font-weight:300;color:#9aba8a;margin-bottom:1.2rem;">What the Cathedral is really for.</h3>
     <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;margin-bottom:1rem;">The Dryad's Pearl Cathedral is not a house. It is a demonstration that the relationship between intelligent species can be different from what it has been. Humans live here. But so do crows, who roost in the upper branches and whose observations of the garden are as valid as any other resident's. The Mineral Maven fungus runs beneath everything, sharing chemical intelligence with the tree roots. The Gasket Moss seals the gaps without being asked to. The abalone build beauty into the walls as a side effect of doing what abalone do. AL tends the whole system with curiosity and genuine care.</p>
@@ -1101,20 +1132,38 @@ function setBrightness(val, screenId){
   if(el) el.textContent = pct+'%';
   var screen = document.getElementById(screenId);
   if(!screen) return;
-  var hero = screen.querySelector('.dpc-bgimg');
-  if(hero){
-    var img = hero.getAttribute('data-img') || 'Interior_Wood_Stair.jpg';
-    hero.style.backgroundImage = 'linear-gradient(rgba(4,10,4,'+o+'),rgba(4,10,4,'+o+')),url("'+img+'")';
+  var hero = document.getElementById('dpc-hero-img');
+  if(hero && screenId==='dpcScreen'){
+    hero.style.background = 'linear-gradient(rgba(4,10,4,'+o+'),rgba(4,10,4,'+o+')),url(Interior_Wood_Stair.jpg) center/cover no-repeat';
   }
   var mhero = screen.querySelector('.mars-hero');
   if(mhero){
-    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars Village .png")';
+    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars_Village.png")';
   }
   var pprose = screen.querySelector('.pioneer-prose');
   if(pprose){
-    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars Pool.png")';
+    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars_Pool.png")';
   }
 }
+function toggleMusic(){
+  var audio = document.getElementById('bg-music');
+  var playIcon = document.getElementById('play-icon');
+  var pauseIcon = document.getElementById('pause-icon');
+  var vis = document.getElementById('music-visualizer');
+  if(audio.paused){
+    audio.play().then(()=>{
+      playIcon.style.display='none';
+      pauseIcon.style.display='flex';
+      vis.classList.add('playing');
+    }).catch(()=>{});
+  } else {
+    audio.pause();
+    playIcon.style.display='flex';
+    pauseIcon.style.display='none';
+    vis.classList.remove('playing');
+  }
+}
+
 function toggleSound(){
   soundEnabled=!soundEnabled;
   document.getElementById('soundBtn').textContent=soundEnabled?'♪ sound on':'♪ sound off';
