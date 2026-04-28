@@ -139,7 +139,7 @@ body{
   transition:background .3s,transform .2s;
   perspective:1000px;
 }
-.domain-card:hover{background:var(--panel);transform:translateY(-3px);}
+.domain-card:hover{background-color:var(--panel);transform:translateY(-3px);filter:brightness(1.08);}
 .domain-card::before{
   content:'';position:absolute;top:0;left:0;right:0;height:3px;
   opacity:0;transition:opacity .3s;
@@ -420,7 +420,7 @@ body{
 
     <div class="domain-cards">
 
-      <div class="domain-card dc-orbital" onclick="openDomain('orbital')">
+      <div class="domain-card dc-orbital" onclick="openDomain('orbital')" style="background:linear-gradient(rgba(2,4,8,.78),rgba(2,4,8,.78)),url('Net_and_Coal_plant.png') center/cover no-repeat;">
         <span class="dc-icon">⬡</span>
         <div class="dc-title">Orbital &amp; Energy</div>
         <p class="dc-desc">Van Allen belt harvesting. Radiotrophic biological transducer layers. Spider drone servicing. 2.33 GW to ground.</p>
@@ -428,7 +428,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-      <div class="domain-card dc-bio" onclick="openDomain('bio')">
+      <div class="domain-card dc-bio" onclick="openDomain('bio')" style="background:linear-gradient(rgba(2,8,4,.78),rgba(2,8,4,.78)),url('Mature_House.jpg') center/cover no-repeat;">
         <span class="dc-icon">◈</span>
         <div class="dc-title">Biological Engineering</div>
         <p class="dc-desc">Chimeric organisms. Mars terraforming. Living architecture. Sponge-based space adaptation. Radiotrophic organisms as infrastructure.</p>
@@ -436,7 +436,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-      <div class="domain-card dc-neural" onclick="openDomain('neural')">
+      <div class="domain-card dc-neural" onclick="openDomain('neural')" style="background:linear-gradient(rgba(4,2,12,.82),rgba(4,2,12,.82)),url('VR_Helmet_Scene_5.png') center/cover no-repeat;">
         <span class="dc-icon">◎</span>
         <div class="dc-title">Neural Interfaces</div>
         <p class="dc-desc">Gravitational Sensory Cortex. EM therapy systems. Non-invasive cardiac pacing. BCI for consciousness expansion.</p>
@@ -453,7 +453,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-            <div class="domain-card dc-economic" onclick="openDomain('economic')">
+            <div class="domain-card dc-economic" onclick="openDomain('economic')" style="background:linear-gradient(rgba(8,6,2,.80),rgba(8,6,2,.80)),url('Ecotopia.jpg') center/cover no-repeat;">
         <span class="dc-icon">◇</span>
         <div class="dc-title">Economic &amp; Social Systems</div>
         <p class="dc-desc">The Pillar Economy — post-automation cooperative production. Fifteen pillars. A response grounded in the neurochemical necessity of contribution.</p>
