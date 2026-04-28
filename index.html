@@ -387,6 +387,9 @@ body{
   <audio id="bg-music-3">
     <source src="Groovus_Has_the_Universe__Back.mp3" type="audio/mpeg">
   </audio>
+  <audio id="bg-music-4">
+    <source src="We_Ascend___1_.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <!-- BACK BUTTON -->
@@ -803,13 +806,22 @@ body{
      SCREEN: ORBITAL
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="orbitalScreen" style="background:linear-gradient(180deg,#02060a 0%,var(--void) 100%);">
-  <div class="domain-header" style="background:linear-gradient(135deg,#020810 0%,#050d18 100%);border-bottom:1px solid #0f2a3a;">
-    <span class="section-label">Domain · Orbital &amp; Energy Systems</span>
-    <h2>Harvest the aurora.</h2>
-    <p>The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
+  <!-- BRIGHTNESS BAR -->
+  <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(2,4,10,.95);border-bottom:1px solid #0f2a3a;position:sticky;top:0;z-index:50;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="32" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">32%</span>
+  </div>
+
+  <!-- HERO — Net from space station -->
+  <div id="orbital-hero-img" style="background:linear-gradient(135deg,rgba(2,6,16,.68) 0%,rgba(4,8,20,.65) 100%),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #0f2a3a;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(0,229,255,.06) 0%,transparent 60%);pointer-events:none;"></div>
+    <span id="orbital-label" class="section-label" style="color:var(--cyan);">Domain · Orbital &amp; Energy Systems</span>
+    <h2 id="orbital-h2" style="color:var(--bright);">Harvest the aurora.</h2>
+    <p id="orbital-intro">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
   </div>
   <div class="project-cards-grid">
-    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(6,13,24,.88),rgba(6,13,24,.88)),url("Robot_Hand.jpg") right center/35% auto no-repeat;border-left:3px solid var(--cyan);">
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Net_and_Coal_plant.png') center/cover no-repeat;border-left:3px solid var(--cyan);">
       <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
       <h3 style="color:var(--bright);">Van Allen Radiation Belt Energy Harvester</h3>
       <p>25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
@@ -1289,6 +1301,26 @@ function setBrightness(val, screenId){
   }
 }
 
+function setOrbitalBrightness(val){
+  var pct = parseInt(val);
+  var o = ((100-pct)/100 * 0.78 + 0.08).toFixed(2);
+  var t = (0.4 + (pct - 10) / 85 * 0.6).toFixed(2);
+  var el = document.getElementById('orbital-bpct');
+  if(el) el.textContent = pct+'%';
+  var hero = document.getElementById('orbital-hero-img');
+  if(hero){
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,6,16,'+o+') 0%,rgba(4,8,20,'+o+') 100%),url("Solar_Nets_from_Space_Station_3.png")';
+    hero.style.backgroundSize = 'cover, cover';
+    hero.style.backgroundPosition = 'center, center';
+  }
+  var h2 = document.getElementById('orbital-h2');
+  if(h2) h2.style.color = 'rgba(232,244,248,'+t+')';
+  var intro = document.getElementById('orbital-intro');
+  if(intro) intro.style.color = 'rgba(74,106,122,'+t+')';
+  var label = document.getElementById('orbital-label');
+  if(label) label.style.color = 'rgba(0,229,255,'+t+')';
+}
+
 function setSeedsBrightness(val){
   var pct = parseInt(val);
   // overlay opacity: at 10% slider → very dark (0.92 overlay), at 95% → very light (0.08 overlay)
@@ -1316,7 +1348,8 @@ function setSeedsBrightness(val){
 var tracks = [
   {id:'bg-music',    name:'The Architect of Living Dreams'},
   {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
-  {id:'bg-music-3',  name:'Groovus Has the Universe Back'}
+  {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
+  {id:'bg-music-4',  name:'We Ascend'}
 ];
 
 function getAudio(n){ return document.getElementById(tracks[n-1].id); }
@@ -1325,7 +1358,7 @@ function nextTrack(){
   var old = getAudio(currentTrack);
   var wasPlaying = !old.paused;
   old.pause(); old.currentTime=0;
-  currentTrack = currentTrack===1 ? 2 : 1;
+  currentTrack = currentTrack >= tracks.length ? 1 : currentTrack + 1;
   var el = document.getElementById('track-name');
   if(el) el.textContent = tracks[currentTrack-1].name;
   if(wasPlaying){
