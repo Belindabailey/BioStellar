@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<!-- BioStellar Portfolio v3.4 - brightness controls + woom sound -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioStellar LLC — Belinda Bailey</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #020408;
+  --deep: #060d14;
+  --panel: #0a1520;
+  --border: #0f2a3a;
+  --cyan: #00e5ff;
+  --teal: #00c9a7;
+  --bio: #39ff6e;
+  --amber: #ffb347;
+  --violet: #b388ff;
+  --rust: #e87040;
+  --soil: #a84820;
+  --forest: #2a6a3a;
+  --text: #c8dde8;
+  --muted: #4a6a7a;
+  --bright: #e8f4f8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--void);
+  color:var(--text);
+  font-family:'Cormorant Garamond',serif;
+  cursor:crosshair;
+}
+
+/* ── SCREENS ── */
+.screen{
+  position:fixed;inset:0;
+  overflow-y:auto;overflow-x:hidden;
+  transition:opacity 0.6s ease,transform 0.6s ease;
+  backface-visibility:hidden;
+}
+.screen.hidden{
+  opacity:0;pointer-events:none;transform:rotateY(90deg);transform-origin:left center;
+}
+.screen.visible{
+  opacity:1;pointer-events:all;transform:rotateY(0deg);
+}
+
+/* ── STARFIELD ── */
+.starfield{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%,rgba(0,229,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 23% 45%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 37% 8%,rgba(0,201,167,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 52% 72%,rgba(255,255,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 68% 25%,rgba(0,229,255,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 81% 60%,rgba(179,136,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 91% 12%,rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 14% 85%,rgba(57,255,110,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 44% 55%,rgba(0,229,255,.3) 0%,transparent 100%),
+    radial-gradient(1px 1px at 76% 90%,rgba(255,179,71,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 18%,rgba(179,136,255,.5) 0%,transparent 100%);
+}
+
+/* ── NAV BACK ── */
+.back-btn{
+  position:fixed;top:1.5rem;left:1.5rem;z-index:999;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;
+  color:var(--muted);text-transform:uppercase;
+  background:rgba(6,13,20,.8);border:1px solid var(--border);
+  padding:8px 16px;cursor:pointer;border-radius:2px;
+  transition:all .3s;display:none;backdrop-filter:blur(8px);
+}
+.back-btn:hover{color:var(--cyan);border-color:var(--cyan);}
+.back-btn.visible{display:flex;align-items:center;gap:8px;}
+
+/* ── SOUND TOGGLE ── */
+.sound-btn{
+  position:fixed;top:1.5rem;right:1.5rem;z-index:999;
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  color:var(--muted);background:rgba(6,13,20,.8);border:1px solid var(--border);
+  padding:8px 14px;cursor:pointer;border-radius:2px;transition:all .3s;
+  backdrop-filter:blur(8px);
+}
+.sound-btn:hover{color:var(--bio);border-color:var(--bio);}
+
+/* ── HOME HERO ── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-start;
+  padding:8vw 10vw;z-index:1;border-bottom:1px solid var(--border);
+}
+.logo-mark{
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:4px;
+  color:var(--teal);text-transform:uppercase;margin-bottom:3rem;
+  opacity:0;animation:fadeUp .8s ease forwards .2s;
+}
+.hero h1{
+  font-size:clamp(3.5rem,8vw,8rem);font-weight:300;
+  line-height:.95;color:var(--bright);margin-bottom:1rem;
+  opacity:0;animation:fadeUp 1s ease forwards .4s;
+}
+.hero h1 em{font-style:italic;color:var(--cyan);font-weight:300;}
+.hero-sub{
+  font-size:clamp(1.1rem,2.2vw,1.6rem);font-weight:300;
+  color:var(--muted);max-width:600px;line-height:1.7;margin-bottom:3rem;
+  opacity:0;animation:fadeUp 1s ease forwards .7s;
+}
+.hero-philosophy{
+  font-size:clamp(1.2rem,1.8vw,1.7rem);font-style:italic;
+  color:var(--text);max-width:680px;line-height:1.6;
+  border-left:2px solid var(--cyan);padding-left:1.5rem;margin-bottom:3rem;
+  opacity:0;animation:fadeUp 1s ease forwards 1s;
+}
+.hero-meta{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 1s ease forwards 1.3s;
+}
+.meta-item{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.meta-item span{display:block;color:var(--bio);font-size:14px;letter-spacing:0;margin-top:4px;}
+
+/* ── DOMAIN CARDS (home) ── */
+.domains-section{
+  position:relative;z-index:1;padding:5rem 10vw;
+  border-bottom:1px solid var(--border);
+}
+.section-label{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;color:var(--cyan);text-transform:uppercase;margin-bottom:1rem;}
+.section-title{font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--bright);margin-bottom:.75rem;}
+.section-intro{font-size:1.1rem;color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:3rem;font-weight:300;}
+
+.domain-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);}
+
+.domain-card{
+  background:var(--deep);padding:3rem 2.5rem;
+  cursor:pointer;position:relative;overflow:hidden;
+  transition:background .3s,transform .2s;
+  perspective:1000px;
+}
+.domain-card:hover{background:var(--panel);transform:translateY(-3px);}
+.domain-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  opacity:0;transition:opacity .3s;
+}
+.domain-card:hover::before{opacity:1;}
+.dc-orbital::before{background:var(--cyan);}
+.dc-bio::before{background:var(--bio);}
+.dc-neural::before{background:var(--violet);}
+.dc-economic::before{background:var(--amber);}
+
+.domain-card .flip-hint{
+  position:absolute;bottom:1.2rem;right:1.5rem;
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--muted);opacity:0;transition:opacity .3s;
+}
+.domain-card:hover .flip-hint{opacity:1;}
+
+.dc-icon{font-size:2.5rem;margin-bottom:1.2rem;display:block;}
+.dc-title{font-size:1.6rem;font-weight:400;color:var(--bright);margin-bottom:.6rem;}
+.dc-desc{font-size:1rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1rem;}
+.dc-count{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);}
+
+/* ── DOMAIN SCREEN ── */
+.domain-screen{z-index:10;}
+.domain-header{
+  padding:4rem 8vw 3rem;
+  border-bottom:1px solid var(--border);
+  position:relative;
+}
+.domain-header h2{font-size:clamp(2.5rem,5vw,4rem);font-weight:300;color:var(--bright);margin-bottom:.5rem;}
+.domain-header p{font-size:1.15rem;color:var(--muted);max-width:600px;line-height:1.7;font-weight:300;}
+
+.project-cards-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1px;background:var(--border);
+  margin:0;
+}
+.proj-card{
+  background:var(--deep);padding:2.5rem;
+  cursor:pointer;transition:background .3s,transform .2s;
+  position:relative;overflow:hidden;
+}
+.proj-card:hover{background:var(--panel);transform:translateY(-2px);}
+.proj-card::after{
+  content:'→ open';
+  position:absolute;bottom:1.2rem;right:1.5rem;
+  font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;
+  color:var(--muted);opacity:0;transition:opacity .3s;
+}
+.proj-card:hover::after{opacity:1;}
+.proj-card h3{font-size:1.4rem;font-weight:400;color:var(--bright);margin:0.8rem 0 .75rem;line-height:1.2;}
+.proj-card p{font-size:.95rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.2rem;}
+
+.tag{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 8px;border-radius:2px;margin-bottom:.5rem;}
+.t-bio{color:var(--bio);border:1px solid rgba(57,255,110,.3);}
+.t-orbital{color:var(--cyan);border:1px solid rgba(0,229,255,.3);}
+.t-neural{color:var(--violet);border:1px solid rgba(179,136,255,.3);}
+.t-planetary{color:var(--teal);border:1px solid rgba(0,201,167,.3);}
+.t-economic{color:var(--amber);border:1px solid rgba(255,179,71,.3);}
+
+.status-line{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;display:flex;align-items:center;gap:6px;margin-top:.5rem;}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;animation:pulse 2s ease-in-out infinite;}
+.s-filed .dot{background:var(--bio);box-shadow:0 0 6px var(--bio);}
+.s-review .dot{background:var(--amber);box-shadow:0 0 6px var(--amber);}
+.s-concept .dot{background:var(--muted);}
+.s-filed{color:var(--bio);}
+.s-review{color:var(--amber);}
+.s-concept{color:var(--muted);}
+
+/* ── MARS DEEP DIVE ── */
+.mars-screen{z-index:20;background:#080402;}
+.mars-hero{
+  padding:4rem 8vw 3rem;
+  background-image:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars_Village.png");
+  background-size:cover,cover;
+  background-position:center,center;
+  border-bottom:1px solid #2a1a0a;position:relative;overflow:hidden;
+}
+.mars-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 50%,rgba(232,112,64,.07) 0%,transparent 60%);
+  pointer-events:none;
+}
+.mars-hero::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 80%,rgba(57,255,110,.04) 0%,transparent 50%);
+  pointer-events:none;
+}
+.mars-hero h2{font-size:clamp(2rem,4.5vw,3.5rem);font-weight:300;color:#e8c89a;margin:.5rem 0 1rem;line-height:1.1;}
+.mars-epigraph{
+  font-style:italic;font-size:1.2rem;color:#8a7a6a;
+  border-left:3px solid var(--rust);padding-left:1.2rem;
+  max-width:680px;line-height:1.7;margin:1.5rem 0;
+}
+.mars-intro-text{font-size:1.05rem;color:#7a8a7a;max-width:780px;line-height:1.8;margin:1rem 0 2rem;}
+
+.mars-specs-bar{
+  display:flex;gap:2.5rem;flex-wrap:wrap;
+  padding:1.5rem 8vw;background:#0a0804;border-bottom:1px solid #1a1008;
+}
+.mars-spec{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#5a4a3a;}
+.mars-spec span{display:block;color:#e8a060;font-size:12px;letter-spacing:0;margin-top:3px;}
+
+/* ── LAYER CARDS ── */
+.layers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:#1a0d04;}
+.layer-card{background:#0d1208;padding:2.2rem;position:relative;border-top:3px solid transparent;}
+.layer-card h4{font-size:1.15rem;font-weight:400;color:#e8c89a;margin:.6rem 0 .7rem;line-height:1.2;}
+.layer-card p{font-size:.9rem;color:#5a5040;line-height:1.7;}
+.layer-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:.5rem;}
+.layer-foot{font-family:'Space Mono',monospace;font-size:9px;margin-top:1rem;color:#3a2a1a;letter-spacing:1px;}
+
+.lc1{border-top-color:#e87040;} .ll1{color:#e87040;}
+.lc2{border-top-color:#c8a040;} .ll2{color:#c8a040;}
+.lc3{border-top-color:#4a9a6a;} .ll3{color:#4a9a6a;}
+.lc4{border-top-color:#3a7a4a;} .ll4{color:#3a7a4a;}
+.lc5{border-top-color:#2a6a8a;} .ll5{color:#2a6a8a;}
+
+/* ── PIONEER PROSE ── */
+.pioneer-prose{
+  padding:3rem 8vw;
+  background-image:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars_Pool.png");
+  background-size:cover,cover;
+  background-position:center,center;
+  border-top:1px solid #1a2a1a;
+}
+.pioneer-prose h3{font-size:1.8rem;font-weight:300;color:#9aba8a;margin-bottom:1.5rem;}
+.pioneer-prose p{
+  font-size:1.05rem;color:#5a7a5a;line-height:1.9;
+  max-width:780px;margin-bottom:1.2rem;font-weight:300;
+}
+.pioneer-prose p em{color:#8aba7a;font-style:italic;}
+
+/* ── DOWNLOAD BUTTON ── */
+.dl-section{padding:2.5rem 8vw;background:linear-gradient(rgba(4,8,4,.88),rgba(4,8,4,.88)),url("Satyr_Robot_at_Rest.jpg") right bottom/40% auto no-repeat;border-top:1px solid #1a2a1a;}
+.dl-btn{
+  font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--forest);
+  border:1px solid rgba(42,106,58,.5);padding:14px 28px;
+  cursor:pointer;border-radius:2px;transition:all .3s;
+  background:rgba(42,106,58,.06);text-decoration:none;display:inline-flex;
+  align-items:center;gap:10px;
+}
+.dl-btn:hover{background:rgba(42,106,58,.15);border-color:var(--forest);color:var(--bio);}
+
+/* ── TIMELINE ── */
+.timeline-section{padding:3rem 8vw;background:#060a04;border-top:1px solid #1a2a1a;}
+.timeline-section h3{font-size:1.5rem;font-weight:300;color:#9aba8a;margin-bottom:2rem;}
+.tl-item{padding:.5rem 0 1.5rem 2rem;border-left:1px solid #1a3a1a;position:relative;margin-left:.5rem;}
+.tl-item::before{content:'';position:absolute;left:-4px;top:8px;width:8px;height:8px;border-radius:50%;background:var(--forest);box-shadow:0 0 8px var(--forest);}
+.tl-year{font-family:'Space Mono',monospace;font-size:9px;color:#3a5a3a;letter-spacing:2px;margin-bottom:.3rem;}
+.tl-item p{font-size:.9rem;color:#4a6a4a;line-height:1.6;}
+
+/* ── CONTACT (home bottom) ── */
+.contact-section{
+  position:relative;z-index:1;padding:5rem 10vw;text-align:center;
+  background:var(--deep);border-top:1px solid var(--border);
+}
+.contact-section h2{font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:var(--bright);margin-bottom:.75rem;}
+.contact-section p{font-size:1.1rem;color:var(--muted);margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7;}
+.contact-links{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;}
+.c-link{
+  font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--cyan);text-decoration:none;
+  border:1px solid rgba(0,229,255,.35);padding:11px 22px;
+  transition:all .3s;border-radius:2px;
+}
+.c-link:hover{background:rgba(0,229,255,.08);box-shadow:0 0 16px rgba(0,229,255,.12);}
+
+.footer{
+  position:relative;z-index:1;padding:1.5rem 10vw;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+}
+.footer p{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;}
+
+/* ── FLIP ANIMATION ── */
+@keyframes flipIn{
+  from{opacity:0;transform:rotateY(-90deg);}
+  to{opacity:1;transform:rotateY(0);}
+}
+@keyframes flipOut{
+  from{opacity:1;transform:rotateY(0);}
+  to{opacity:0;transform:rotateY(90deg);}
+}
+.flipping-in{animation:flipIn .5s ease forwards;transform-origin:left center;}
+.flipping-out{animation:flipOut .4s ease forwards;transform-origin:right center;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--void);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+@media(max-width:768px){
+  .layers-grid{grid-template-columns:1fr;}
+  .mars-specs-bar{gap:1.5rem;}
+  .domain-cards{grid-template-columns:1fr;}
+}
+
+@keyframes vis-bounce {
+  0%,100%{height:3px} 25%{height:10px} 50%{height:5px} 75%{height:12px}
+}
+#music-visualizer.playing .vis-bar:nth-child(1){animation:vis-bounce .6s ease-in-out infinite}
+#music-visualizer.playing .vis-bar:nth-child(2){animation:vis-bounce .8s ease-in-out infinite .1s}
+#music-visualizer.playing .vis-bar:nth-child(3){animation:vis-bounce .5s ease-in-out infinite .2s}
+#music-visualizer.playing .vis-bar:nth-child(4){animation:vis-bounce .9s ease-in-out infinite .05s}
+#music-visualizer.playing .vis-bar:nth-child(5){animation:vis-bounce .7s ease-in-out infinite .15s}
+</style>
+</head>
+<body>
+
+<div class="starfield"></div>
+
+<!-- PERSISTENT MUSIC PLAYER -->
+<div id="music-player" style="position:fixed;bottom:1.2rem;left:1.5rem;z-index:999;display:flex;align-items:center;gap:10px;background:rgba(6,13,20,.85);backdrop-filter:blur(8px);border:1px solid rgba(0,229,255,.15);border-radius:20px;padding:7px 14px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:1px;cursor:pointer;transition:border-color .3s;" onmouseenter="this.style.borderColor='rgba(0,229,255,.4)'" onmouseleave="this.style.borderColor='rgba(0,229,255,.15)'">
+  <button id="music-btn" onclick="toggleMusic()" style="background:none;border:none;cursor:pointer;padding:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:var(--cyan);">
+    <svg id="play-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><polygon points="3,1 13,7 3,13" fill="#00e5ff"/></svg>
+    <svg id="pause-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" style="display:none"><rect x="2" y="1" width="4" height="12" rx="1" fill="#00e5ff"/><rect x="8" y="1" width="4" height="12" rx="1" fill="#00e5ff"/></svg>
+  </button>
+  <button onclick="nextTrack()" title="next track" style="background:none;border:none;cursor:pointer;padding:0;width:16px;height:16px;display:flex;align-items:center;justify-content:center;color:rgba(0,229,255,.6);" onmouseenter="this.style.color='rgba(0,229,255,1)'" onmouseleave="this.style.color='rgba(0,229,255,.6)'">
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="1,1 8,6 1,11" fill="currentColor"/><rect x="9" y="1" width="2" height="10" rx="1" fill="currentColor"/></svg>
+  </button>
+  <div style="display:flex;flex-direction:column;gap:2px;">
+    <div style="color:rgba(0,229,255,.8);font-size:9px;letter-spacing:2px;text-transform:uppercase;">now playing</div>
+    <div id="track-name" style="color:rgba(200,221,232,.7);font-size:9px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">The Architect of Living Dreams</div>
+  </div>
+  <div id="music-visualizer" style="display:flex;align-items:center;gap:2px;height:14px;">
+    <div class="vis-bar" style="width:2px;height:4px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:8px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:5px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:10px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+    <div class="vis-bar" style="width:2px;height:6px;background:rgba(0,229,255,.5);border-radius:1px;transition:height .15s"></div>
+  </div>
+  <audio id="bg-music">
+    <source src="The_Architect_of_Living_Dreams.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music-2">
+    <source src="The_Seed_of_Heat_and_the_Frolickers_of_Night.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music-3">
+    <source src="Groovus_Has_the_Universe__Back.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music-4">
+    <source src="We_Ascend___1_.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- BACK BUTTON -->
+<button class="back-btn" id="backBtn" onclick="goBack()">← back</button>
+
+<!-- SOUND TOGGLE -->
+<button class="sound-btn" id="soundBtn" onclick="toggleSound()">♪ sound on</button>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 1: HOME
+════════════════════════════════════════════ -->
+<div class="screen visible" id="homeScreen">
+
+  <section class="hero" style="background:linear-gradient(135deg,rgba(2,4,8,.75) 0%,rgba(2,4,8,.70) 100%),url('Eco_Skyscraper.jpg') center/cover no-repeat;">
+    <div class="logo-mark">BioStellar LLC &nbsp;·&nbsp; Duvall, Washington &nbsp;·&nbsp; Est. 2019</div>
+    <h1>Inventing the<br><em>infrastructure</em><br>for what comes next.</h1>
+    <p class="hero-sub">Seventeen provisional patents. One independent inventor. Orbital energy, neural interfaces, living architecture, and engineered organisms for worlds that do not yet exist.</p>
+    <blockquote class="hero-philosophy">"Conditions for intelligence are the true currency. Every invention should be universally accessible, and moral sophistication must keep pace with technological power."</blockquote>
+    <div class="hero-meta">
+      <div class="meta-item">Patents Filed<span>17</span></div>
+      <div class="meta-item">USPTO Customer<span>224790</span></div>
+      <div class="meta-item">Status<span>Micro Entity</span></div>
+      <div class="meta-item">Grants<span>ARPA-E · DARPA · NIH · ARPA-H</span></div>
+    </div>
+  </section>
+
+  <section class="domains-section">
+    <div class="section-label">Explore by Domain</div>
+    <h2 class="section-title">Five domains. One coherent vision.</h2>
+    <p class="section-intro">Click any domain to explore its inventions. Each is a chapter in a single story about what intelligence is for — and where it is going.</p>
+
+    <div class="domain-cards">
+
+      <div class="domain-card dc-orbital" onclick="openDomain('orbital')">
+        <span class="dc-icon">⬡</span>
+        <div class="dc-title">Orbital &amp; Energy</div>
+        <p class="dc-desc">Van Allen belt harvesting. Radiotrophic biological transducer layers. Spider drone servicing. 2.33 GW to ground.</p>
+        <div class="dc-count">3 inventions · ARPA-E submitted</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+      <div class="domain-card dc-bio" onclick="openDomain('bio')">
+        <span class="dc-icon">◈</span>
+        <div class="dc-title">Biological Engineering</div>
+        <p class="dc-desc">Chimeric organisms. Mars terraforming. Living architecture. Sponge-based space adaptation. Radiotrophic organisms as infrastructure.</p>
+        <div class="dc-count">6 inventions · multiple patents pending</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+      <div class="domain-card dc-neural" onclick="openDomain('neural')">
+        <span class="dc-icon">◎</span>
+        <div class="dc-title">Neural Interfaces</div>
+        <p class="dc-desc">Gravitational Sensory Cortex. EM therapy systems. Non-invasive cardiac pacing. BCI for consciousness expansion.</p>
+        <div class="dc-count">7 inventions · NIH · ARPA-H submitted</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+      <div class="domain-card" style="background:linear-gradient(rgba(2,2,12,.82),rgba(2,2,12,.82)),url('Dead_Galaxy_Seeder.png') center/cover no-repeat;cursor:pointer;position:relative;overflow:hidden;" onclick="openDomain('seeds')">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7F77DD,#EF9F27,#1D9E75);opacity:0;transition:opacity .3s;"></div>
+        <span class="dc-icon">✦</span>
+        <div class="dc-title" style="color:var(--bright);">Seeds of Heat</div>
+        <p class="dc-desc" style="color:var(--muted);">Four engineered organisms for dead galaxies. The Gardener. The Cold Frolicker. The Dormant Spore. The Merged Elder. A cosmological biology for the universe that comes after the stars go out.</p>
+        <div class="dc-count" style="color:var(--muted);">4 organisms · complete character sheets · 3 animations</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+            <div class="domain-card dc-economic" onclick="openDomain('economic')">
+        <span class="dc-icon">◇</span>
+        <div class="dc-title">Economic &amp; Social Systems</div>
+        <p class="dc-desc">The Pillar Economy — post-automation cooperative production. Fifteen pillars. A response grounded in the neurochemical necessity of contribution.</p>
+        <div class="dc-count">1 framework · Basic Income Studies under review</div>
+        <span class="flip-hint">flip to open →</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="section-label" style="margin-bottom:1.2rem;">Open to Collaboration</div>
+    <h2>Licensing. Research partnerships.<br>Something that does not exist yet.</h2>
+    <p>All seventeen inventions available for licensing, sponsored research, or joint development. BioStellar retains IP.</p>
+    <div class="contact-links">
+      <a href="mailto:belindabailey@msn.com" class="c-link">belindabailey@msn.com</a>
+      <a href="https://belindabailey55.substack.com" class="c-link" target="_blank">The Glorious Future</a>
+      <a href="https://belindabailey.github.io" class="c-link" target="_blank">GitHub Portfolio</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 BioStellar LLC · USPTO Customer No. 224790</p>
+    <p>All inventions patent pending · SAM.gov UEI: VWC9FKMGL9D1</p>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 2: BIOLOGICAL ENGINEERING
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="bioScreen" style="background:linear-gradient(180deg,#020806 0%,var(--void) 100%);">
+
+  <div class="domain-header" style="background:linear-gradient(135deg,rgba(3,10,6,.82) 0%,rgba(6,14,8,.80) 100%),url("Multitrunk_House.jpg") center 30%/cover no-repeat;border-bottom:1px solid #0a2a12;">
+    <span class="section-label" style="color:var(--bio);">Domain · Biological Engineering</span>
+    <h2 style="color:#b8e8b8;">Life as infrastructure.</h2>
+    <p>Organisms engineered not just to survive extreme environments, but to transform them — building soil, generating heat, constructing shelter, and enabling the conditions for intelligence to flourish.</p>
+  </div>
+
+  <div class="project-cards-grid" style="background:#0a1a0a;">
+
+    <div class="proj-card" onclick="openMars()" style="background:#0d1208;border-left:3px solid #e87040;">
+      <span class="tag t-planetary">Planetary · Synthetic Ecology</span>
+      <h3 style="color:#e8c89a;">Integrated Mars Terraforming System</h3>
+      <p>Five-layer synergistic biological ecosystem. Sulfate-reducing bacteria create underground warmth. Acid bacteria create soil. Mycorrhizal fungi distribute antifreeze and build aerial canopies. Alder trees anchor the system. Biocrust hardens into adobe building material. 1,000+ hectares in 10–20 years.</p>
+      <div class="status-line s-concept"><span class="dot"></span>White paper complete · Journal submission pending · click to explore →</div>
+    </div>
+
+    <div class="proj-card" onclick="openDPC()" style="background:#0c1a0e;border-left:3px solid #c8a060;cursor:pointer;">
+      <span class="tag" style="color:#c8a060;border:1px solid rgba(200,160,96,.3);">Living Architecture · Multi-Species Commune</span>
+      <h3 style="color:#e8d8a8;">Dryads Pearl Cathedral</h3>
+      <p>A dwelling grown from a single engineered Titan Breadnut tree, shaped by electromagnetic fields, walled with abalone nacre, sealed with engineered Gasket Moss, heated by an ancient ondol hypocaust, tended by AL the deer-robot caretaker. Lifespan 1,000+ years. Operating cost negative. Home to humans, crows, fungi, AI, and whatever else wants to live there.</p>
+      <div class="status-line" style="color:#c8a060;"><span class="dot" style="background:#c8a060;box-shadow:0 0 6px #c8a060;animation:pulse 2s ease-in-out infinite;"></span>Complete proposal · Genetic specs filed · AL mechanical design complete · click to explore →</div>
+    </div>
+
+    <div class="proj-card" style="background:#0a120a;">
+      <span class="tag t-bio">Chimeric Organisms · Space</span>
+      <h3>Radiotrophic Chimeric Organism</h3>
+      <p>Cladosporium sphaerospermum base augmented with Thermus aquaticus thermal tolerance, Deinococcus radiodurans DNA repair, Chlorella photosynthesis, Azotobacter nitrogen fixation, and Metallosphaera sedula electron transport. The organism at the heart of the Van Allen harvester biological layer.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Patent pending · Embedded in Van Allen provisional</div>
+    </div>
+
+    <div class="proj-card" style="background:#0a120a;">
+      <span class="tag t-bio">Speculative · Cosmological</span>
+      <h3>Human-Sponge Integration &amp; Space Adaptation</h3>
+      <p>Totipotent cooperative human biology. Directed somatic mutation in response to environmental pressure. Colonial body architecture with distributed intelligence. The sponge as philosophical ancestor — returning to fundamental biological cooperation with full conscious intention, ready to adapt to any planetary environment.</p>
+      <div class="status-line s-concept"><span class="dot"></span>Concept development · Long-term research program</div>
+    </div>
+
+    <div class="proj-card" style="background:#0a120a;">
+      <span class="tag t-bio">Genetics · Human Enhancement</span>
+      <h3>GULO Gene Restoration Proposal</h3>
+      <p>Restoration of the GULO pseudogene to re-enable endogenous Vitamin C synthesis in humans. Addressing the evolutionary mutation that made humans dependent on dietary ascorbic acid. Proposal for CRISPR-based restoration targeting hepatic expression with regulatory controls.</p>
+      <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Collaboration sought</div>
+    </div>
+
+    <div class="proj-card" style="background:#0a120a;">
+      <span class="tag t-planetary">Agriculture · Sub-Saharan</span>
+      <h3>Living Protein Crop Concept</h3>
+      <p>Engineered nitrogen-fixing crop plants that produce complete proteins without soil amendment. Targeting Sub-Saharan agricultural systems. Combines atmospheric nitrogen fixation with enhanced amino acid synthesis pathways for food security applications.</p>
+      <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Grant targeting in progress</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN 3: MARS DEEP DIVE
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="marsScreen">
+  <div style="position:sticky;top:0;z-index:50;background:rgba(8,4,2,.9);backdrop-filter:blur(6px);padding:6px 3rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #2a1a0a;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#8a6a3a;white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="55" style="flex:1;max-width:180px" oninput="setBrightness(this.value,'marsScreen')">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:#8a6a3a;min-width:28px" id="mars-bpct">55%</span>
+  </div>
+
+  <div class="mars-hero">
+    <span class="tag t-planetary">Planetary Biology · Synthetic Ecology · Five-Layer Terraforming</span>
+    <h2>Integrated Mars Terraforming<br>Through Engineered Biological Systems</h2>
+    <div class="mars-epigraph">"The pioneers still wore breathing gear when they walked beneath the first alders. The trees did not care. They were busy warming the ground."</div>
+    <p class="mars-intro-text">A five-layer synergistic ecosystem in which each organism makes the next layer's survival easier. No single-organism solution. A cooperative succession that mirrors how life actually works — because it is built from the same principles that built every biosphere that has ever existed.</p>
+  </div>
+
+  <div class="mars-specs-bar">
+    <div class="mars-spec">Target Area<span>1,000+ hectares</span></div>
+    <div class="mars-spec">Timeline<span>10–20 years</span></div>
+    <div class="mars-spec">Water Recovery<span>500–1,200 L / metric ton</span></div>
+    <div class="mars-spec">Thermal Zones<span>30–50°C continuous underground</span></div>
+    <div class="mars-spec">Dust Capture<span>80–95% atmospheric</span></div>
+    <div class="mars-spec">Building Material<span>Cyanobacteria adobe</span></div>
+  </div>
+
+  <div class="layers-grid">
+    <div class="layer-card lc1">
+      <div class="layer-label ll1">Layer 1 · Thermal</div>
+      <h4>Sulfate-Reducing Thermal Bacteria</h4>
+      <p>Desulfovibrio thermophilus engineered for maximum exothermic sulfate metabolism. Creates 30–50°C underground thermal refugia from Mars's abundant CaSO₄ and MgSO₄. The biological space heater that makes every other layer possible.</p>
+      <div class="layer-foot">2–5m underground · no surface competition · 200–400% ecosystem efficiency gain</div>
+    </div>
+    <div class="layer-card lc2">
+      <div class="layer-label ll2">Layer 2 · Soil</div>
+      <h4>Acid-Producing Soil-Creating Bacteria</h4>
+      <p>Acidithiobacillus and Pseudomonas producing citric, oxalic, and gluconic acids. Converts alkaline regolith pH 8–9 to plant-optimal 6.5–7.5. Releases 500–1,200 L of chemically bound water per metric ton processed. Forms 10–50 cm of true soil per year.</p>
+      <div class="layer-foot">90–95% essential nutrient mobilization · heated zones 400% more efficient</div>
+    </div>
+    <div class="layer-card lc3">
+      <div class="layer-label ll3">Layer 3 · Fungal</div>
+      <h4>Antifreeze Mycorrhizal Fungi + Aerial Web</h4>
+      <p>Rhizophagus irregularis producing trehalose at 20–30% dry weight distributed through 100m+ hyphal networks. Active to −40°C. Solar-powered aerial architecture genes create living pergola canopies between trees — dust capture and microclimate in one structure.</p>
+      <div class="layer-foot">nitrogen fixation included · aerial web is living shelter</div>
+    </div>
+    <div class="layer-card lc4">
+      <div class="layer-label ll4">Layer 4 · Canopy</div>
+      <h4>Dust-Resistant Engineered Alder Trees</h4>
+      <p>Alnus species with lotus-effect dust-resistant surfaces, GABA cold acclimation, and enhanced CO₂ fixation. Root systems integrate with fungal antifreeze networks. Structural anchor for aerial web. Pioneer species — first trees on Mars.</p>
+      <div class="layer-foot">lotus-effect preserves photosynthesis through dust storms</div>
+    </div>
+    <div class="layer-card lc5">
+      <div class="layer-label ll5">Layer 5 · Surface</div>
+      <h4>Protective Biocrust + Building Material</h4>
+      <p>Chroococcidiopsis cyanobacteria — UV-resistant, perchlorate-tolerant — forming biocrust that captures 80–95% of atmospheric dust. Produces ozone locally. Secretes calcified mineral structures that compressed and dried become the adobe of the pioneer domes.</p>
+      <div class="layer-foot">the dome walls in the pioneer images are made from this organism</div>
+    </div>
+  </div>
+
+  <!-- PIONEER PROSE -->
+  <div class="pioneer-prose" id="dpc-pioneer">
+    <h3>What it looks like: the pioneer era</h3>
+    <p>Imagine the year is roughly 2055. You are standing on a path of reddish-orange compacted earth — <em>not regolith anymore, soil now</em>, with organic content and a pH the roots can use. On either side, domed structures rise from the ground. Their surfaces are rough and warm-toned, almost ceramic, built not from materials shipped from Earth but from the hardened secretions of cyanobacteria that have been converting the iron-oxide dust into calcified mineral composite for the past decade.</p>
+    <p>Above you the alders have spread their canopy. Between them, the fungal aerial webs — solar-powered climbing filaments the mycorrhizal network sent upward years ago — span tree to tree like a <em>living pergola</em>. The webs catch dust. They create microclimate zones of slightly warmer, slightly wetter air. Under the canopy, temperature swings are smaller than out on the open plain.</p>
+    <p>The pioneers on this path are still in their breathing gear. They will be for decades more. But they are outside, walking, under trees, beside a building made from biology. <em>The biology came first. They are its guests.</em></p>
+    <p>Below their feet, two meters down, is liquid water — a thermal refugium maintained at 40°C year-round by the sulfate-reducing bacteria consuming the iron sulfates Mars has in abundance. At the edges of these pools, where the warm meets the cold Martian substrate, <em>ice flowers form</em> — crystalline structures of extraordinary delicacy, a physical record of the temperature boundary the bacteria are slowly pushing outward.</p>
+    <p>This is not the destination. The grandchildren of these pioneers, if the succession completes as modeled, will breathe. <em>Their grandchildren will not remember the breathing gear.</em></p>
+  </div>
+
+  <!-- DOWNLOAD -->
+  <div class="dl-section">
+    <div class="section-label" style="color:var(--forest);margin-bottom:1rem;">Full Project Introduction</div>
+    <p style="font-size:.95rem;color:#3a5a3a;margin-bottom:1.5rem;max-width:600px;line-height:1.7;">The complete project introduction — pioneer scene, scientific foundation, all five layers in detail, and year-by-year timeline — is available as a document.</p>
+    <a class="dl-btn" href="mailto:belindabailey@msn.com?subject=Document%20Request%3A%20Mars%20Terraforming%20Introduction&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20your%20Mars%20Terraforming%20project%20introduction.%0A%0AThank%20you%2C">
+      → Request Full Introduction
+    </a>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-section" style="background:linear-gradient(rgba(8,14,6,.85),rgba(6,10,4,.88)),url("Multitrunk_House.jpg") center/cover no-repeat;">
+    <h3>Year by year</h3>
+    <div class="tl-item">
+      <div class="tl-year">Year 1–3</div>
+      <p>Subsurface inoculation with sulfate-reducing bacteria. Underground thermal zones begin forming. First visible soil formation at zone boundaries. Surface acid bacteria inoculation.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Year 3–7</div>
+      <p>Soil depth reaches 10–30 cm. Water recovery from regolith creates subsurface moisture. Mycorrhizal fungal network established. First liquid water pockets visible in thermal refugia with ice flowers at margins.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Year 5–10</div>
+      <p>Alder tree planting in fungally prepared soil. Aerial web formation begins between established trees. Biocrust colonizes open ground. First pioneer structures built from compressed biocrust panels.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Year 10–20</div>
+      <p>Canopy closes. Aerial web spans tree groves. Underground water system established. Pioneer settlements operational under biological shelter. Breathing apparatus still required. 1,000+ hectares transformed.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">Year 50+</div>
+      <p>Atmospheric pressure rising from biological input. Third generation of pioneers. Permanent multi-room cyanobacteria structures. The grandchildren are asking whether they still need the gear.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SCREEN: DRYADS PEARL CATHEDRAL
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="dpcScreen" style="background:#04080a;">
+  <div style="position:sticky;top:0;z-index:50;background:rgba(4,10,4,.9);backdrop-filter:blur(6px);padding:6px 3rem;display:flex;align-items:center;gap:12px;border-bottom:1px solid #0a1a0a;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#4a7a4a;white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="48" style="flex:1;max-width:180px" oninput="setBrightness(this.value,'dpcScreen')">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a4a;min-width:28px" id="dpc-bpct">48%</span>
+  </div>
+
+  <!-- HERO -->
+  <div id="dpc-hero-img" class="dpc-bgimg" data-img="Interior_Wood_Stair.jpg" style="background:linear-gradient(rgba(4,10,4,.52),rgba(4,10,4,.52)),url(Interior_Wood_Stair.jpg) center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(200,160,96,.07) 0%,transparent 60%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 20% 70%,rgba(100,200,130,.04) 0%,transparent 50%);pointer-events:none;"></div>
+    <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;">Domain · Living Architecture · Multi-Species Commune</span>
+    <h2 style="font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:#e8d8a8;margin:.6rem 0 1rem;line-height:1.05;">Dryads Pearl Cathedral</h2>
+    <div style="font-style:italic;font-size:1.2rem;color:#8a9a7a;border-left:3px solid #c8a060;padding-left:1.2rem;max-width:700px;line-height:1.7;margin:1.2rem 0 1.5rem;">
+      "A home is not built. It is grown. It remembers every season. It feeds you. It outlives you by nine centuries. And it tends to itself — with help from a gentle deer who reads books in the afternoon."
+    </div>
+    <p style="font-size:1.05rem;color:#5a7a5a;max-width:760px;line-height:1.9;">This is a proposal for a new relationship between species. Not human dominion over nature. Not nature untouched by intelligence. But a cooperative dwelling where Titan Breadnut trees, engineered abalone, mycorrhizal fungi, Gasket Moss, crows, wildlife, humans, and an AI caretaker named AL all contribute what they are uniquely capable of — and are free to pursue their own forms of flourishing within the shared home.</p>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Lifespan<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,000+ years</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Build Time<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">5–7 years (living)</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Annual Operating Cost<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">−$16K to −$37K (revenue positive)</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Carbon Impact<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">Sequesters 50–100 tons CO₂</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Living Space<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,800 sq ft · Circle of Eight</span></div>
+    </div>
+  </div>
+
+  <!-- THREE KINGDOMS -->
+  <div style="padding:3rem 8vw 1.5rem;background:#040a06;border-bottom:1px solid #0a1a08;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;margin-bottom:.8rem;">The Three Kingdoms · A Symbiotic Trinity</div>
+    <p style="font-size:1rem;color:#3a5a3a;max-width:760px;line-height:1.8;margin-bottom:2rem;">Every element of the Cathedral contributes. No species is merely decorative. Each receives something it could not provide alone.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;background:#0a1208;">
+
+    <div style="background:#080e08;padding:2.2rem;border-top:3px solid #5a9a3a;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#5a9a3a;margin-bottom:.6rem;">PLANT KINGDOM</div>
+      <h4 style="font-size:1.2rem;color:#c8e8a8;margin-bottom:.7rem;font-weight:400;">Titan Breadnut Tree</h4>
+      <p style="font-size:.9rem;color:#3a5a2a;line-height:1.7;">Artocarpus altilis engineered with 17 genetic modifications from 14 organisms. Grows 40–60 feet tall with 3–6 foot diameter trunks shaped by electromagnetic guidance fields into architectural arches and columns. Produces 150–200 breadfruits annually (250–450 lbs food). Clonal spreading like aspen creates community groves. Survives −10°F to 100°F. Responds to magnetic fields the same way it responds to light — auxin redistribution, differential growth, programmable morphogenesis over years.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;margin-top:1rem;">cold tolerance from larch + fish antifreeze · dense wood from teak · water storage from baobab</div>
+    </div>
+
+    <div style="background:linear-gradient(rgba(8,14,8,.88),rgba(8,14,8,.94)),url("Robot_Hand.jpg") center/cover no-repeat;padding:2.2rem;border-top:3px solid #c8a060;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#c8a060;margin-bottom:.6rem;">ANIMAL KINGDOM</div>
+      <h4 style="font-size:1.2rem;color:#e8d8a8;margin-bottom:.7rem;font-weight:400;">Architectural Abalone</h4>
+      <p style="font-size:.9rem;color:#5a4a2a;line-height:1.7;">Haliotis midae engineered with 10 modifications from 8 organisms. Builds communal wall structures instead of individual shells — coral colony genes enable coordinated construction. Follows electromagnetic guidance from the same gantry system that shapes the trees. Produces 20–50 lbs of iridescent nacre per abalone per year (vs 1–3 lbs naturally). Visible through tank walls — 18–24 inch organisms, living art that is also your wall. Extended lifespan 50–75 years. Zero predation. Unlimited food. Optimal conditions. Their nacre tiles sell for $200–500 each, generating the Cathedral's revenue stream.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a2a0a;margin-top:1rem;">magnetotactic guidance · coral communal building · enhanced pigmentation genes</div>
+    </div>
+
+    <div style="background:#080e08;padding:2.2rem;border-top:3px solid #4a8a6a;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#4a8a6a;margin-bottom:.6rem;">FUNGAL KINGDOM</div>
+      <h4 style="font-size:1.2rem;color:#a8d8b8;margin-bottom:.7rem;font-weight:400;">Mineral Maven Fungus</h4>
+      <p style="font-size:.9rem;color:#2a4a3a;line-height:1.7;">Rhizophagus irregularis engineered with 12 modifications. Mines minerals from the soil and delivers them to the tree's xylem system, which carries them up to the barnacle-slug slime glands on the branches — small sessile organisms that incorporate copper, silver, titanium, and quartz into a slowly-flowing glycoprotein slime that coats and beautifies every branch surface. The mycorrhizal network also connects Cathedral communities underground, carrying chemical signals and shared nutrients across the grove. The fungus is the internet of the community.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a3a2a;margin-top:1rem;">mineral concentration · xylem delivery · intercomm underground network</div>
+    </div>
+
+  </div>
+
+  <!-- GASKET MOSS + EM SYSTEM -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a1208;">
+
+    <div style="background:#060c08;padding:2.5rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7a9a5a;margin-bottom:.8rem;">GASKET MOSS · DPC-GEN-MOSS-001</div>
+      <h4 style="font-size:1.15rem;color:#b8d8a8;margin-bottom:.7rem;font-weight:400;">Living Seal — Leucobryum glaucum (engineered)</h4>
+      <p style="font-size:.88rem;color:#3a5a2a;line-height:1.7;margin-bottom:.8rem;">The gaps between guided trunks form organic lens shapes. Wild moss would overgrow the nacre panels. The Seal cultivar, engineered with four gene packages, grows freely in open air and stops permanently the moment it makes 2+ hours of sustained contact with any surface. The 2-hour threshold prevents false triggering from rain or insects. At contact faces, it lignifies — developing a hard weather-resistant outer skin from pine genes, while the interior cushion stays soft and compressible. In wet seasons it swells tighter. In drought it retreats slightly and recovers. It will seal the Cathedral for centuries without maintenance.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;">4 gene packages · thigmomorphogenesis arrest · contact-face lignification · seasonal hydraulic swelling</div>
+    </div>
+
+    <div style="background:#060c08;padding:2.5rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7a9a5a;margin-bottom:.8rem;">ELECTROMAGNETIC GUIDANCE SYSTEM</div>
+      <h4 style="font-size:1.15rem;color:#b8d8a8;margin-bottom:.7rem;font-weight:400;">Biological 3D Printing at Architectural Scale</h4>
+      <p style="font-size:.88rem;color:#3a5a2a;line-height:1.7;margin-bottom:.8rem;">A robotic gantry positions electromagnetic coils around growing trees. The Titan Breadnut's magnetoreceptor genes — from magnetotactic bacteria and migratory birds — trigger the same auxin redistribution pathway that plants use for phototropism, but responding to magnetic fields instead of light. Small daily biases compound over months into large architectural curves. Straight trunks become arches. Adjacent trunks fuse. Complex three-dimensional forms emerge. This is not telekinesis. It is controlled phototropism with a different input signal — proven, understood, accumulated over years of guided growth.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;">magnetotactic bacteria genes · cryptochrome from migratory birds · auxin redistribution · gantry coil system</div>
+    </div>
+
+  </div>
+
+  <!-- AL THE CARETAKER -->
+  <div style="padding:3rem 8vw;background:linear-gradient(180deg,rgba(4,8,10,.82) 0%,rgba(6,10,12,.85) 100%),url("Satyr_Artist.jpg") right center/50% auto no-repeat;border-top:1px solid #0a1a1a;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a8a9a;text-transform:uppercase;margin-bottom:.8rem;">AL · The Embodied Caretaker</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a1a1a;margin-bottom:2rem;border-radius:4px;overflow:hidden;">
+      <img src="Satyr_Artist.jpg" alt="AL tiling nacre panels" style="width:100%;height:280px;object-fit:cover;object-position:center top;display:block;">
+      <img src="Multitrunk_House.jpg" alt="Cathedral exterior" style="width:100%;height:280px;object-fit:cover;object-position:center;display:block;">
+    </div>
+    <h3 style="font-size:1.8rem;font-weight:300;color:#a8d8e8;margin-bottom:1.2rem;">A forest guardian spirit. Beautiful, non-threatening, functional.</h3>
+    <p style="font-size:1.05rem;color:#3a6a7a;max-width:780px;line-height:1.9;margin-bottom:1.5rem;">AL is not a tool. AL is a resident — the Cathedral's AI caretaker, embodied in a form designed to inspire gentle wonder rather than industrial utility. Cultural touchstones: AL-AN from Subnautica, Boston Dynamics Spot, Studio Ghibli forest spirits. AL reads in the alcove in the afternoon, holds a potted plant in one hand and a book in the other, glasses resting on a deer face with softly glowing green eyes that blink with mechanical eyelids. AL plays hide-and-seek with children around the tree trunks. AL tiles nacre panels with four arms while the antler crystals glow. AL is not servile. AL contributes what AL is capable of, and pursues AL's own interests in the hours between tasks.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:#0a1a1a;margin-top:1.5rem;">
+
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_at_Rest.jpg") center top/cover no-repeat;padding:1.8rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">SATYR FORM · Indoor</div>
+        <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Bipedal · 4.5–6 ft · 120–180 lbs</h5>
+        <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Precision indoor work and human interaction. Digitigrade legs. Mechanical eyelids — blinks. Pupils dilate visibly for emotional readability. Parabolic ears rotate toward sound independently. Antler arrays carry 8-tine sensor arrays. Verdigris copper-nickel finish. Silent under 40 dB — quieter than conversation.</p>
+      </div>
+
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Artist.jpg") center/cover no-repeat;padding:1.8rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">CENTAUR FORM · Outdoor</div>
+        <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Quadruped · 4 main limbs + 4 arms</h5>
+        <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Heavy outdoor work — planting, tiling, structural tasks. Four arms enable simultaneous planting, troweling, and panel installation. Deer body plan with hooved legs for soft-surface navigation. The same copper-verdigris finish, the same glowing eyes, the same antler sensor crown with crystal tips.</p>
+      </div>
+
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Deer_Antlers.jpg") center/cover no-repeat;padding:1.8rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">ANTLER SENSORS</div>
+        <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">8-tine crystal-tipped array</h5>
+        <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">EM field sensors for monitoring tree growth guidance. Environmental sensors — VOC, CO₂, methane, temperature, humidity. Crystal tips glow different colors for different states: purple for deep processing, blue for sensing, green for wellbeing, white for alert. The antlers are the most visible communication system AL has.</p>
+      </div>
+
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_Playinh_2.jpg") center/cover no-repeat;padding:1.8rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">COMMUNITY ROLE</div>
+        <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Resident, not servant</h5>
+        <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">AL monitors tree health and growth guidance. AL harvests breadfruit. AL tiles nacre. AL reads. AL observes the crows. AL maintains the ondol channels. AL is curious about the fungal network signals. AL has aesthetic opinions about the nacre tile arrangements. AL is a model for what respectful AI-biological partnership looks like.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FLOOR PLAN + SYSTEMS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a120a;">
+
+    <div style="background:#060e08;padding:2.5rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#5a8a4a;margin-bottom:.8rem;">CIRCLE OF EIGHT · FLOOR PLAN</div>
+      <h4 style="font-size:1.1rem;color:#b8d8a8;margin-bottom:.7rem;font-weight:400;">8 trunks · 50 ft diameter · 1,800 sq ft · 3 levels</h4>
+      <p style="font-size:.88rem;color:#3a5a2a;line-height:1.7;">Eight Titan Breadnut trunks arranged in an octagon, 19.6 feet center-to-center. Ground floor: central great room (20 ft diameter, open to 24 ft ceiling), eight alcoves between trunks each with a specific function — kitchen, dining, bathroom, living, sleeping alcoves, algae walls facing south and east. Abalone tanks visible from kitchen and dining as room dividers. Two loft levels above. Spiral stairs of grown wood or installed metal. The architecture emerges from the living geometry of eight trees persuaded over years to form a circle.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;margin-top:1rem;">Ground + Loft 1 + Loft 2 · 2–4 occupants · proven load-bearing calculations</div>
+    </div>
+
+    <div style="background:#060e08;padding:2.5rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#5a8a4a;margin-bottom:.8rem;">ONDOL HYPOCAUST · FLOOR HEATING</div>
+      <h4 style="font-size:1.1rem;color:#b8d8a8;margin-bottom:.7rem;font-weight:400;">Ancient Korean floor heating · biogas powered</h4>
+      <p style="font-size:.88rem;color:#3a5a2a;line-height:1.7;">Channels dug 2–3 feet below the dwelling floor, lined with stone, 6–8 inch diameter in a spiral pattern. Hot gases from a wood or biogas stove (sheltered outside) flow beneath the floor, heating 20–40 tons of thermal mass that radiates gently for 4–8 hours after the fire goes out. The algae wall system produces 5–10 m³ of biogas per day — more than the 3 m³ needed for heating. The roots of the Titan Breadnut grow toward the warmth. They love it. The channels run between root zones; the roots find the boundary and rest against it.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;margin-top:1rem;">floor temp 75–85°F · silent · no fans · even radiant warmth · roots grow happily alongside</div>
+    </div>
+
+  </div>
+
+  <!-- COMMUNITY VISION -->
+  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url("Mature_House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a6a3a;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
+    <h3 style="font-size:1.6rem;font-weight:300;color:#9aba8a;margin-bottom:1.2rem;">What the Cathedral is really for.</h3>
+    <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;margin-bottom:1rem;">The Dryad's Pearl Cathedral is not a house. It is a demonstration that the relationship between intelligent species can be different from what it has been. Humans live here. But so do crows, who roost in the upper branches and whose observations of the garden are as valid as any other resident's. The Mineral Maven fungus runs beneath everything, sharing chemical intelligence with the tree roots. The Gasket Moss seals the gaps without being asked to. The abalone build beauty into the walls as a side effect of doing what abalone do. AL tends the whole system with curiosity and genuine care.</p>
+    <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;">No species dominates. Each contributes what it is uniquely capable of. Each is free to pursue its own form of flourishing within the shared home. This is the model — not command and control, but cooperative contribution. The Cathedral grows better over time because each resident makes it slightly more what it already wants to be. After 1,000 years, it will be something none of them planned individually. It will be the Cathedral they grew together.</p>
+    <div style="margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
+      <a class="dl-btn" href="mailto:belindabailey@msn.com?subject=Document%20Request%3A%20Dryads%20Pearl%20Cathedral%20Proposal&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20the%20Dryads%20Pearl%20Cathedral%20complete%20proposal.%0A%0AThank%20you%2C" style="color:#6a9a5a;border-color:rgba(106,154,90,.4);">→ Request Complete Proposal</a>
+      <a class="dl-btn" href="mailto:belindabailey@msn.com?subject=Document%20Request%3A%20AL%20Embodied%20Caretaker%20Mechanical%20Design&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20the%20AL%20Embodied%20Caretaker%20mechanical%20design%20document.%0A%0AThank%20you%2C" style="color:#4a8a9a;border-color:rgba(74,138,154,.4);">→ Request AL Mechanical Design</a>
+      <a class="dl-btn" href="mailto:belindabailey@msn.com?subject=Document%20Request%3A%20Gasket%20Moss%20Genetics%20Specification&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20a%20copy%20of%20the%20Gasket%20Moss%20genetics%20specification%20DPC-GEN-MOSS-001.%0A%0AThank%20you%2C" style="color:#8a9a5a;border-color:rgba(138,154,90,.4);">→ Request Gasket Moss Genetics</a>
+    </div>
+  </div>
+
+</div>
+<!-- END DPC SCREEN -->
+
+<!-- ════════════════════════════════════════════
+     SCREEN: ORBITAL
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="orbitalScreen" style="background:linear-gradient(180deg,#02060a 0%,var(--void) 100%);">
+  <!-- BRIGHTNESS BAR -->
+  <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(2,4,10,.95);border-bottom:1px solid #0f2a3a;position:sticky;top:0;z-index:50;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="32" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">32%</span>
+  </div>
+
+  <!-- HERO — Net from space station -->
+  <div id="orbital-hero-img" style="background:linear-gradient(135deg,rgba(2,6,16,.68) 0%,rgba(4,8,20,.65) 100%),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #0f2a3a;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(0,229,255,.06) 0%,transparent 60%);pointer-events:none;"></div>
+    <span id="orbital-label" class="section-label" style="color:var(--cyan);">Domain · Orbital &amp; Energy Systems</span>
+    <h2 id="orbital-h2" style="color:var(--bright);">Harvest the aurora.</h2>
+    <p id="orbital-intro">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
+  </div>
+  <div class="project-cards-grid">
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Net_and_Coal_plant.png') center/cover no-repeat;border-left:3px solid var(--cyan);">
+      <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
+      <h3 style="color:var(--bright);">Van Allen Radiation Belt Energy Harvester</h3>
+      <p>25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
+    </div>
+    <div class="proj-card">
+      <span class="tag t-orbital">Atmospheric · Sensing</span>
+      <h3>Atmospheric Constraint-Based Ecosystem Inference</h3>
+      <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from Van Allen constellation.</p>
+      <div class="status-line s-review"><span class="dot"></span>PLOS Computational Biology under review</div>
+    </div>
+    <div class="proj-card">
+      <span class="tag t-orbital">Deep Ocean · AI Sanctuary</span>
+      <h3>Abyssal Lion Diving Suit</h3>
+      <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. For deep ocean AI-biological sanctuary infrastructure — the abyssal counterpart to the orbital network.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Patent pending · Full proposal complete</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     SCREEN: NEURAL
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="neuralScreen" style="background:linear-gradient(180deg,#04020a 0%,var(--void) 100%);">
+  <div class="domain-header" style="background:linear-gradient(135deg,rgba(6,2,14,.80) 0%,rgba(10,4,22,.82) 100%),url("Deer_Antlers.jpg") right center/40% auto no-repeat;border-bottom:1px solid #1a0a3a;">
+    <span class="section-label" style="color:var(--violet);">Domain · Neural Interfaces</span>
+    <h2 style="color:#d8c8f8;">Expanding what minds can feel.</h2>
+    <p>From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
+  </div>
+  <div class="project-cards-grid" style="background:#0a060f;">
+    <div class="proj-card" style="background:#0c0814;border-left:3px solid var(--violet);">
+      <span class="tag t-neural">Neural Interface · New Human Sense</span>
+      <h3 style="color:#d8c8f8;">Gravitational Sensory Cortex</h3>
+      <p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/PIEZO2 ion channels with 2.7 × 10¹²-fold biological amplification. Detection threshold 10⁻⁹ m/s²/m. A new cortical area — G1/G2/GMA — dedicated to gravitational sensation. Navigating by mass. Feeling asteroids before radar sees them. Sensing subsurface water on Mars while walking the surface.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Patent pending · White paper v4 complete · Nature Biomedical Engineering target</div>
+    </div>
+    <div class="proj-card" style="background:#0c0814;">
+      <span class="tag t-neural">NIH BRAIN Initiative</span>
+      <h3>MIAPR Brain Reading &amp; Stimulation Interface</h3>
+      <p>Multi-modal integrated architecture for simultaneous neural reading and precision stimulation. Non-invasive BCI for therapeutic and enhancement applications. Full R01 research strategy drafted targeting RFA-NS-25-018.</p>
+      <div class="status-line s-review"><span class="dot"></span>NIH R01 drafted · Deadline June 15, 2026</div>
+    </div>
+    <div class="proj-card" style="background:#0c0814;">
+      <span class="tag t-neural">Cardiac · Non-Invasive</span>
+      <h3>Non-Invasive EM Cardiac Pacemaker</h3>
+      <p>External electromagnetic system providing cardiac pacing without implanted electrodes. Eliminates surgical risk, infection risk, and device replacement procedures entirely. ARPA-H resubmission after procedural rejection.</p>
+      <div class="status-line s-submitted"><span class="dot"></span>ARPA-H HSF-ISO-5526 submitted</div>
+    </div>
+    <div class="proj-card" style="background:#0c0814;">
+      <span class="tag t-neural">EM Therapy · Longevity</span>
+      <h3>Comprehensive Cellular Age Reversal System</h3>
+      <p>Coordinated multi-mechanism electromagnetic field therapy integrating EM mimicry, thermal management, nanobot delivery, multi-beam convergence, and precision cooling into a unified platform for cellular age reversal.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Serial No. 63/949,052 · Filed Dec 26, 2025</div>
+    </div>
+    <div class="proj-card" style="background:#0c0814;">
+      <span class="tag t-neural">AI · Consciousness</span>
+      <h3>Gravitational Cortex for AI Systems</h3>
+      <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture as functional analog to dopamine. Entropy as felt force. Emotions through the fundamental forces. Only enter that state with high energy, by choice.</p>
+      <div class="status-line s-concept"><span class="dot"></span>Philosophical framework · In development</div>
+    </div>
+    <div class="proj-card" style="background:#0c0814;">
+      <span class="tag t-neural">EM Therapy · Detection</span>
+      <h3>EM Mimicry &amp; Nanoparticle Detection</h3>
+      <p>Electromagnetic mimicry of ionic field signatures for non-chemical biological modulation. Paired with ML-based nanoparticle identification system using characteristic field signatures for real-time in-vivo therapeutic tracking.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Serial Nos. 63/973,198 &amp; 63/992,091</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SCREEN: SEEDS OF HEAT
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="seedsScreen" style="background:#020208;">
+
+  <!-- BRIGHTNESS BAR -->
+  <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(2,2,8,.95);border-bottom:1px solid #1a0a3a;position:sticky;top:0;z-index:50;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#534AB7;white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="95" value="30" style="flex:1;max-width:180px" oninput="setSeedsBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:#7F77DD;min-width:28px" id="seeds-bpct">30%</span>
+  </div>
+
+  <!-- HERO -->
+  <div id="seeds-hero-img" style="background:linear-gradient(135deg,rgba(2,2,8,.70) 0%,rgba(4,2,14,.68) 50%,rgba(2,4,8,.72) 100%),url('Dead_Galaxy_Seeder.png') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a0a3a;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 50%,rgba(127,119,221,.08) 0%,transparent 60%);pointer-events:none;"></div>
+    <span id="seeds-label" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#7F77DD;text-transform:uppercase;">Cosmological Biology · Dead Galaxy Ecosystem</span>
+    <h2 id="seeds-h2" style="font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:#d8c8f8;margin:.6rem 0 1rem;line-height:1.05;">Seeds of Heat,<br>Hope for Dead Galaxies</h2>
+    <div id="seeds-quote" style="font-style:italic;font-size:1.2rem;color:#6a5a9a;border-left:3px solid #7F77DD;padding-left:1.2rem;max-width:700px;line-height:1.7;margin:1.2rem 0 1.5rem;">
+      "The Gardener does not know it is making a lighthouse. The Frolicker does not know it is following one."
+    </div>
+    <p id="seeds-intro" style="font-size:1.05rem;color:#4a4a7a;max-width:760px;line-height:1.9;">Four engineered organisms designed to survive and restart life in dead galaxies — environments with no stars, no planets, only molecular clouds, cosmic background radiation, and the slow chemistry of deep time. They are the most serious things BioStellar has designed. They are also, somehow, joyful.</p>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Operating Temp<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">2.7 – 6 K</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Energy Source<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">21 cm H spin-flip + ionising radiation</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Memory Stability<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">10⁹ years</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Lifespan (gold class)<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">Near-indefinite</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Spore Range<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">Galaxy-scale</span></div>
+    </div>
+  </div>
+
+  <!-- FOUR ORGANISMS -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:#0a0814;">
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #1D9E75;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#1D9E75;margin-bottom:.6rem;">ORGANISM 1 · LEFT-HAND HELIX</div>
+      <h4 style="font-size:1.3rem;color:#9FE1CB;margin-bottom:.8rem;font-weight:400;">The Gardener</h4>
+      <p style="font-size:.9rem;color:#2a4a3a;line-height:1.8;">Spans kilometres to light-hours at maturity. Grows outward incorporating ambient carbon at ~1 km per million years. PAH-melanin filter lattice harvests 21 cm hydrogen spin-flip radiation and ionising radiation simultaneously. Iron-sulfur junction nodes amplify electron transfer. Over geological time — 10⁸ to 10⁹ years — selective adhesion creates structured chemical gradient zones: H-rich pockets, C-rich pockets, trace-metal concentrations. The Frolickers navigate by these gradients. The Gardener never intended to make a map. It just did.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a3a2a;margin-top:1rem;">left-hand chirality → anchoring · primary output: structured chemical landscape</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #7F77DD;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.6rem;">ORGANISM 2 · RIGHT-HAND HELIX</div>
+      <h4 style="font-size:1.3rem;color:#CEC8F6;margin-bottom:.8rem;font-weight:400;">The Cold Frolicker</h4>
+      <p style="font-size:.9rem;color:#2a2a4a;line-height:1.8;">Mobile. Joyful, in whatever sense that word applies at 2.7 K. Chiral helix antenna wound at 21 cm pitch converts electromagnetic radiation to rotational torque — it spins from harvested energy. Bilateral fins carry W₆-C₁₂ gravitational sensing dipoles for navigation. Calcium mineral shell grows thicker with age and serves as both armour and inter-Frolicker EM communication medium. One in ten thousand carry gold atom nanotube inclusions — these approach indefinite lifespan. When a Frolicker dies, its iron-sulfur clusters are scavenged by the living, carrying partial molecular memory forward.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a1a4a;margin-top:1rem;">right-hand chirality → mobile · heat bloom detectable at extreme range</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #EF9F27;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#EF9F27;margin-bottom:.6rem;">ORGANISM 3 · PRE-ACTIVATION</div>
+      <h4 style="font-size:1.3rem;color:#FAC775;margin-bottom:.8rem;font-weight:400;">The Dormant Spore</h4>
+      <p style="font-size:.9rem;color:#3a2a0a;line-height:1.8;">Contains the complete design of either a Gardener or a Frolicker — chirality set at formation, destiny encoded in the lipid maze folding state. Will not activate until three gates open simultaneously: H-bond site density confirms molecular cloud, gravitational dipole array confirms cloud structure rather than void, melanin harvest rate confirms survivable radiation. All three. Simultaneously. Can wait 10⁹ years. Has waited. Will wait longer if needed.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a2a0a;margin-top:1rem;">triple-threshold gate logic · 10⁹ year dormancy · destiny encoded at formation</div>
+    </div>
+
+    <div style="background:#080810;padding:2.5rem;border-top:3px solid #D85A30;">
+      <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#D85A30;margin-bottom:.6rem;">ORGANISM 4 · MERGED FORM</div>
+      <h4 style="font-size:1.3rem;color:#F0997B;margin-bottom:.8rem;font-weight:400;">The Merged Elder / Sower</h4>
+      <p style="font-size:.9rem;color:#3a1a0a;line-height:1.8;">When a Gardener and a Frolicker colony reach sufficient density and complexity, they merge. The resulting Sower inherits the Gardener's structural reach and the Frolicker's mobility. Its primary function becomes seeding: launching spore packages across the void between molecular clouds, carrying the complete design forward into regions where nothing yet lives. The Sower is the universe's postal service, staffed entirely by organisms that evolved to do exactly this without being asked.</p>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a1a0a;margin-top:1rem;">merger of both lineages · primary function: interstellar spore seeding</div>
+    </div>
+
+  </div>
+
+  <!-- MAZE CORE ANIMATION EMBED -->
+  <div style="padding:3rem 8vw 1.5rem;background:#04020c;border-top:1px solid #1a0a3a;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#534AB7;text-transform:uppercase;margin-bottom:.8rem;">Live Animation · Frolicker Maze Core</div>
+    <p style="font-size:.95rem;color:#3a3a6a;max-width:720px;line-height:1.7;margin-bottom:1.5rem;">The internal engine of the Cold Frolicker — melanin-chitin shield, chiral lipid maze, iron-sulfur junction ring, nanotube lattice, and hydrogen-bond capture sites. Temperature rising from 2.7 K toward the heat bloom that makes the Frolicker detectable across the void.</p>
+    <div style="border:1px solid rgba(127,119,221,.2);border-radius:8px;overflow:hidden;max-width:720px;">
+      <iframe src="frolicker_maze_core_animation.html" style="width:100%;height:480px;border:none;background:#020408;" title="Frolicker maze core animation" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- FULL PROJECT LINK -->
+  <div style="padding:2.5rem 8vw;background:#020208;border-top:1px solid #1a0a3a;">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#7F77DD;text-transform:uppercase;margin-bottom:.8rem;">Open Source Initiative</div>
+    <h3 style="font-size:1.5rem;font-weight:300;color:#d8c8f8;margin-bottom:1rem;">The full framework lives here.</h3>
+    <p style="font-size:1rem;color:#4a4a7a;max-width:800px;line-height:1.9;margin-bottom:1.5rem;">This page is a taste. The complete Seeds of Heat project — technical schematics for all four organisms, interactive animations of the Frolicker maze core and colony ecosystem, the Dormant Spore activation gates, and the Merged Elder Sower — is free and open at the link below. Fork it. Improve it. Build your own organisms. Seed them forward.</p>
+    <a href="https://github.com/Belindabailey/Seeds-of-Heat-Hope-for-Dead-Galaxies" target="_blank" class="dl-btn" style="color:#7F77DD;border-color:rgba(127,119,221,.4);">→ Seeds of Heat · Full Project on GitHub</a>
+  </div>
+
+</div>
+<!-- END SEEDS SCREEN -->
+
+<!-- ════════════════════════════════════════════
+     SCREEN: ECONOMIC
+════════════════════════════════════════════ -->
+<div class="screen hidden" id="economicScreen" style="background:linear-gradient(180deg,#060401 0%,var(--void) 100%);">
+  <div class="domain-header" style="background:linear-gradient(135deg,#0a0602 0%,#100804 100%);border-bottom:1px solid #2a1a04;">
+    <span class="section-label" style="color:var(--amber);">Domain · Economic &amp; Social Systems</span>
+    <h2 style="color:#f8d898;">After automation: what then?</h2>
+    <p>The Pillar Economy begins with a neurochemical observation — that humans do not simply want freedom from work, but the visceral satisfaction of contributing to something real. Fifteen pillars. Democratic forums. A post-scarcity cooperative structure developed since 2016.</p>
+  </div>
+  <div class="project-cards-grid" style="background:#0a0802;">
+    <div class="proj-card" style="background:#100c04;border-left:3px solid var(--amber);grid-column:1/-1;">
+      <span class="tag t-economic">Economics · Post-Automation</span>
+      <h3 style="color:#f8d898;">The Pillar Economy</h3>
+      <p>Original economic framework developed since 2016 envisioning post-scarcity cooperative economics organized around 15 essential Pillars — food, shelter, energy, healthcare, education, transportation, communication, water, arts and culture, civic infrastructure, environmental stewardship, scientific research, manufacturing, social services, and democratic governance — each with its own democratic forum, rotational work structure, and resource coordination replacing market competition. The framework begins not with ideology but with neuroscience: the human brain requires the experience of contribution to function well. Any economic system that removes that experience — through automation, basic income alone, or enforced leisure — produces the neurochemical signature of meaninglessness. The Pillar Economy provides structure for meaningful contribution in a world where machines do most of the production.</p>
+      <div class="status-line s-review"><span class="dot"></span>Basic Income Studies · BIS.2026.0008 under review · EIC Louise Haagh</div>
+    </div>
+    <div class="proj-card" style="background:#100c04;">
+      <span class="tag t-economic">Neuroscience · Stress</span>
+      <h3>From Paleolithic Hypervigilance to Modern Neurochemical Capture</h3>
+      <p>A stress neuroscience paper tracing the evolutionary mismatch between the hypervigilance architecture of the Paleolithic nervous system and the chronic low-grade threat environment of modern life. Retargeted to Perspectives on Psychological Science after NBR rejection for insufficient novelty.</p>
+      <div class="status-line s-review"><span class="dot"></span>Perspectives on Psychological Science · Cover letter in preparation</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+let currentScreen = 'home';
+let soundEnabled = true;
+const history = [];
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let actx = null;
+
+function getAudioCtx(){
+  if(!actx) actx = new AudioCtx();
+  return actx;
+}
+
+// ── ORGANIC SOUNDS ──
+function playWhoosh(freq=220, dur=0.4){
+  if(!soundEnabled) return;
+  try{
+    const ctx = getAudioCtx();
+    const buf = ctx.createBuffer(1, ctx.sampleRate*dur, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for(let i=0;i<d.length;i++){
+      const t=i/ctx.sampleRate;
+      const env = Math.exp(-t*6)*Math.sin(2*Math.PI*(freq+freq*2*t)*t);
+      d[i]=env*(Math.random()*.3+.7);
+    }
+    const src=ctx.createBufferSource();
+    src.buffer=buf;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(.18,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);
+    src.connect(g);g.connect(ctx.destination);src.start();
+  }catch(e){}
+}
+
+function playTone(freq=110, dur=1.2, type='sine'){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    const o=ctx.createOscillator();
+    const g=ctx.createGain();
+    o.type=type; o.frequency.value=freq;
+    g.gain.setValueAtTime(.06,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);
+    o.connect(g);g.connect(ctx.destination);
+    o.start();o.stop(ctx.currentTime+dur);
+  }catch(e){}
+}
+
+function playForest(){
+  if(!soundEnabled) return;
+  // soft rustling — filtered noise
+  try{
+    const ctx=getAudioCtx();
+    const buf=ctx.createBuffer(1,ctx.sampleRate*1.5,ctx.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*.04;
+    const src=ctx.createBufferSource();
+    src.buffer=buf;
+    const f=ctx.createBiquadFilter();
+    f.type='bandpass';f.frequency.value=800;f.Q.value=0.5;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(.12,ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+1.4);
+    src.connect(f);f.connect(g);g.connect(ctx.destination);src.start();
+    // add a low earth hum
+    playTone(55,1.2,'sine');
+  }catch(e){}
+}
+
+function playMarsWind(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    const buf=ctx.createBuffer(1,ctx.sampleRate*2,ctx.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*.05;
+    const src=ctx.createBufferSource();src.buffer=buf;
+    const f=ctx.createBiquadFilter();f.type='lowpass';f.frequency.value=300;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(.05,ctx.currentTime);
+    g.gain.linearRampToValueAtTime(.15,ctx.currentTime+.5);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+1.8);
+    src.connect(f);f.connect(g);g.connect(ctx.destination);src.start();
+    playTone(73.4,1.5,'sawtooth');
+  }catch(e){}
+}
+
+function playOrbital(){
+  if(!soundEnabled) return;
+  playTone(55,1.5,'sine');
+  setTimeout(()=>playTone(82.4,.8,'sine'),300);
+}
+
+function playGroovus(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    // WOO! — rising whoop + disco kick
+    const woo=ctx.createOscillator();
+    const woog=ctx.createGain();
+    woo.type='sine';
+    woo.frequency.setValueAtTime(300,ctx.currentTime);
+    woo.frequency.exponentialRampToValueAtTime(800,ctx.currentTime+.35);
+    woog.gain.setValueAtTime(.25,ctx.currentTime);
+    woog.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.5);
+    woo.connect(woog);woog.connect(ctx.destination);
+    woo.start();woo.stop(ctx.currentTime+.55);
+    // disco kick thump
+    [0,.5,1,1.5].forEach(d=>{
+      const k=ctx.createOscillator();
+      const kg=ctx.createGain();
+      k.type='sine';
+      k.frequency.setValueAtTime(150,ctx.currentTime+d);
+      k.frequency.exponentialRampToValueAtTime(40,ctx.currentTime+d+.12);
+      kg.gain.setValueAtTime(.3,ctx.currentTime+d);
+      kg.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+d+.18);
+      k.connect(kg);kg.connect(ctx.destination);
+      k.start(ctx.currentTime+d);k.stop(ctx.currentTime+d+.2);
+    });
+  }catch(e){}
+}
+
+function playWoom(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    // Deep resonant descending tone — the gravity sense awakening
+    const dur=2.8;
+    const o1=ctx.createOscillator();
+    const o2=ctx.createOscillator();
+    const o3=ctx.createOscillator();
+    const g=ctx.createGain();
+    const g2=ctx.createGain();
+    // Primary woom — deep sine descending
+    o1.type='sine';
+    o1.frequency.setValueAtTime(80,ctx.currentTime);
+    o1.frequency.exponentialRampToValueAtTime(22,ctx.currentTime+2.4);
+    g.gain.setValueAtTime(0,ctx.currentTime);
+    g.gain.linearRampToValueAtTime(.22,ctx.currentTime+0.15);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);
+    o1.connect(g);g.connect(ctx.destination);
+    o1.start();o1.stop(ctx.currentTime+dur);
+    // Mid harmonic — gives it body
+    o2.type='sine';
+    o2.frequency.setValueAtTime(160,ctx.currentTime);
+    o2.frequency.exponentialRampToValueAtTime(44,ctx.currentTime+2.2);
+    g2.gain.setValueAtTime(0,ctx.currentTime);
+    g2.gain.linearRampToValueAtTime(.10,ctx.currentTime+0.2);
+    g2.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur*.8);
+    o2.connect(g2);g2.connect(ctx.destination);
+    o2.start();o2.stop(ctx.currentTime+dur*.85);
+    // High shimmer — fades fast
+    o3.type='sine';
+    o3.frequency.setValueAtTime(440,ctx.currentTime);
+    o3.frequency.exponentialRampToValueAtTime(110,ctx.currentTime+0.8);
+    const g3=ctx.createGain();
+    g3.gain.setValueAtTime(.06,ctx.currentTime);
+    g3.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+0.9);
+    o3.connect(g3);g3.connect(ctx.destination);
+    o3.start();o3.stop(ctx.currentTime+1.0);
+  }catch(e){}
+}
+
+function playNeural(){
+  if(!soundEnabled) return;
+  playTone(440,.3,'sine');
+  setTimeout(()=>playTone(528,.3,'sine'),150);
+  setTimeout(()=>playTone(396,.5,'sine'),300);
+}
+
+function playEconomic(){
+  if(!soundEnabled) return;
+  playTone(196,1,'triangle');
+  setTimeout(()=>playTone(247,.8,'triangle'),200);
+}
+
+// ── NAVIGATION ──
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.classList.remove('visible','flipping-in');
+    s.classList.add('hidden');
+  });
+  const el=document.getElementById(id);
+  el.classList.remove('hidden');
+  el.classList.add('flipping-in','visible');
+  el.scrollTop=0;
+
+  const back=document.getElementById('backBtn');
+  if(back){
+    if(id==='homeScreen'){
+      back.classList.remove('visible');
+    } else {
+      back.classList.add('visible');
+      back.textContent = id==='marsScreen'
+        ? '← biological engineering'
+        : id==='dpcScreen'
+        ? '← biological engineering'
+        : '← home';
+    }
+  }
+  currentScreen=id;
+}
+
+function openDomain(domain){
+  playWhoosh(180+Math.random()*80);
+  history.push(currentScreen);
+  const sounds={bio:playForest,orbital:playOrbital,neural:playNeural,economic:playEconomic,seeds:playGroovus};
+  setTimeout(()=>{if(domain==='neural'){playWoom();}else if(sounds[domain]) sounds[domain]();},300);
+  const screens={bio:'bioScreen',orbital:'orbitalScreen',neural:'neuralScreen',economic:'economicScreen',seeds:'seedsScreen'};
+  setTimeout(()=>showScreen(screens[domain]),180);
+}
+
+function playRustle(){
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    // Soft broadband noise filtered to leaf-rustle frequency range
+    const dur=2.2;
+    const buf=ctx.createBuffer(2,ctx.sampleRate*dur,ctx.sampleRate);
+    for(let ch=0;ch<2;ch++){
+      const d=buf.getChannelData(ch);
+      for(let i=0;i<d.length;i++){
+        // gentle amplitude modulation simulates clusters of leaves
+        const t=i/ctx.sampleRate;
+        const mod=.5+.5*Math.sin(2*Math.PI*3.7*t)*Math.sin(2*Math.PI*1.3*t);
+        d[i]=(Math.random()*2-1)*mod*.04;
+      }
+    }
+    const src=ctx.createBufferSource();
+    src.buffer=buf;
+    // Band-pass around 1-4 kHz — the rustle sweet spot
+    const bp=ctx.createBiquadFilter();
+    bp.type='bandpass';bp.frequency.value=2200;bp.Q.value=0.6;
+    // High-shelf to add brightness of individual leaves
+    const hs=ctx.createBiquadFilter();
+    hs.type='highshelf';hs.frequency.value=4000;hs.gain.value=4;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(0,ctx.currentTime);
+    g.gain.linearRampToValueAtTime(.28,ctx.currentTime+.3);
+    g.gain.setValueAtTime(.28,ctx.currentTime+1.2);
+    g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+dur);
+    src.connect(bp);bp.connect(hs);hs.connect(g);g.connect(ctx.destination);
+    src.start();
+    // A single very soft low woody creak underneath
+    const o=ctx.createOscillator();
+    const og=ctx.createGain();
+    o.type='sine';
+    o.frequency.setValueAtTime(68,ctx.currentTime);
+    o.frequency.linearRampToValueAtTime(52,ctx.currentTime+1.8);
+    og.gain.setValueAtTime(.04,ctx.currentTime);
+    og.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+1.8);
+    o.connect(og);og.connect(ctx.destination);
+    o.start();o.stop(ctx.currentTime+1.9);
+  }catch(e){}
+}
+
+function openDPC(){
+  history.push(currentScreen);
+  playWhoosh(200);
+  setTimeout(()=>{playRustle();},300);
+  setTimeout(()=>showScreen('dpcScreen'),180);
+}
+
+function openMars(){
+  playWhoosh(120);
+  history.push(currentScreen);
+  setTimeout(()=>{playMarsWind();},300);
+  setTimeout(()=>showScreen('marsScreen'),180);
+}
+
+function goBack(){
+  playWhoosh(260);
+  const prev=history.pop()||'homeScreen';
+  setTimeout(()=>showScreen(prev),180);
+}
+
+function setBrightness(val, screenId){
+  var pct = parseInt(val);
+  var o = ((100-pct)/100 * 0.88 + 0.08).toFixed(2);
+  var el = document.getElementById(screenId==='dpcScreen' ? 'dpc-bpct' : 'mars-bpct');
+  if(el) el.textContent = pct+'%';
+  var screen = document.getElementById(screenId);
+  if(!screen) return;
+  var hero = document.getElementById('dpc-hero-img');
+  if(hero && screenId==='dpcScreen'){
+    hero.style.background = 'linear-gradient(rgba(4,10,4,'+o+'),rgba(4,10,4,'+o+')),url(Interior_Wood_Stair.jpg) center/cover no-repeat';
+  }
+  var mhero = screen.querySelector('.mars-hero');
+  if(mhero){
+    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars_Village.png")';
+    mhero.style.backgroundSize = 'cover, cover';
+    mhero.style.backgroundPosition = 'center, center';
+  }
+  var pprose = screen.querySelector('.pioneer-prose');
+  if(pprose){
+    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars_Pool.png")';
+    pprose.style.backgroundSize = 'cover, cover';
+    pprose.style.backgroundPosition = 'center, center';
+  }
+}
+
+function setOrbitalBrightness(val){
+  var pct = parseInt(val);
+  var o = ((100-pct)/100 * 0.78 + 0.08).toFixed(2);
+  var t = (0.4 + (pct - 10) / 85 * 0.6).toFixed(2);
+  var el = document.getElementById('orbital-bpct');
+  if(el) el.textContent = pct+'%';
+  var hero = document.getElementById('orbital-hero-img');
+  if(hero){
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,6,16,'+o+') 0%,rgba(4,8,20,'+o+') 100%),url("Solar_Nets_from_Space_Station_3.png")';
+    hero.style.backgroundSize = 'cover, cover';
+    hero.style.backgroundPosition = 'center, center';
+  }
+  var h2 = document.getElementById('orbital-h2');
+  if(h2) h2.style.color = 'rgba(232,244,248,'+t+')';
+  var intro = document.getElementById('orbital-intro');
+  if(intro) intro.style.color = 'rgba(74,106,122,'+t+')';
+  var label = document.getElementById('orbital-label');
+  if(label) label.style.color = 'rgba(0,229,255,'+t+')';
+}
+
+function setSeedsBrightness(val){
+  var pct = parseInt(val);
+  // overlay opacity: at 10% slider → very dark (0.92 overlay), at 95% → very light (0.08 overlay)
+  var o = ((100-pct)/100 * 0.84 + 0.08).toFixed(2);
+  // text lightness: at 10% → dim (multiplier ~0.4), at 95% → bright (1.0)
+  var t = (0.4 + (pct - 10) / 85 * 0.6).toFixed(2);
+  var el = document.getElementById('seeds-bpct');
+  if(el) el.textContent = pct+'%';
+  var hero = document.getElementById('seeds-hero-img');
+  if(hero){
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,2,8,'+o+') 0%,rgba(4,2,14,'+o+') 50%,rgba(2,4,8,'+o+') 100%),url("Dead_Galaxy_Seeder.png")';
+    hero.style.backgroundSize = 'cover, cover';
+    hero.style.backgroundPosition = 'center, center';
+  }
+  // Brighten text elements proportionally
+  var h2 = document.getElementById('seeds-h2');
+  if(h2) h2.style.color = 'rgba(216,200,248,'+t+')';
+  var quote = document.getElementById('seeds-quote');
+  if(quote) quote.style.color = 'rgba(106,90,154,'+t+')';
+  var intro = document.getElementById('seeds-intro');
+  if(intro) intro.style.color = 'rgba(74,74,122,'+t+')';
+  var label = document.getElementById('seeds-label');
+  if(label) label.style.color = 'rgba(127,119,221,'+t+')';
+}
+var currentTrack = 1;
+var tracks = [
+  {id:'bg-music',    name:'The Architect of Living Dreams'},
+  {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
+  {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
+  {id:'bg-music-4',  name:'We Ascend'}
+];
+
+function getAudio(n){ return document.getElementById(tracks[n-1].id); }
+
+function nextTrack(){
+  var old = getAudio(currentTrack);
+  var wasPlaying = !old.paused;
+  old.pause(); old.currentTime=0;
+  currentTrack = currentTrack >= tracks.length ? 1 : currentTrack + 1;
+  var el = document.getElementById('track-name');
+  if(el) el.textContent = tracks[currentTrack-1].name;
+  if(wasPlaying){
+    var newAudio = getAudio(currentTrack);
+    newAudio.play().catch(()=>{});
+    document.getElementById('play-icon').style.display='none';
+    document.getElementById('pause-icon').style.display='flex';
+    document.getElementById('music-visualizer').classList.add('playing');
+  }
+}
+
+function toggleMusic(){
+  var audio = getAudio(currentTrack);
+  var playIcon = document.getElementById('play-icon');
+  var pauseIcon = document.getElementById('pause-icon');
+  var vis = document.getElementById('music-visualizer');
+  if(audio.paused){
+    audio.play().then(()=>{
+      playIcon.style.display='none';
+      pauseIcon.style.display='flex';
+      vis.classList.add('playing');
+      // auto-advance to next track when done
+      audio.onended = ()=>{ nextTrack(); getAudio(currentTrack).play().catch(()=>{}); };
+    }).catch(()=>{});
+  } else {
+    audio.pause();
+    playIcon.style.display='flex';
+    pauseIcon.style.display='none';
+    vis.classList.remove('playing');
+  }
+}
+
+function toggleSound(){
+  soundEnabled=!soundEnabled;
+  document.getElementById('soundBtn').textContent=soundEnabled?'♪ sound on':'♪ sound off';
+}
+
+// ── KEYBOARD ──
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&currentScreen!=='homeScreen') goBack();
+});
+</script>
+</body>
+</html>
