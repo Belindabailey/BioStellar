@@ -391,7 +391,7 @@ body{
     <source src="We_Ascend_Celtic_Voice.mp3" type="audio/mpeg">
   </audio>
   <audio id="bg-music-5">
-    <source src="I_seek_you_in_the_Garden_Celtic_Voice.mp3" type="audio/mpeg">
+    <source src="I_seek_you_%20in_the_Garden_%20Celtic_Voice.mp3" type="audio/mpeg">
   </audio>
 </div>
 
@@ -1439,18 +1439,32 @@ function playAndChain(audio){
     audio.onended = function(){
       nextTrack();
     };
-  }).catch(()=>{});
+  }).catch((e)=>{
+    // Race condition: play interrupted by pause — retry once after brief delay
+    if(e.name === 'AbortError' || e.message.indexOf('pause') !== -1){
+      setTimeout(()=>{ audio.play().then(()=>{
+        document.getElementById('play-icon').style.display='none';
+        document.getElementById('pause-icon').style.display='flex';
+        document.getElementById('music-visualizer').classList.add('playing');
+        audio.onended = function(){ nextTrack(); };
+      }).catch(()=>{}); }, 150);
+    }
+  });
 }
 
 function nextTrack(){
   var old = getAudio(currentTrack);
   var wasPlaying = !old.paused;
-  old.pause(); old.currentTime=0; old.onended=null;
+  old.onended = null;
+  old.pause();
+  old.currentTime = 0;
   currentTrack = currentTrack >= tracks.length ? 1 : currentTrack + 1;
   var el = document.getElementById('track-name');
   if(el) el.textContent = tracks[currentTrack-1].name;
   if(wasPlaying){
-    playAndChain(getAudio(currentTrack));
+    var next = getAudio(currentTrack);
+    // Small delay lets the browser fully settle the pause before new play()
+    setTimeout(()=>{ playAndChain(next); }, 120);
   }
 }
 
