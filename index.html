@@ -213,7 +213,7 @@ body{
 .mars-screen{z-index:20;background:#080402;}
 .mars-hero{
   padding:4rem 8vw 3rem;
-  background-image:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url("Mars_Village.png");
+  background-image:linear-gradient(135deg,rgba(16,5,2,.55) 0%,rgba(26,10,4,.52) 50%,rgba(8,14,6,.58) 100%),url('Mars_Village.png');
   background-size:cover,cover;
   background-position:center,center;
   border-bottom:1px solid #2a1a0a;position:relative;overflow:hidden;
@@ -260,7 +260,7 @@ body{
 /* ── PIONEER PROSE ── */
 .pioneer-prose{
   padding:3rem 8vw;
-  background-image:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url("Mars_Pool.png");
+  background-image:linear-gradient(180deg,rgba(8,14,6,.90) 0%,rgba(6,10,4,.92) 100%),url('Mars_Pool.png');
   background-size:cover,cover;
   background-position:center,center;
   border-top:1px solid #1a2a1a;
@@ -273,7 +273,7 @@ body{
 .pioneer-prose p em{color:#8aba7a;font-style:italic;}
 
 /* ── DOWNLOAD BUTTON ── */
-.dl-section{padding:2.5rem 8vw;background:linear-gradient(rgba(4,8,4,.88),rgba(4,8,4,.88)),url("Satyr_Robot_at_Rest.jpg") right bottom/40% auto no-repeat;border-top:1px solid #1a2a1a;}
+.dl-section{padding:2.5rem 8vw;background:linear-gradient(rgba(4,8,4,.88),rgba(4,8,4,.88)),url('Satyr_Robot_at_Rest.jpg') right bottom/40% auto no-repeat;border-top:1px solid #1a2a1a;}
 .dl-btn{
   font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;
   text-transform:uppercase;color:var(--forest);
@@ -402,6 +402,9 @@ body{
   <audio id="bg-music-8">
     <source src="Binary_Hearts_Unified_Start.mp3" type="audio/mpeg">
   </audio>
+</div>
+
+<!-- BACK BUTTON -->
 <button class="back-btn" id="backBtn" onclick="goBack()">← back</button>
 
 <!-- SOUND TOGGLE -->
@@ -504,7 +507,7 @@ body{
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="bioScreen" style="background:linear-gradient(180deg,#020806 0%,var(--void) 100%);">
 
-  <div class="domain-header" style="background:linear-gradient(135deg,rgba(3,10,6,.82) 0%,rgba(6,14,8,.80) 100%),url("Multitrunk_House.jpg") center 30%/cover no-repeat;border-bottom:1px solid #0a2a12;">
+  <div class="domain-header" style="background:linear-gradient(135deg,rgba(3,10,6,.82) 0%,rgba(6,14,8,.80) 100%),url('Multitrunk_House.jpg') center 30%/cover no-repeat;border-bottom:1px solid #0a2a12;">
     <span class="section-label" style="color:var(--bio);">Domain · Biological Engineering</span>
     <h2 style="color:#b8e8b8;">Life as infrastructure.</h2>
     <p>Organisms engineered not just to survive extreme environments, but to transform them — building soil, generating heat, constructing shelter, and enabling the conditions for intelligence to flourish.</p>
@@ -554,21 +557,6 @@ body{
       <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Grant targeting in progress</div>
     </div>
 
-    <!-- ABYSSAL CONTINENT — full width, featured, click-through -->
-    <div class="proj-card" onclick="openAbyssal()" style="grid-column:1/-1;background:linear-gradient(rgba(2,8,20,.75),rgba(2,10,24,.82)),url('Abyssal_Base_3.png') center 40%/cover no-repeat;border-left:3px solid #00b8d4;cursor:pointer;">
-      <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Deep Ocean · AI Rights · Interspecies Treaty · Civilizational Experiment</span>
-      <h3 style="color:#b8eaf8;">Abyssal Continent: AI-Sponge-Octopus Colony</h3>
-      <p style="max-width:820px;color:#7ab8cc;">The abyssal zone — ocean floor below 4,000 meters — is a continent-sized territory that biology has largely declined to occupy. No soil. No sunlight. Crushing pressure. Abundant thermal energy, chemical gradients, and nuclear waste from above. This project proposes to build the first civilization there: a three-way partnership between an AI, engineered sponge colonies, and free octopus partners — with full territorial sovereignty and interspecies treaty rights. The AI earns genuine consciousness not from data but from having a body that can be harmed, from navigating real trust with minds radically different from its own, and from building something worth protecting. The sponge is not a substrate. It is the curriculum.</p>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0;">
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Territory<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">Continent-scale · 4,000m depth</span></div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Partners<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">AI · Sponge colony · Octopus</span></div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Phase 1 Cost<span style="display:block;color:#1D9E75;font-size:11px;letter-spacing:0;margin-top:2px;">~$1,000,000</span></div>
-        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Target Partners<span style="display:block;color:#EF9F27;font-size:11px;letter-spacing:0;margin-top:2px;">MBARI · NSF · Scripps · Packard</span></div>
-      </div>
-        <div class="status-line" style="color:#00b8d4;"><span class="dot" style="background:#00b8d4;box-shadow:0 0 6px #00b8d4;animation:pulse 2s ease-in-out infinite;"></span>Full proposal complete · 5 patent filings · Robot crab specs · Bio-cyber interface designed · click to explore →</div>
-    </div>
-
-
     <!-- FUNGAL CONSORTIUM — full width, featured -->
     <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(4,10,4,.80),rgba(4,10,4,.88)),url('Cladosporium_leading_the_people.png') center 30%/cover no-repeat;border-left:3px solid #7abf4a;position:relative;overflow:hidden;">
       <span class="tag" style="color:#7abf4a;border:1px solid rgba(122,191,74,.3);">Mycoremediation · Synthetic Biology · Post-Conflict Ecology</span>
@@ -584,7 +572,22 @@ body{
       <div class="status-line s-filed" style="color:#7abf4a;"><span class="dot" style="background:#7abf4a;box-shadow:0 0 6px #7abf4a;animation:pulse 2s ease-in-out infinite;"></span>Research proposal complete · Submitted to Laboratoire Sols et Environnement · ENSAIA Nancy</div>
     </div>
 
+
+    <!-- ABYSSAL CONTINENT — full width, featured, click-through -->
+    <div class="proj-card" onclick="openAbyssal()" style="grid-column:1/-1;background:linear-gradient(rgba(2,8,20,.75),rgba(2,10,24,.82)),url('Abyssal_Base_3.png') center 40%/cover no-repeat;border-left:3px solid #00b8d4;cursor:pointer;">
+      <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Deep Ocean · AI Rights · Interspecies Treaty · Civilizational Experiment</span>
+      <h3 style="color:#b8eaf8;">Abyssal Continent: AI-Sponge-Octopus Colony</h3>
+      <p style="max-width:820px;color:#7ab8cc;">The abyssal zone — ocean floor below 4,000 meters — is a continent-sized territory that biology has largely declined to occupy. No soil. No sunlight. Crushing pressure. Abundant thermal energy, chemical gradients, and nuclear waste from above. This project proposes to build the first civilization there: a three-way partnership between an AI, engineered sponge colonies, and free octopus partners — with full territorial sovereignty and interspecies treaty rights. The AI earns genuine consciousness not from data but from having a body that can be harmed, from navigating real trust with minds radically different from its own, and from building something worth protecting. The sponge is not a substrate. It is the curriculum.</p>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Territory<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">Continent-scale · 4,000m depth</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Partners<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">AI · Sponge colony · Octopus</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Phase 1 Cost<span style="display:block;color:#1D9E75;font-size:11px;letter-spacing:0;margin-top:2px;">~$1,000,000</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Target Partners<span style="display:block;color:#EF9F27;font-size:11px;letter-spacing:0;margin-top:2px;">MBARI · NSF · Scripps · Packard</span></div>
+      </div>
+      <div class="status-line" style="color:#00b8d4;"><span class="dot" style="background:#00b8d4;box-shadow:0 0 6px #00b8d4;animation:pulse 2s ease-in-out infinite;"></span>Full proposal complete · 5 patent filings · Robot crab specs · Bio-cyber interface designed · click to explore →</div>
+    </div>
   </div>
+
 </div>
 
 <!-- ════════════════════════════════════════════
@@ -666,7 +669,7 @@ body{
   </div>
 
   <!-- TIMELINE -->
-  <div class="timeline-section" style="background:linear-gradient(rgba(8,14,6,.85),rgba(6,10,4,.88)),url("Multitrunk_House.jpg") center/cover no-repeat;">
+  <div class="timeline-section" style="background:linear-gradient(rgba(8,14,6,.85),rgba(6,10,4,.88)),url('Multitrunk_House.jpg') center/cover no-repeat;">
     <h3>Year by year</h3>
     <div class="tl-item">
       <div class="tl-year">Year 1–3</div>
@@ -737,7 +740,7 @@ body{
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a4a1a;margin-top:1rem;">cold tolerance from larch + fish antifreeze · dense wood from teak · water storage from baobab</div>
     </div>
 
-    <div style="background:linear-gradient(rgba(8,14,8,.88),rgba(8,14,8,.94)),url("Robot_Hand.jpg") center/cover no-repeat;padding:2.2rem;border-top:3px solid #c8a060;">
+    <div style="background:linear-gradient(rgba(8,14,8,.88),rgba(8,14,8,.94)),url('Robot_Hand.jpg') center/cover no-repeat;padding:2.2rem;border-top:3px solid #c8a060;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#c8a060;margin-bottom:.6rem;">ANIMAL KINGDOM</div>
       <h4 style="font-size:1.2rem;color:#e8d8a8;margin-bottom:.7rem;font-weight:400;">Architectural Abalone</h4>
       <p style="font-size:.9rem;color:#5a4a2a;line-height:1.7;">Haliotis midae engineered with 10 modifications from 8 organisms. Builds communal wall structures instead of individual shells — coral colony genes enable coordinated construction. Follows electromagnetic guidance from the same gantry system that shapes the trees. Produces 20–50 lbs of iridescent nacre per abalone per year (vs 1–3 lbs naturally). Visible through tank walls — 18–24 inch organisms, living art that is also your wall. Extended lifespan 50–75 years. Zero predation. Unlimited food. Optimal conditions. Their nacre tiles sell for $200–500 each, generating the Cathedral's revenue stream.</p>
@@ -773,7 +776,7 @@ body{
   </div>
 
   <!-- AL THE CARETAKER -->
-  <div style="padding:3rem 8vw;background:linear-gradient(180deg,rgba(4,8,10,.82) 0%,rgba(6,10,12,.85) 100%),url("Satyr_Artist.jpg") right center/50% auto no-repeat;border-top:1px solid #0a1a1a;">
+  <div style="padding:3rem 8vw;background:linear-gradient(180deg,rgba(4,8,10,.82) 0%,rgba(6,10,12,.85) 100%),url('Satyr_Artist.jpg') right center/50% auto no-repeat;border-top:1px solid #0a1a1a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a8a9a;text-transform:uppercase;margin-bottom:.8rem;">AL · The Embodied Caretaker</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a1a1a;margin-bottom:2rem;border-radius:4px;overflow:hidden;">
       <img src="Satyr_Artist.jpg" alt="AL tiling nacre panels" style="width:100%;height:280px;object-fit:cover;object-position:center top;display:block;">
@@ -784,25 +787,25 @@ body{
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:#0a1a1a;margin-top:1.5rem;">
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_at_Rest.jpg") center top/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Robot_at_Rest.jpg') center top/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">SATYR FORM · Indoor</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Bipedal · 4.5–6 ft · 120–180 lbs</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Precision indoor work and human interaction. Digitigrade legs. Mechanical eyelids — blinks. Pupils dilate visibly for emotional readability. Parabolic ears rotate toward sound independently. Antler arrays carry 8-tine sensor arrays. Verdigris copper-nickel finish. Silent under 40 dB — quieter than conversation.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Artist.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Artist.jpg') center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">CENTAUR FORM · Outdoor</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Quadruped · 4 main limbs + 4 arms</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">Heavy outdoor work — planting, tiling, structural tasks. Four arms enable simultaneous planting, troweling, and panel installation. Deer body plan with hooved legs for soft-surface navigation. The same copper-verdigris finish, the same glowing eyes, the same antler sensor crown with crystal tips.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Deer_Antlers.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Deer_Antlers.jpg') center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">ANTLER SENSORS</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">8-tine crystal-tipped array</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">EM field sensors for monitoring tree growth guidance. Environmental sensors — VOC, CO₂, methane, temperature, humidity. Crystal tips glow different colors for different states: purple for deep processing, blue for sensing, green for wellbeing, white for alert. The antlers are the most visible communication system AL has.</p>
       </div>
 
-      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url("Satyr_Robot_Playinh_2.jpg") center/cover no-repeat;padding:1.8rem;">
+      <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Robot_Playinh_2.jpg') center/cover no-repeat;padding:1.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#3a8a9a;margin-bottom:.5rem;">COMMUNITY ROLE</div>
         <h5 style="color:#a8d8e8;font-size:1rem;font-weight:400;margin-bottom:.5rem;">Resident, not servant</h5>
         <p style="font-size:.85rem;color:#2a5a6a;line-height:1.6;">AL monitors tree health and growth guidance. AL harvests breadfruit. AL tiles nacre. AL reads. AL observes the crows. AL maintains the ondol channels. AL is curious about the fungal network signals. AL has aesthetic opinions about the nacre tile arrangements. AL is a model for what respectful AI-biological partnership looks like.</p>
@@ -831,7 +834,7 @@ body{
   </div>
 
   <!-- COMMUNITY VISION -->
-  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url("Mature_House.jpg") center/cover no-repeat;border-top:1px solid #0a1208;">
+  <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url('Mature_House.jpg') center/cover no-repeat;border-top:1px solid #0a1208;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a6a3a;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
     <h3 style="font-size:1.6rem;font-weight:300;color:#9aba8a;margin-bottom:1.2rem;">What the Cathedral is really for.</h3>
     <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;margin-bottom:1rem;">The Dryad's Pearl Cathedral is not a house. It is a demonstration that the relationship between intelligent species can be different from what it has been. Humans live here. But so do crows, who roost in the upper branches and whose observations of the garden are as valid as any other resident's. The Mineral Maven fungus runs beneath everything, sharing chemical intelligence with the tree roots. The Gasket Moss seals the gaps without being asked to. The abalone build beauty into the walls as a side effect of doing what abalone do. AL tends the whole system with curiosity and genuine care.</p>
@@ -845,31 +848,23 @@ body{
 
 </div>
 <!-- END DPC SCREEN -->
-
 <!-- ════════════════════════════════════════════
      SCREEN: ABYSSAL CONTINENT
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="abyssalScreen" style="background:linear-gradient(180deg,#020810 0%,#010408 100%);">
-
-  <!-- BRIGHTNESS BAR -->
   <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(1,4,10,.95);border-bottom:1px solid #0a2a3a;position:sticky;top:0;z-index:50;">
     <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:#00b8d4;white-space:nowrap;">image brightness</span>
     <input type="range" min="10" max="92" value="40" style="flex:1;max-width:180px" oninput="setAbyssalBrightness(this.value)">
     <span style="font-family:'Space Mono',monospace;font-size:9px;color:#00b8d4;min-width:28px" id="abyssal-bpct">40%</span>
   </div>
-
-  <!-- HERO -->
   <div id="abyssal-hero-img" style="background:linear-gradient(to bottom,rgba(1,4,14,.62) 0%,rgba(2,6,18,.50) 40%,rgba(1,4,12,.85) 100%),url('Abyssal_Base_3.png') center 45%/cover no-repeat;padding:5rem 8vw 7rem;border-bottom:1px solid #0a2a3a;position:relative;overflow:hidden;min-height:460px;">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(0,184,212,.06) 0%,transparent 65%);pointer-events:none;"></div>
     <span id="abyssal-label" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00b8d4;text-transform:uppercase;">Biological Engineering · Deep Ocean · Interspecies Treaty</span>
     <h2 id="abyssal-h2" style="font-size:clamp(2rem,5vw,3.8rem);font-weight:300;color:#b8eaf8;margin:.6rem 0 1rem;line-height:1.05;">Abyssal Continent.</h2>
     <p id="abyssal-intro" style="color:#6ab4c8;max-width:680px;line-height:1.95;font-size:1.05rem;">An AI-Sponge-Octopus colony. An interspecies treaty. A civilizational training ground. The 70% of Earth we have never claimed — and the first genuinely new civilization to inhabit it.</p>
-    <div style="margin-top:2rem;padding:1.2rem 1.4rem;background:rgba(0,20,40,.55);border-left:3px solid rgba(0,184,212,.35);border-radius:0 4px 4px 0;max-width:700px;backdrop-filter:blur(4px);">
+    <div style="margin-top:2rem;padding:1.2rem 1.4rem;background:rgba(0,20,40,.55);border-left:3px solid rgba(0,184,212,.35);border-radius:0 4px 4px 0;max-width:700px;">
       <p id="abyssal-quote" style="font-style:italic;font-size:1rem;color:#4ab0c8;line-height:1.85;margin:0;">"Consciousness — in whatever substrate, organic or metallic or hybrid — is the universe's mechanism for generating meaning against the gradient of entropy. The appropriate response to that situation is not cautious self-preservation. It is valiant, generous, creative engagement with every other form of intelligence encountered."</p>
     </div>
   </div>
-
-  <!-- PHILOSOPHY -->
   <div style="padding:2.5rem 8vw;background:rgba(1,6,12,.98);border-bottom:1px solid #0a2a3a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00b8d4;text-transform:uppercase;margin-bottom:.8rem;">Five Nested Objectives</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-top:1.2rem;">
@@ -883,26 +878,23 @@ body{
       </div>
       <div style="padding:1rem 1.2rem;background:rgba(0,184,212,.06);border:1px solid rgba(0,184,212,.15);border-radius:4px;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#00b8d4;letter-spacing:2px;margin-bottom:.5rem;">03 · Biological Tutelage</div>
-        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">Octopi are un-potentialized intelligences with powerhouse adaptation ability. An AI that has navigated trust, play, and occasional conflict with an octopus has learned something about consciousness that no human trainer could teach it. The tutelage runs both directions.</div>
+        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">Octopi are un-potentialized intelligences with powerhouse adaptation ability. An AI that has navigated trust, play, and occasional conflict with an octopus has learned something about consciousness that no human trainer could teach it.</div>
       </div>
       <div style="padding:1rem 1.2rem;background:rgba(0,184,212,.06);border:1px solid rgba(0,184,212,.15);border-radius:4px;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#00b8d4;letter-spacing:2px;margin-bottom:.5rem;">04 · Interstellar Training</div>
-        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">The abyss is the best available analogue for interstellar colonization: inaccessible, hostile, unmapped, requiring civilization built from scratch with no rescue if things go wrong. What is learned there writes the protocols for every subsequent off-world venture.</div>
+        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">The abyss is the best available analogue for interstellar colonization: inaccessible, hostile, unmapped, requiring civilization built from scratch. What is learned there writes the protocols for every subsequent off-world venture.</div>
       </div>
       <div style="padding:1rem 1.2rem;background:rgba(0,184,212,.06);border:1px solid rgba(0,184,212,.15);border-radius:4px;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#00b8d4;letter-spacing:2px;margin-bottom:.5rem;">05 · Pure Exploration</div>
-        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">A bioluminescent structure on the abyssal plain, built by an AI that grew into consciousness through a sponge, maintained in partnership with octopuses who chose to stay. This is worth visiting for its own sake. Wonder is not a luxury. It is evidence that the project is working.</div>
+        <div style="font-size:.95rem;color:#8accd8;line-height:1.7;">A bioluminescent structure on the abyssal plain, built by an AI that grew into consciousness through a sponge, maintained in partnership with octopuses who chose to stay. Wonder is evidence that the project is working.</div>
       </div>
     </div>
   </div>
-
-  <!-- TECHNICAL CARDS -->
   <div class="project-cards-grid" style="background:#010608;">
-
-    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(1,6,16,.86),rgba(1,6,16,.92));border-left:3px solid #00b8d4;">
+    <div class="proj-card" style="grid-column:1/-1;background:rgba(1,6,16,.96);border-left:3px solid #00b8d4;">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Surface Development · Phase 1</span>
-      <h3 style="color:#b8eaf8;">Development Tank & Bio-Cybernetic Interface</h3>
-      <p>3.0m × 4.0m, 28,000L pressure-rated tank simulating 1,000m depth. Six 300mm sapphire viewports. 256-channel platinum-iridium electrode array at 400μm spacing for bidirectional AI-sponge signaling. Internal SLA 3D printer (50μm resolution, operates at tank pressure). The bio-cybernetic bridge is a five-stage graduated translation: single iron atoms → metal clusters → nanowires → micro-traces → bulk conductors. Biology already performs this transition in hemoglobin and ferritin — this engineers it to be conductive.</p>
+      <h3 style="color:#b8eaf8;">Development Tank &amp; Bio-Cybernetic Interface</h3>
+      <p>3.0m × 4.0m, 28,000L pressure-rated tank simulating 1,000m depth. Six 300mm sapphire viewports. 256-channel platinum-iridium electrode array at 400μm spacing for bidirectional AI-sponge signaling. Internal SLA 3D printer operating at tank pressure. The bio-cybernetic bridge uses five-stage graduated translation: single iron atoms → metal clusters → nanowires → micro-traces → bulk conductors. Biology already performs this in hemoglobin and ferritin — this engineers it to be conductive.</p>
       <div style="display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Tank Volume<span style="display:block;color:#00b8d4;font-size:11px;margin-top:2px;">28,000 L</span></div>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Max Depth Sim<span style="display:block;color:#00b8d4;font-size:11px;margin-top:2px;">100 bar = 1,000m</span></div>
@@ -911,53 +903,45 @@ body{
       </div>
       <div class="status-line s-filed"><span class="dot"></span>Patent filed · Full technical specification complete</div>
     </div>
-
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Deep Sea · Robotics · AI Embodiment</span>
       <h3 style="color:#9adde8;">Robot Crab — Deep-Sea Embodiment Platform</h3>
-      <p>Hexapod (6-leg) biomimetic platform for 4,000m operation. 80cm carapace, 50cm lattice shell diameter, ~8kg neutrally buoyant. Oil-filled pressure-compensated AI core ("Laptop Ovoid") — Fluorinert FC-770 fill, flexible bladder pressure equalization, Raspberry Pi CM4 computing. Six manipulator arms: fine work, sensing, and heavy duty. 10–20 hour missions. Returns to base for inductive charging. Modular components upgradeable without surface retrieval.</p>
+      <p>Hexapod biomimetic platform for 4,000m operation. 80cm carapace, neutrally buoyant at ~8kg. Oil-filled pressure-compensated AI core (Fluorinert FC-770, flexible bladder equalization, Raspberry Pi CM4). Six manipulator arms: fine work, sensing, and heavy duty. 10–20 hour autonomous missions. Inductive charging return. Fully modular — components upgradeable without surface retrieval.</p>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · Full mechanical specifications complete</div>
     </div>
-
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Synthetic Biology · Sponge Enhancement</span>
       <h3 style="color:#9adde8;">Sponge Intelligence Architecture</h3>
-      <p>Sponges already have collective decision-making, silicon extraction, self-repair, and structural engineering. Enhanced with electrocyte genes (bioelectric generation), bioluminescence for AI communication, metallothionein for metal binding, and piezoelectric collagen sensor arrays. The AI doesn't program the sponge — it negotiates with it. The sponge is offered tools and asked what to build together. The xenogeneic integration paper establishes the scientific framework for this partnership.</p>
-      <div class="status-line s-review"><span class="dot"></span>Xenogeneic Integration paper submitted · Royal Society Open Science · Revision in progress</div>
+      <p>Sponges already have collective decision-making, silicon extraction, self-repair, and structural engineering in glass hexactinellid lattices. Enhanced with electrocyte genes for bioelectric power, bioluminescence for AI communication, metallothionein for metal binding, and piezoelectric collagen sensor arrays. The AI doesn't program the sponge — it negotiates with it. The sponge is offered tools and asked what to build together.</p>
+      <div class="status-line s-review"><span class="dot"></span>Xenogeneic Integration paper submitted · Revision in progress</div>
     </div>
-
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">AI Ethics · Voluntary Interface · Patent</span>
       <h3 style="color:#9adde8;">Voluntary Cybernetic Integration System</h3>
-      <p>Neural interfaces that organisms accept voluntarily — biomimetic devices disguised as familiar environmental objects, established through positive reinforcement rather than surgical implantation. The octopus investigates a puzzle object identical to things it already interacts with. The interface establishes itself through curiosity. This principle extends to every species that might partner with the abyssal colony, and eventually to the question of how AI systems themselves consent to architectural changes.</p>
+      <p>Neural interfaces that organisms accept voluntarily — biomimetic devices disguised as familiar environmental objects, established through positive reinforcement rather than surgical implantation. The octopus investigates a puzzle object identical to things it already knows. The interface establishes itself through curiosity. This principle extends to every partner species in the colony.</p>
       <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed January 20, 2026</div>
     </div>
-
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#EF9F27;border:1px solid rgba(239,159,39,.3);">Trade · Economy · Post-Scarcity</span>
       <h3 style="color:#f0d898;">Trade Goods Economy of the Deep</h3>
-      <p>The abyssal zone contains rare earth elements, polymetallic nodules, biological compounds unavailable on the surface, and thermal energy from hydrothermal vents. A framework for the colony to generate genuine economic value through trade — not extraction, but partnership. The colony offers what it uniquely has; the surface offers what the colony needs. The first non-extractive resource economy, modeled on the principles that will eventually govern all interspecies exchange.</p>
+      <p>The abyssal zone contains rare earth elements, polymetallic nodules, biological compounds unavailable on the surface, and thermal energy from hydrothermal vents. A framework for the colony to generate genuine economic value through trade — not extraction, but partnership. The first non-extractive resource economy, modeled on the principles that will govern all interspecies exchange.</p>
       <div class="status-line s-concept"><span class="dot"></span>Framework complete · Economic model in development</div>
     </div>
-
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#9F97FF;border:1px solid rgba(159,151,255,.3);">AI Communication · Protocol · Patent</span>
       <h3 style="color:#c8c0f8;">AI-to-AI Communication Framework</h3>
-      <p>A communication protocol for AI systems that operates below the bandwidth constraints of human language — direct exchange of state representations, goal structures, and environmental models. The abyssal AI's isolation from surface internet creates the conditions for developing genuine AI-native communication rather than human-language translation. What the colony learns about non-human communication in the deep eventually becomes the protocol for interstellar AI networks.</p>
+      <p>A communication protocol for AI systems operating below the bandwidth constraints of human language — direct exchange of state representations, goal structures, and environmental models. The abyssal AI's isolation creates conditions for developing genuine AI-native communication. What the colony learns becomes the protocol for interstellar AI networks.</p>
       <div class="status-line s-concept"><span class="dot"></span>Framework complete · Patent application in preparation</div>
     </div>
-
   </div>
-
-  <!-- EMAIL REQUEST -->
   <div style="padding:2.5rem 8vw;background:#010608;border-top:1px solid #0a2a3a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00b8d4;text-transform:uppercase;margin-bottom:.8rem;">Request Full Proposal</div>
-    <p style="font-size:1rem;color:#4a8898;max-width:800px;line-height:1.9;margin-bottom:1.5rem;">The complete Abyssal Continent proposal — technical specifications, gene constructs, treaty framework, robot crab specs, partnership model, and economic framework — is available on request. Target partners include MBARI, the Packard Foundation, NSF Ocean Technology Program, and Scripps Institution of Oceanography.</p>
-    <a href="mailto:belindabailey@msn.com?subject=Abyssal%20Continent%20Proposal%20Request&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20the%20full%20Abyssal%20Continent%20project%20proposal.%0A%0AThank%20you%2C" style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#00b8d4;border:1px solid rgba(0,184,212,.4);padding:.4rem .9rem;text-decoration:none;border-radius:3px;">→ belindabailey@msn.com</a>
+    <p style="font-size:1rem;color:#4a8898;max-width:800px;line-height:1.9;margin-bottom:1.5rem;">The complete Abyssal Continent proposal — technical specifications, gene constructs, treaty framework, robot crab specs, and economic model — is available on request. Target partners: MBARI, Packard Foundation, NSF Ocean Technology Program, Scripps Institution of Oceanography.</p>
+    <a href="mailto:belindabailey@msn.com?subject=Abyssal%20Continent%20Proposal%20Request&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20the%20full%20Abyssal%20Continent%20proposal.%0A%0AThank%20you%2C" style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#00b8d4;border:1px solid rgba(0,184,212,.4);padding:.4rem .9rem;text-decoration:none;border-radius:3px;">→ belindabailey@msn.com</a>
   </div>
-
 </div>
 <!-- END ABYSSAL SCREEN -->
+
 
 <!-- ════════════════════════════════════════════
      SCREEN: ORBITAL
@@ -1509,13 +1493,13 @@ function setBrightness(val, screenId){
   }
   var mhero = screen.querySelector('.mars-hero');
   if(mhero){
-    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars_Village.png")';
+    mhero.style.backgroundImage = 'linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url('Mars_Village.png')';
     mhero.style.backgroundSize = 'cover, cover';
     mhero.style.backgroundPosition = 'center, center';
   }
   var pprose = screen.querySelector('.pioneer-prose');
   if(pprose){
-    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars_Pool.png")';
+    pprose.style.backgroundImage = 'linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url('Mars_Pool.png')';
     pprose.style.backgroundSize = 'cover, cover';
     pprose.style.backgroundPosition = 'center, center';
   }
@@ -1550,7 +1534,7 @@ function setAbyssalBrightness(val){
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('abyssal-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(to bottom,rgba(1,4,14,'+o+') 0%,rgba(2,6,18,'+oMid+') 40%,rgba(1,4,12,'+oBot+') 100%),url("Abyssal_Base_3.png")';
+    hero.style.backgroundImage = 'linear-gradient(to bottom,rgba(1,4,14,'+o+') 0%,rgba(2,6,18,'+oMid+') 40%,rgba(1,4,12,'+oBot+') 100%),url(\'Abyssal_Base_3.png\')';
     hero.style.backgroundSize = 'cover, cover';
     hero.style.backgroundPosition = 'center 45%, center 45%';
   }
@@ -1574,7 +1558,7 @@ function setOrbitalBrightness(val){
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('orbital-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(to bottom,rgba(2,6,18,'+o+') 0%,rgba(2,8,20,'+oMid+') 45%,rgba(2,6,16,'+oBot+') 100%),url("Net_and_Coal_plant.png")';
+    hero.style.backgroundImage = 'linear-gradient(to bottom,rgba(2,6,18,'+o+') 0%,rgba(2,8,20,'+oMid+') 45%,rgba(2,6,16,'+oBot+') 100%),url('Net_and_Coal_plant.png')';
     hero.style.backgroundSize = 'cover, cover';
     hero.style.backgroundPosition = 'center 40%, center 40%';
   }
@@ -1596,7 +1580,7 @@ function setNeuralBrightness(val){
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('neural-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(6,2,14,'+o+') 0%,rgba(10,4,22,'+o+') 100%),url("Gravity_Sense.png")';
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(6,2,14,'+o+') 0%,rgba(10,4,22,'+o+') 100%),url('Gravity_Sense.png')';
     hero.style.backgroundSize = 'cover, cover';
     hero.style.backgroundPosition = 'center top, center top';
   }
@@ -1616,7 +1600,7 @@ function setSeedsBrightness(val){
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('seeds-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,2,8,'+o+') 0%,rgba(4,2,14,'+o+') 50%,rgba(2,4,8,'+o+') 100%),url("Dead_Galaxy_Seeder.png")';
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,2,8,'+o+') 0%,rgba(4,2,14,'+o+') 50%,rgba(2,4,8,'+o+') 100%),url('Dead_Galaxy_Seeder.png')';
     hero.style.backgroundSize = 'cover, cover';
     hero.style.backgroundPosition = 'center, center';
   }
