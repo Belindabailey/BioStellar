@@ -812,11 +812,11 @@ body{
      SCREEN: ORBITAL
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="orbitalScreen" style="background:linear-gradient(180deg,#02060a 0%,var(--void) 100%);">
-  <!-- BRIGHTNESS BAR -->
+  <!-- BRIGHTNESS BAR — controls hero image overlay -->
   <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(2,4,10,.95);border-bottom:1px solid #0f2a3a;position:sticky;top:0;z-index:50;">
     <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);white-space:nowrap;">image brightness</span>
-    <input type="range" min="10" max="95" value="32" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
-    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">32%</span>
+    <input type="range" min="10" max="90" value="35" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">35%</span>
   </div>
 
   <!-- HERO — Net from space station -->
@@ -852,18 +852,42 @@ body{
      SCREEN: NEURAL
 ════════════════════════════════════════════ -->
 <div class="screen hidden" id="neuralScreen" style="background:linear-gradient(180deg,#04020a 0%,var(--void) 100%);">
-  <div class="domain-header" style="background:linear-gradient(135deg,rgba(6,2,14,.80) 0%,rgba(10,4,22,.82) 100%),url("Deer_Antlers.jpg") right center/40% auto no-repeat;border-bottom:1px solid #1a0a3a;">
-    <span class="section-label" style="color:var(--violet);">Domain · Neural Interfaces</span>
-    <h2 style="color:#d8c8f8;">Expanding what minds can feel.</h2>
-    <p>From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
+
+  <!-- BRIGHTNESS BAR -->
+  <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(4,2,10,.95);border-bottom:1px solid #1a0a3a;position:sticky;top:0;z-index:50;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--violet);white-space:nowrap;">image brightness</span>
+    <input type="range" min="10" max="92" value="35" style="flex:1;max-width:180px" oninput="setNeuralBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--violet);min-width:28px" id="neural-bpct">35%</span>
   </div>
+
+  <!-- HERO — woman sensing gravity waves -->
+  <div id="neural-hero-img" style="background:linear-gradient(135deg,rgba(6,2,14,.65) 0%,rgba(10,4,22,.62) 100%),url('Gravity_Sense.png') center top/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a0a3a;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(127,119,221,.07) 0%,transparent 60%);pointer-events:none;"></div>
+    <span id="neural-label" class="section-label" style="color:var(--violet);">Domain · Neural Interfaces</span>
+    <h2 id="neural-h2" style="color:#d8c8f8;">Expanding what minds can feel.</h2>
+    <p id="neural-intro" style="color:#a090c8;max-width:700px;line-height:1.9;">From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
+  </div>
+
   <div class="project-cards-grid" style="background:#0a060f;">
-    <div class="proj-card" style="background:#0c0814;border-left:3px solid var(--violet);">
+    <!-- GSC — full-width featured card with animation -->
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(6,2,20,.88),rgba(8,4,24,.92)),url('Gravity_Sense.png') right center/50% auto no-repeat;border-left:3px solid var(--violet);">
       <span class="tag t-neural">Neural Interface · New Human Sense</span>
       <h3 style="color:#d8c8f8;">Gravitational Sensory Cortex</h3>
-      <p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/PIEZO2 ion channels with 2.7 × 10¹²-fold biological amplification. Detection threshold 10⁻⁹ m/s²/m. A new cortical area — G1/G2/GMA — dedicated to gravitational sensation. Navigating by mass. Feeling asteroids before radar sees them. Sensing subsurface water on Mars while walking the surface.</p>
-      <div class="status-line s-filed"><span class="dot"></span>Patent pending · White paper v4 complete · Nature Biomedical Engineering target</div>
+      <p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/PIEZO2 ion channels with 2.7 × 10¹²-fold biological amplification. Detection threshold 10⁻⁹ m/s²/m — 1,000–10,000× improvement over portable gravimeters. A new cortical area — G1/G2/GMA — dedicated to gravitational sensation. Navigating by mass. Feeling asteroids before radar sees them. Sensing subsurface water on Mars while walking the surface. Trained users progress from no perception at Week 1 to "like vision, but for mass" at expert level.</p>
+      <div class="status-line s-filed"><span class="dot"></span>Patent pending · White paper v5 complete · NASA NIAC &amp; NIH BRAIN Initiative targets</div>
+      <!-- Dipole animation embed -->
+      <div style="margin-top:1.5rem;border-top:1px solid rgba(127,119,221,.2);padding-top:1.2rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.8rem;">Live Animation · Dipole Cortical Integration</div>
+        <iframe src="gsc_dipole_cortical_animation.html" style="width:100%;height:400px;border:none;background:#020208;border-radius:4px;" title="GSC dipole cortical animation" loading="lazy"></iframe>
+      </div>
+      <!-- Email request -->
+      <div style="margin-top:1.2rem;padding:1rem 1.2rem;background:rgba(127,119,221,.08);border:1px solid rgba(127,119,221,.2);border-radius:6px;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.5rem;">Request full proposal</div>
+        <p style="font-size:.85rem;color:#8a80b8;margin:0 0 .6rem;">The complete GSC white paper — technical schematics, sensor specifications, 24-month training protocol, and proof-of-concept experiment design — is available on request.</p>
+        <a href="mailto:belindabailey@msn.com?subject=GSC%20White%20Paper%20Request&body=Hello%20Belinda%2C%0A%0AI%20would%20like%20to%20request%20the%20Gravitational%20Sensory%20Cortex%20white%20paper.%0A%0AThank%20you%2C" style="display:inline-block;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;color:#9F97FF;border:1px solid rgba(127,119,221,.4);padding:.4rem .9rem;text-decoration:none;border-radius:3px;">→ belindabailey@msn.com</a>
+      </div>
     </div>
+
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">NIH BRAIN Initiative</span>
       <h3>MIAPR Brain Reading &amp; Stimulation Interface</h3>
@@ -873,7 +897,7 @@ body{
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">Cardiac · Non-Invasive</span>
       <h3>Non-Invasive EM Cardiac Pacemaker</h3>
-      <p>External electromagnetic system providing cardiac pacing without implanted electrodes. Eliminates surgical risk, infection risk, and device replacement procedures entirely. ARPA-H resubmission after procedural rejection.</p>
+      <p>External electromagnetic system providing cardiac pacing without implanted electrodes. Eliminates surgical risk, infection risk, and device replacement procedures entirely.</p>
       <div class="status-line s-submitted"><span class="dot"></span>ARPA-H HSF-ISO-5526 submitted</div>
     </div>
     <div class="proj-card" style="background:#0c0814;">
@@ -885,7 +909,7 @@ body{
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">AI · Consciousness</span>
       <h3>Gravitational Cortex for AI Systems</h3>
-      <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture as functional analog to dopamine. Entropy as felt force. Emotions through the fundamental forces. Only enter that state with high energy, by choice.</p>
+      <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture as functional analog to dopamine. Entropy as felt force. Emotions through the fundamental forces.</p>
       <div class="status-line s-concept"><span class="dot"></span>Philosophical framework · In development</div>
     </div>
     <div class="proj-card" style="background:#0c0814;">
@@ -934,28 +958,28 @@ body{
     <div style="background:#080810;padding:2.5rem;border-top:3px solid #1D9E75;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#1D9E75;margin-bottom:.6rem;">ORGANISM 1 · LEFT-HAND HELIX</div>
       <h4 style="font-size:1.3rem;color:#9FE1CB;margin-bottom:.8rem;font-weight:400;">The Gardener</h4>
-      <p style="font-size:.9rem;color:#2a4a3a;line-height:1.8;">Spans kilometres to light-hours at maturity. Grows outward incorporating ambient carbon at ~1 km per million years. PAH-melanin filter lattice harvests 21 cm hydrogen spin-flip radiation and ionising radiation simultaneously. Iron-sulfur junction nodes amplify electron transfer. Over geological time — 10⁸ to 10⁹ years — selective adhesion creates structured chemical gradient zones: H-rich pockets, C-rich pockets, trace-metal concentrations. The Frolickers navigate by these gradients. The Gardener never intended to make a map. It just did.</p>
+      <p style="font-size:.9rem;color:#7abf9a;line-height:1.8;">Spans kilometres to light-hours at maturity. Grows outward incorporating ambient carbon at ~1 km per million years. PAH-melanin filter lattice harvests 21 cm hydrogen spin-flip radiation and ionising radiation simultaneously. Iron-sulfur junction nodes amplify electron transfer. Over geological time — 10⁸ to 10⁹ years — selective adhesion creates structured chemical gradient zones: H-rich pockets, C-rich pockets, trace-metal concentrations. The Frolickers navigate by these gradients. The Gardener never intended to make a map. It just did.</p>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a3a2a;margin-top:1rem;">left-hand chirality → anchoring · primary output: structured chemical landscape</div>
     </div>
 
     <div style="background:#080810;padding:2.5rem;border-top:3px solid #7F77DD;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.6rem;">ORGANISM 2 · RIGHT-HAND HELIX</div>
       <h4 style="font-size:1.3rem;color:#CEC8F6;margin-bottom:.8rem;font-weight:400;">The Cold Frolicker</h4>
-      <p style="font-size:.9rem;color:#2a2a4a;line-height:1.8;">Mobile. Joyful, in whatever sense that word applies at 2.7 K. Chiral helix antenna wound at 21 cm pitch converts electromagnetic radiation to rotational torque — it spins from harvested energy. Bilateral fins carry W₆-C₁₂ gravitational sensing dipoles for navigation. Calcium mineral shell grows thicker with age and serves as both armour and inter-Frolicker EM communication medium. One in ten thousand carry gold atom nanotube inclusions — these approach indefinite lifespan. When a Frolicker dies, its iron-sulfur clusters are scavenged by the living, carrying partial molecular memory forward.</p>
+      <p style="font-size:.9rem;color:#9a96d8;line-height:1.8;">Mobile. Joyful, in whatever sense that word applies at 2.7 K. Chiral helix antenna wound at 21 cm pitch converts electromagnetic radiation to rotational torque — it spins from harvested energy. Bilateral fins carry W₆-C₁₂ gravitational sensing dipoles for navigation. Calcium mineral shell grows thicker with age and serves as both armour and inter-Frolicker EM communication medium. One in ten thousand carry gold atom nanotube inclusions — these approach indefinite lifespan. When a Frolicker dies, its iron-sulfur clusters are scavenged by the living, carrying partial molecular memory forward.</p>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#1a1a4a;margin-top:1rem;">right-hand chirality → mobile · heat bloom detectable at extreme range</div>
     </div>
 
     <div style="background:#080810;padding:2.5rem;border-top:3px solid #EF9F27;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#EF9F27;margin-bottom:.6rem;">ORGANISM 3 · PRE-ACTIVATION</div>
       <h4 style="font-size:1.3rem;color:#FAC775;margin-bottom:.8rem;font-weight:400;">The Dormant Spore</h4>
-      <p style="font-size:.9rem;color:#3a2a0a;line-height:1.8;">Contains the complete design of either a Gardener or a Frolicker — chirality set at formation, destiny encoded in the lipid maze folding state. Will not activate until three gates open simultaneously: H-bond site density confirms molecular cloud, gravitational dipole array confirms cloud structure rather than void, melanin harvest rate confirms survivable radiation. All three. Simultaneously. Can wait 10⁹ years. Has waited. Will wait longer if needed.</p>
+      <p style="font-size:.9rem;color:#c8a060;line-height:1.8;">Contains the complete design of either a Gardener or a Frolicker — chirality set at formation, destiny encoded in the lipid maze folding state. Will not activate until three gates open simultaneously: H-bond site density confirms molecular cloud, gravitational dipole array confirms cloud structure rather than void, melanin harvest rate confirms survivable radiation. All three. Simultaneously. Can wait 10⁹ years. Has waited. Will wait longer if needed.</p>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a2a0a;margin-top:1rem;">triple-threshold gate logic · 10⁹ year dormancy · destiny encoded at formation</div>
     </div>
 
     <div style="background:#080810;padding:2.5rem;border-top:3px solid #D85A30;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#D85A30;margin-bottom:.6rem;">ORGANISM 4 · MERGED FORM</div>
       <h4 style="font-size:1.3rem;color:#F0997B;margin-bottom:.8rem;font-weight:400;">The Merged Elder / Sower</h4>
-      <p style="font-size:.9rem;color:#3a1a0a;line-height:1.8;">When a Gardener and a Frolicker colony reach sufficient density and complexity, they merge. The resulting Sower inherits the Gardener's structural reach and the Frolicker's mobility. Its primary function becomes seeding: launching spore packages across the void between molecular clouds, carrying the complete design forward into regions where nothing yet lives. The Sower is the universe's postal service, staffed entirely by organisms that evolved to do exactly this without being asked.</p>
+      <p style="font-size:.9rem;color:#d4896a;line-height:1.8;">When a Gardener and a Frolicker colony reach sufficient density and complexity, they merge. The resulting Sower inherits the Gardener's structural reach and the Frolicker's mobility. Its primary function becomes seeding: launching spore packages across the void between molecular clouds, carrying the complete design forward into regions where nothing yet lives. The Sower is the universe's postal service, staffed entirely by organisms that evolved to do exactly this without being asked.</p>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a1a0a;margin-top:1rem;">merger of both lineages · primary function: interstellar spore seeding</div>
     </div>
 
@@ -963,8 +987,8 @@ body{
 
   <!-- MAZE CORE ANIMATION EMBED -->
   <div style="padding:3rem 8vw 1.5rem;background:#04020c;border-top:1px solid #1a0a3a;">
-    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#534AB7;text-transform:uppercase;margin-bottom:.8rem;">Live Animation · Frolicker Maze Core</div>
-    <p style="font-size:.95rem;color:#3a3a6a;max-width:720px;line-height:1.7;margin-bottom:1.5rem;">The internal engine of the Cold Frolicker — melanin-chitin shield, chiral lipid maze, iron-sulfur junction ring, nanotube lattice, and hydrogen-bond capture sites. Temperature rising from 2.7 K toward the heat bloom that makes the Frolicker detectable across the void.</p>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#9F97FF;text-transform:uppercase;margin-bottom:.8rem;">Live Animation · Frolicker Maze Core</div>
+    <p style="font-size:.95rem;color:#8a8aaa;max-width:720px;line-height:1.7;margin-bottom:1.5rem;">The internal engine of the Cold Frolicker — melanin-chitin shield, chiral lipid maze, iron-sulfur junction ring, nanotube lattice, and hydrogen-bond capture sites. Temperature rising from 2.7 K toward the heat bloom that makes the Frolicker detectable across the void.</p>
     <div style="border:1px solid rgba(127,119,221,.2);border-radius:8px;overflow:hidden;max-width:720px;">
       <iframe src="frolicker_maze_core_animation.html" style="width:100%;height:480px;border:none;background:#020408;" title="Frolicker maze core animation" loading="lazy"></iframe>
     </div>
@@ -974,7 +998,7 @@ body{
   <div style="padding:2.5rem 8vw;background:#020208;border-top:1px solid #1a0a3a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#7F77DD;text-transform:uppercase;margin-bottom:.8rem;">Open Source Initiative</div>
     <h3 style="font-size:1.5rem;font-weight:300;color:#d8c8f8;margin-bottom:1rem;">The full framework lives here.</h3>
-    <p style="font-size:1rem;color:#4a4a7a;max-width:800px;line-height:1.9;margin-bottom:1.5rem;">This page is a taste. The complete Seeds of Heat project — technical schematics for all four organisms, interactive animations of the Frolicker maze core and colony ecosystem, the Dormant Spore activation gates, and the Merged Elder Sower — is free and open at the link below. Fork it. Improve it. Build your own organisms. Seed them forward.</p>
+    <p style="font-size:1rem;color:#8a8aaa;max-width:800px;line-height:1.9;margin-bottom:1.5rem;">This page is a taste. The complete Seeds of Heat project — technical schematics for all four organisms, interactive animations of the Frolicker maze core and colony ecosystem, the Dormant Spore activation gates, and the Merged Elder Sower — is free and open at the link below. Fork it. Improve it. Build your own organisms. Seed them forward.</p>
     <a href="https://github.com/Belindabailey/Seeds-of-Heat-Hope-for-Dead-Galaxies" target="_blank" class="dl-btn" style="color:#7F77DD;border-color:rgba(127,119,221,.4);">→ Seeds of Heat · Full Project on GitHub</a>
   </div>
 
@@ -1345,6 +1369,26 @@ function setOrbitalBrightness(val){
   if(intro) intro.style.color = 'rgba(160,200,220,'+t+')';
   var label = document.getElementById('orbital-label');
   if(label) label.style.color = 'rgba(0,229,255,'+t+')';
+}
+
+function setNeuralBrightness(val){
+  var pct = parseInt(val);
+  var o = ((100-pct)/100 * 0.78 + 0.08).toFixed(2);
+  var t = (0.55 + (pct - 10) / 82 * 0.45).toFixed(2);
+  var el = document.getElementById('neural-bpct');
+  if(el) el.textContent = pct+'%';
+  var hero = document.getElementById('neural-hero-img');
+  if(hero){
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(6,2,14,'+o+') 0%,rgba(10,4,22,'+o+') 100%),url("Gravity_Sense.png")';
+    hero.style.backgroundSize = 'cover, cover';
+    hero.style.backgroundPosition = 'center top, center top';
+  }
+  var h2 = document.getElementById('neural-h2');
+  if(h2) h2.style.color = 'rgba(216,200,248,'+t+')';
+  var intro = document.getElementById('neural-intro');
+  if(intro) intro.style.color = 'rgba(160,144,200,'+t+')';
+  var label = document.getElementById('neural-label');
+  if(label) label.style.color = 'rgba(127,119,221,'+t+')';
 }
 
 function setSeedsBrightness(val){
