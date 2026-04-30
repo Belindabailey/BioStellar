@@ -390,6 +390,9 @@ body{
   <audio id="bg-music-4">
     <source src="We_Ascend_Celtic_Voice.mp3" type="audio/mpeg">
   </audio>
+  <audio id="bg-music-5">
+    <source src="I_seek_you_in_the_Garden_Celtic_Voice.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <!-- BACK BUTTON -->
@@ -861,11 +864,11 @@ body{
   </div>
 
   <!-- HERO — woman sensing gravity waves -->
-  <div id="neural-hero-img" style="background:linear-gradient(135deg,rgba(6,2,14,.65) 0%,rgba(10,4,22,.62) 100%),url('Gravity_Sense.png') center top/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a0a3a;position:relative;overflow:hidden;">
+  <div id="neural-hero-img" style="background:linear-gradient(to bottom,rgba(6,2,14,.55) 0%,rgba(10,4,22,.45) 40%,rgba(4,2,10,.75) 100%),url('Gravity_Sense.png') center 25%/cover no-repeat;padding:5rem 8vw 8rem;border-bottom:1px solid #1a0a3a;position:relative;overflow:hidden;min-height:420px;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(127,119,221,.07) 0%,transparent 60%);pointer-events:none;"></div>
     <span id="neural-label" class="section-label" style="color:var(--violet);">Domain · Neural Interfaces</span>
     <h2 id="neural-h2" style="color:#d8c8f8;">Expanding what minds can feel.</h2>
-    <p id="neural-intro" style="color:#a090c8;max-width:700px;line-height:1.9;">From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
+    <p id="neural-intro" style="color:#b8a8d8;max-width:600px;line-height:1.9;">From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
   </div>
 
   <div class="project-cards-grid" style="background:#0a060f;">
@@ -912,9 +915,13 @@ body{
       <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture as functional analog to dopamine. Entropy as felt force. Emotions through the fundamental forces.</p>
       <div class="status-line s-concept"><span class="dot"></span>Philosophical framework · In development</div>
     </div>
-    <div class="proj-card" style="background:#0c0814;">
-      <span class="tag t-neural">EM Therapy · Detection</span>
-      <h3>EM Mimicry &amp; Nanoparticle Detection</h3>
+    <div class="proj-card" style="background:linear-gradient(rgba(2,4,16,.84),rgba(4,6,20,.90)),url('VR_Helmet_Scene_5.png') right center/55% auto no-repeat;">
+      <span class="tag t-neural">Neural VR · Accessibility · BCI</span>
+      <h3 style="color:#d8c8f8;">HolodeckLite — Neural VR Interface</h3>
+      <p>EEG-based motor intention detection navigates VR worlds through thought alone — 500ms before movement begins. No physical space required, no motion sickness. Motor Whisper System delivers tactile presence via brief transcranial stimulation pulses synchronized with virtual contact. Balanced ergonomic headset design (450g front + 270g rear neural pod) for unlimited session length. Opens VR to 300+ million currently excluded users — wheelchair users, apartment dwellers, motion sickness sufferers.</p>
+      <div class="status-line s-submitted"><span class="dot"></span>Epic MegaGrant submitted · 2 provisional patents filed · UW neuroscience IRB partnership</div>
+      <div style="margin-top:.8rem;font-family:'Space Mono',monospace;font-size:9px;color:#534AB7;letter-spacing:1px;">Neural locomotion · Motor Whisper System · Unreal Engine 5 plugin · Open-source SDK</div>
+    </div>
       <p>Electromagnetic mimicry of ionic field signatures for non-chemical biological modulation. Paired with ML-based nanoparticle identification system using characteristic field signatures for real-time in-vivo therapeutic tracking.</p>
       <div class="status-line s-filed"><span class="dot"></span>Serial Nos. 63/973,198 &amp; 63/992,091</div>
     </div>
@@ -1418,24 +1425,32 @@ var tracks = [
   {id:'bg-music',    name:'The Architect of Living Dreams'},
   {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
   {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
-  {id:'bg-music-4',  name:'We Ascend (Celtic Voice)'}
+  {id:'bg-music-4',  name:'We Ascend (Celtic Voice)'},
+  {id:'bg-music-5',  name:'I Seek You in the Garden (Celtic Voice)'}
 ];
 
 function getAudio(n){ return document.getElementById(tracks[n-1].id); }
 
+function playAndChain(audio){
+  audio.play().then(()=>{
+    document.getElementById('play-icon').style.display='none';
+    document.getElementById('pause-icon').style.display='flex';
+    document.getElementById('music-visualizer').classList.add('playing');
+    audio.onended = function(){
+      nextTrack();
+    };
+  }).catch(()=>{});
+}
+
 function nextTrack(){
   var old = getAudio(currentTrack);
   var wasPlaying = !old.paused;
-  old.pause(); old.currentTime=0;
+  old.pause(); old.currentTime=0; old.onended=null;
   currentTrack = currentTrack >= tracks.length ? 1 : currentTrack + 1;
   var el = document.getElementById('track-name');
   if(el) el.textContent = tracks[currentTrack-1].name;
   if(wasPlaying){
-    var newAudio = getAudio(currentTrack);
-    newAudio.play().catch(()=>{});
-    document.getElementById('play-icon').style.display='none';
-    document.getElementById('pause-icon').style.display='flex';
-    document.getElementById('music-visualizer').classList.add('playing');
+    playAndChain(getAudio(currentTrack));
   }
 }
 
@@ -1445,13 +1460,7 @@ function toggleMusic(){
   var pauseIcon = document.getElementById('pause-icon');
   var vis = document.getElementById('music-visualizer');
   if(audio.paused){
-    audio.play().then(()=>{
-      playIcon.style.display='none';
-      pauseIcon.style.display='flex';
-      vis.classList.add('playing');
-      // auto-advance to next track when done
-      audio.onended = ()=>{ nextTrack(); getAudio(currentTrack).play().catch(()=>{}); };
-    }).catch(()=>{});
+    playAndChain(audio);
   } else {
     audio.pause();
     playIcon.style.display='flex';
