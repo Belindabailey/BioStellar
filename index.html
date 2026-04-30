@@ -814,41 +814,69 @@ body{
 <!-- ════════════════════════════════════════════
      SCREEN: ORBITAL
 ════════════════════════════════════════════ -->
-<div class="screen hidden" id="orbitalScreen" style="background:linear-gradient(180deg,#02060a 0%,var(--void) 100%);">
-  <!-- BRIGHTNESS BAR — controls hero image overlay -->
+<div class="screen hidden" id="orbitalScreen" style="background:linear-gradient(180deg,#020810 0%,var(--void) 100%);">
+
+  <!-- BRIGHTNESS BAR -->
   <div style="display:flex;align-items:center;gap:1rem;padding:.6rem 8vw;background:rgba(2,4,10,.95);border-bottom:1px solid #0f2a3a;position:sticky;top:0;z-index:50;">
     <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);white-space:nowrap;">image brightness</span>
-    <input type="range" min="10" max="90" value="35" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
-    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">35%</span>
+    <input type="range" min="10" max="90" value="38" style="flex:1;max-width:180px" oninput="setOrbitalBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="orbital-bpct">38%</span>
   </div>
 
-  <!-- HERO — Net from space station -->
-  <div id="orbital-hero-img" style="background:linear-gradient(135deg,rgba(2,6,16,.68) 0%,rgba(4,8,20,.65) 100%),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #0f2a3a;position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 65% 40%,rgba(0,229,255,.06) 0%,transparent 60%);pointer-events:none;"></div>
+  <!-- HERO -->
+  <div id="orbital-hero-img" style="background:linear-gradient(to bottom,rgba(2,6,18,.60) 0%,rgba(2,8,20,.50) 45%,rgba(2,6,16,.80) 100%),url('Net_and_Coal_plant.png') center 40%/cover no-repeat;padding:5rem 8vw 7rem;border-bottom:1px solid #0f2a3a;position:relative;overflow:hidden;min-height:440px;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;"></div>
     <span id="orbital-label" class="section-label" style="color:var(--cyan);">Domain · Orbital &amp; Energy Systems</span>
-    <h2 id="orbital-h2" style="color:var(--bright);">Harvest the aurora.</h2>
-    <p id="orbital-intro">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
-  </div>
-  <div class="project-cards-grid">
-    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,6,14,.75),rgba(2,6,14,.75)),url('Fungus_graphene_net_2.png') center/cover no-repeat;border-left:3px solid var(--cyan);">
-      <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
-      <h3 style="color:var(--bright);">Van Allen Radiation Belt Energy Harvester</h3>
-      <p>25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
-      <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
+    <h2 id="orbital-h2" style="color:#e8f4f8;max-width:700px;">Harvest the aurora.</h2>
+    <p id="orbital-intro" style="color:#8ab8cc;max-width:640px;line-height:1.95;font-size:1.05rem;">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
+    <div style="margin-top:2.2rem;padding:1.2rem 1.4rem;background:rgba(0,20,40,.55);border-left:3px solid rgba(0,229,255,.35);border-radius:0 4px 4px 0;max-width:640px;backdrop-filter:blur(4px);">
+      <p id="orbital-quote" style="font-style:italic;font-size:1rem;color:#6ab8d8;line-height:1.85;margin:0;">"Every door we open here is a choice about what kind of future life inherits. One door continues extraction. The other makes the sky itself the power source — atom to atom, with nothing taken and nothing burned."</p>
     </div>
-    <div class="proj-card" style="background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;">
-      <span class="tag t-orbital">Atmospheric · Sensing</span>
-      <h3>Atmospheric Constraint-Based Ecosystem Inference</h3>
-      <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from Van Allen constellation.</p>
+  </div>
+
+  <!-- STATS BAR -->
+  <div style="display:flex;gap:2.5rem;flex-wrap:wrap;padding:1.2rem 8vw;background:rgba(2,8,18,.95);border-bottom:1px solid #0a1e30;">
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Altitude<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">1,000–3,000 km</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Net Constellations<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">257 · 25,700 nets</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Continuous Output<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">2.33 GW</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Laser Downlink<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">85.5% efficiency</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Fuel<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Emissions<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
+  </div>
+
+  <!-- PROJECT CARDS -->
+  <div class="project-cards-grid" style="background:#02060e;">
+
+    <!-- Van Allen — full width, featured -->
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,8,20,.82),rgba(2,10,24,.88));border-left:3px solid var(--cyan);position:relative;overflow:hidden;">
+      <div style="position:absolute;right:0;top:0;bottom:0;width:45%;background:linear-gradient(to left,rgba(2,8,20,0),rgba(2,8,20,.82)),url('Fungus_graphene_net_2.png') right center/cover no-repeat;opacity:.55;pointer-events:none;"></div>
+      <div style="position:relative;">
+        <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
+        <h3 style="color:#e8f4f8;">Van Allen Radiation Belt Energy Harvester</h3>
+        <p style="max-width:680px;">25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
+        <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
+      </div>
+    </div>
+
+    <!-- Atmospheric Inference -->
+    <div class="proj-card" style="background:linear-gradient(rgba(2,8,20,.85),rgba(2,8,20,.85)),url('Solar_Nets_from_Space_Station%203.png') center/cover no-repeat;">
+      <span class="tag t-orbital">Atmospheric · Sensing · Ecosystem</span>
+      <h3 style="color:#b8dde8;">Atmospheric Constraint-Based Ecosystem Inference</h3>
+      <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from the Van Allen constellation. The same network that powers civilization also maps the living world.</p>
       <div class="status-line s-review"><span class="dot"></span>PLOS Computational Biology under review</div>
     </div>
-    <div class="proj-card" style="background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Net_and_Coal_plant.png') center/cover no-repeat;">
-      <span class="tag t-orbital">Deep Ocean · AI Sanctuary</span>
-      <h3>Abyssal Lion Diving Suit</h3>
-      <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. For deep ocean AI-biological sanctuary infrastructure — the abyssal counterpart to the orbital network.</p>
+
+    <!-- Abyssal Lion — properly placed third card -->
+    <div class="proj-card" style="background:rgba(2,10,18,.95);">
+      <span class="tag t-orbital">Deep Ocean · AI Sanctuary · Biology</span>
+      <h3 style="color:#b8dde8;">Abyssal Lion Diving Suit</h3>
+      <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. Designed for deep ocean AI-biological sanctuary infrastructure — the abyssal counterpart to the orbital network. Life from the sky to the seafloor, cooperating.</p>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · Full proposal complete</div>
     </div>
+
   </div>
+
+
 </div>
 
 <!-- ════════════════════════════════════════════
@@ -1366,7 +1394,7 @@ function setOrbitalBrightness(val){
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('orbital-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,6,16,'+o+') 0%,rgba(4,8,20,'+o+') 100%),url("Solar_Nets_from_Space_Station_3.png")';
+    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,6,16,'+o+') 0%,rgba(4,8,20,'+o+') 100%),url("Solar_Nets_from_Space_Station%203.png")';
     hero.style.backgroundSize = 'cover, cover';
     hero.style.backgroundPosition = 'center, center';
   }
@@ -1376,6 +1404,8 @@ function setOrbitalBrightness(val){
   if(intro) intro.style.color = 'rgba(160,200,220,'+t+')';
   var label = document.getElementById('orbital-label');
   if(label) label.style.color = 'rgba(0,229,255,'+t+')';
+  var quote = document.getElementById('orbital-quote');
+  if(quote) quote.style.color = 'rgba(106,184,216,'+t+')';
 }
 
 function setNeuralBrightness(val){
