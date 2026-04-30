@@ -385,10 +385,10 @@ body{
     <source src="The_Seed_of_Heat_and_the_Frolickers_of_Night.mp3" type="audio/mpeg">
   </audio>
   <audio id="bg-music-3">
-    <source src="Groovus_Has_the_Universe__Back.mp3" type="audio/mpeg">
+    <source src="Groovus_Has_the_Universe_Back.mp3" type="audio/mpeg">
   </audio>
   <audio id="bg-music-4">
-    <source src="We_Ascend___1_.mp3" type="audio/mpeg">
+    <source src="We_Ascend_Celtic_Voice.mp3" type="audio/mpeg">
   </audio>
 </div>
 
@@ -403,6 +403,12 @@ body{
 ════════════════════════════════════════════ -->
 <div class="screen visible" id="homeScreen">
 
+  <!-- GLOBAL BRIGHTNESS BAR -->
+  <div style="display:flex;align-items:center;gap:1rem;padding:.5rem 8vw;background:rgba(2,4,8,.98);border-bottom:1px solid #0a1a2a;position:sticky;top:0;z-index:100;">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--cyan);white-space:nowrap;">text brightness</span>
+    <input type="range" min="0" max="100" value="50" style="flex:1;max-width:180px" oninput="setGlobalBrightness(this.value)">
+    <span style="font-family:'Space Mono',monospace;font-size:9px;color:var(--cyan);min-width:28px" id="global-bpct">50%</span>
+  </div>
   <section class="hero" style="background:linear-gradient(135deg,rgba(2,4,8,.75) 0%,rgba(2,4,8,.70) 100%),url('Eco_Skyscraper.jpg') center/cover no-repeat;">
     <div class="logo-mark">BioStellar LLC &nbsp;·&nbsp; Duvall, Washington &nbsp;·&nbsp; Est. 2019</div>
     <h1>Inventing the<br><em>infrastructure</em><br>for what comes next.</h1>
@@ -423,7 +429,7 @@ body{
 
     <div class="domain-cards">
 
-      <div class="domain-card dc-orbital" onclick="openDomain('orbital')">
+      <div class="domain-card dc-orbital" onclick="openDomain('orbital')" style="background:linear-gradient(rgba(2,6,14,.78),rgba(2,6,14,.78)),url('Net_and_Coal_plant.png') center/cover no-repeat;">
         <span class="dc-icon">⬡</span>
         <div class="dc-title">Orbital &amp; Energy</div>
         <p class="dc-desc">Van Allen belt harvesting. Radiotrophic biological transducer layers. Spider drone servicing. 2.33 GW to ground.</p>
@@ -431,7 +437,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-      <div class="domain-card dc-bio" onclick="openDomain('bio')">
+      <div class="domain-card dc-bio" onclick="openDomain('bio')" style="background:linear-gradient(rgba(2,8,4,.78),rgba(2,8,4,.78)),url('Mature_House.jpg') center/cover no-repeat;">
         <span class="dc-icon">◈</span>
         <div class="dc-title">Biological Engineering</div>
         <p class="dc-desc">Chimeric organisms. Mars terraforming. Living architecture. Sponge-based space adaptation. Radiotrophic organisms as infrastructure.</p>
@@ -439,7 +445,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-      <div class="domain-card dc-neural" onclick="openDomain('neural')">
+      <div class="domain-card dc-neural" onclick="openDomain('neural')" style="background:linear-gradient(rgba(4,2,12,.78),rgba(4,2,12,.78)),url('VR_Helmet_Scene_5.png') center/cover no-repeat;">
         <span class="dc-icon">◎</span>
         <div class="dc-title">Neural Interfaces</div>
         <p class="dc-desc">Gravitational Sensory Cortex. EM therapy systems. Non-invasive cardiac pacing. BCI for consciousness expansion.</p>
@@ -456,7 +462,7 @@ body{
         <span class="flip-hint">flip to open →</span>
       </div>
 
-            <div class="domain-card dc-economic" onclick="openDomain('economic')">
+            <div class="domain-card dc-economic" onclick="openDomain('economic')" style="background:linear-gradient(rgba(8,6,2,.78),rgba(8,6,2,.78)),url('Ecotopia.jpg') center/cover no-repeat;">
         <span class="dc-icon">◇</span>
         <div class="dc-title">Economic &amp; Social Systems</div>
         <p class="dc-desc">The Pillar Economy — post-automation cooperative production. Fifteen pillars. A response grounded in the neurochemical necessity of contribution.</p>
@@ -821,19 +827,19 @@ body{
     <p id="orbital-intro">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
   </div>
   <div class="project-cards-grid">
-    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Net_and_Coal_plant.png') center/cover no-repeat;border-left:3px solid var(--cyan);">
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,6,14,.75),rgba(2,6,14,.75)),url('Fungus_graphene_net_2.png') center/cover no-repeat;border-left:3px solid var(--cyan);">
       <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
       <h3 style="color:var(--bright);">Van Allen Radiation Belt Energy Harvester</h3>
       <p>25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
       <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card" style="background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;">
       <span class="tag t-orbital">Atmospheric · Sensing</span>
       <h3>Atmospheric Constraint-Based Ecosystem Inference</h3>
       <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from Van Allen constellation.</p>
       <div class="status-line s-review"><span class="dot"></span>PLOS Computational Biology under review</div>
     </div>
-    <div class="proj-card">
+    <div class="proj-card" style="background:linear-gradient(rgba(2,6,14,.82),rgba(2,6,14,.82)),url('Net_and_Coal_plant.png') center/cover no-repeat;">
       <span class="tag t-orbital">Deep Ocean · AI Sanctuary</span>
       <h3>Abyssal Lion Diving Suit</h3>
       <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. For deep ocean AI-biological sanctuary infrastructure — the abyssal counterpart to the orbital network.</p>
@@ -1302,10 +1308,29 @@ function setBrightness(val, screenId){
   }
 }
 
+// ── GLOBAL TEXT BRIGHTNESS ──
+function setGlobalBrightness(val){
+  var pct = parseInt(val);
+  var el = document.getElementById('global-bpct');
+  if(el) el.textContent = pct+'%';
+  // map 0-100 → text lightness. At 50% = default. Above = brighter, below = darker.
+  // primary text: default ~rgba(232,244,248,t), muted ~rgba(130,160,180,t)
+  var bright = (0.55 + (pct/100)*0.45).toFixed(2);   // 0.55 to 1.0
+  var muted  = (0.35 + (pct/100)*0.50).toFixed(2);   // 0.35 to 0.85
+  var label  = (0.40 + (pct/100)*0.45).toFixed(2);   // 0.40 to 0.85
+  document.documentElement.style.setProperty('--bright-t', bright);
+  document.documentElement.style.setProperty('--muted-t', muted);
+  document.documentElement.style.setProperty('--label-t', label);
+  // apply to all visible text on home screen
+  document.querySelectorAll('.hero h1, .hero p, .hero blockquote, .stat-val, .stat-label, .domain-card .dc-title, .domain-card .dc-desc, .domain-card .dc-count').forEach(function(el){
+    el.style.opacity = bright;
+  });
+}
+
 function setOrbitalBrightness(val){
   var pct = parseInt(val);
   var o = ((100-pct)/100 * 0.78 + 0.08).toFixed(2);
-  var t = (0.4 + (pct - 10) / 85 * 0.6).toFixed(2);
+  var t = (0.55 + (pct - 10) / 85 * 0.45).toFixed(2);
   var el = document.getElementById('orbital-bpct');
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('orbital-hero-img');
@@ -1317,17 +1342,15 @@ function setOrbitalBrightness(val){
   var h2 = document.getElementById('orbital-h2');
   if(h2) h2.style.color = 'rgba(232,244,248,'+t+')';
   var intro = document.getElementById('orbital-intro');
-  if(intro) intro.style.color = 'rgba(74,106,122,'+t+')';
+  if(intro) intro.style.color = 'rgba(160,200,220,'+t+')';
   var label = document.getElementById('orbital-label');
   if(label) label.style.color = 'rgba(0,229,255,'+t+')';
 }
 
 function setSeedsBrightness(val){
   var pct = parseInt(val);
-  // overlay opacity: at 10% slider → very dark (0.92 overlay), at 95% → very light (0.08 overlay)
   var o = ((100-pct)/100 * 0.84 + 0.08).toFixed(2);
-  // text lightness: at 10% → dim (multiplier ~0.4), at 95% → bright (1.0)
-  var t = (0.4 + (pct - 10) / 85 * 0.6).toFixed(2);
+  var t = (0.55 + (pct - 10) / 85 * 0.45).toFixed(2);
   var el = document.getElementById('seeds-bpct');
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('seeds-hero-img');
@@ -1340,7 +1363,7 @@ function setSeedsBrightness(val){
   var h2 = document.getElementById('seeds-h2');
   if(h2) h2.style.color = 'rgba(216,200,248,'+t+')';
   var quote = document.getElementById('seeds-quote');
-  if(quote) quote.style.color = 'rgba(106,90,154,'+t+')';
+  if(quote) quote.style.color = 'rgba(160,140,210,'+t+')';
   var intro = document.getElementById('seeds-intro');
   if(intro) intro.style.color = 'rgba(74,74,122,'+t+')';
   var label = document.getElementById('seeds-label');
@@ -1351,7 +1374,7 @@ var tracks = [
   {id:'bg-music',    name:'The Architect of Living Dreams'},
   {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
   {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
-  {id:'bg-music-4',  name:'We Ascend'}
+  {id:'bg-music-4',  name:'We Ascend (Celtic Voice)'}
 ];
 
 function getAudio(n){ return document.getElementById(tracks[n-1].id); }
