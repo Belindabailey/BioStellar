@@ -859,7 +859,7 @@ body{
     </div>
 
     <!-- Atmospheric Inference -->
-    <div class="proj-card" style="background:linear-gradient(rgba(2,8,20,.85),rgba(2,8,20,.85)),url('Solar_Nets_from_Space_Station%203.png') center/cover no-repeat;">
+    <div class="proj-card" style="background:linear-gradient(rgba(2,8,20,.85),rgba(2,8,20,.85)),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;">
       <span class="tag t-orbital">Atmospheric · Sensing · Ecosystem</span>
       <h3 style="color:#b8dde8;">Atmospheric Constraint-Based Ecosystem Inference</h3>
       <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from the Van Allen constellation. The same network that powers civilization also maps the living world.</p>
@@ -1389,19 +1389,21 @@ function setGlobalBrightness(val){
 function setOrbitalBrightness(val){
   var pct = parseInt(val);
   var o = ((100-pct)/100 * 0.78 + 0.08).toFixed(2);
-  var t = (0.55 + (pct - 10) / 85 * 0.45).toFixed(2);
+  var oMid = ((100-pct)/100 * 0.60 + 0.06).toFixed(2);
+  var oBot = Math.min(((100-pct)/100 * 0.78 + 0.08) + 0.15, 1).toFixed(2);
+  var t = (0.55 + (pct - 10) / 80 * 0.45).toFixed(2);
   var el = document.getElementById('orbital-bpct');
   if(el) el.textContent = pct+'%';
   var hero = document.getElementById('orbital-hero-img');
   if(hero){
-    hero.style.backgroundImage = 'linear-gradient(135deg,rgba(2,6,16,'+o+') 0%,rgba(4,8,20,'+o+') 100%),url("Solar_Nets_from_Space_Station%203.png")';
+    hero.style.backgroundImage = 'linear-gradient(to bottom,rgba(2,6,18,'+o+') 0%,rgba(2,8,20,'+oMid+') 45%,rgba(2,6,16,'+oBot+') 100%),url("Net_and_Coal_plant.png")';
     hero.style.backgroundSize = 'cover, cover';
-    hero.style.backgroundPosition = 'center, center';
+    hero.style.backgroundPosition = 'center 40%, center 40%';
   }
   var h2 = document.getElementById('orbital-h2');
   if(h2) h2.style.color = 'rgba(232,244,248,'+t+')';
   var intro = document.getElementById('orbital-intro');
-  if(intro) intro.style.color = 'rgba(160,200,220,'+t+')';
+  if(intro) intro.style.color = 'rgba(138,184,204,'+t+')';
   var label = document.getElementById('orbital-label');
   if(label) label.style.color = 'rgba(0,229,255,'+t+')';
   var quote = document.getElementById('orbital-quote');
