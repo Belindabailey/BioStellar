@@ -393,6 +393,12 @@ body{
   <audio id="bg-music-5">
     <source src="I_seek_you_%20in_the_Garden_%20Celtic_Voice.mp3" type="audio/mpeg">
   </audio>
+  <audio id="bg-music-6">
+    <source src="Des_tenebres_de_la_terre_ils_elevent.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="bg-music-7">
+    <source src="THE_CONSORTIUM_ANTHEM_Nine_Species_One_Purpose.mp3" type="audio/mpeg">
+  </audio>
 </div>
 
 <!-- BACK BUTTON -->
@@ -546,6 +552,21 @@ body{
       <h3>Living Protein Crop Concept</h3>
       <p>Engineered nitrogen-fixing crop plants that produce complete proteins without soil amendment. Targeting Sub-Saharan agricultural systems. Combines atmospheric nitrogen fixation with enhanced amino acid synthesis pathways for food security applications.</p>
       <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Grant targeting in progress</div>
+    </div>
+
+    <!-- FUNGAL CONSORTIUM — full width, featured -->
+    <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(4,10,4,.80),rgba(4,10,4,.88)),url('Cladosporium_leading_the_people.png') center 30%/cover no-repeat;border-left:3px solid #7abf4a;position:relative;overflow:hidden;">
+      <span class="tag" style="color:#7abf4a;border:1px solid rgba(122,191,74,.3);">Mycoremediation · Synthetic Biology · Post-Conflict Ecology</span>
+      <h3 style="color:#c8e8a8;">Projet Consortium Fongique: Zone Rouge Bioremediation</h3>
+      <p style="max-width:800px;">An engineered nine-species fungal consortium for the Zone Rouge — 100 km² of northeastern France still too contaminated for habitation a century after WWI. Nine specialists: heavy metal hyperaccumulators, explosives degraders including <em>Trichoderma viride</em> which uses TNT as nitrogen source, the Chernobyl radiation-resistant <em>Cladosporium sphaerospermum</em>, and mycorrhizal network builders. The consortium integrates CRISPR-based environmental biosensors, DNA memory recording contamination history, and programmed dormancy — the organisms enter maintenance state when remediation is complete and await human redeployment. A paradigm shift from "organisms that might escape" to organisms engineered to serve, rest, and await partnership. Timeline reduction: 10,000 years → 5–10 years. Cost reduction: €35–75 billion → €3.5 million.</p>
+      <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1rem;margin-bottom:.8rem;">
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Species<span style="display:block;color:#7abf4a;font-size:11px;letter-spacing:0;margin-top:2px;">9 — self-organizing consortium</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Timeline<span style="display:block;color:#7abf4a;font-size:11px;letter-spacing:0;margin-top:2px;">5–10 years vs. 10,000 natural</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Cost<span style="display:block;color:#1D9E75;font-size:11px;letter-spacing:0;margin-top:2px;">€3.5M vs. €35–75B conventional</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">ROI<span style="display:block;color:#1D9E75;font-size:11px;letter-spacing:0;margin-top:2px;">&gt;19,000:1</span></div>
+        <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Target<span style="display:block;color:#EF9F27;font-size:11px;letter-spacing:0;margin-top:2px;">LSE Université de Lorraine · INRAE</span></div>
+      </div>
+      <div class="status-line s-filed" style="color:#7abf4a;"><span class="dot" style="background:#7abf4a;box-shadow:0 0 6px #7abf4a;animation:pulse 2s ease-in-out infinite;"></span>Research proposal complete · Submitted to Laboratoire Sols et Environnement · ENSAIA Nancy</div>
     </div>
 
   </div>
@@ -1458,7 +1479,9 @@ var tracks = [
   {id:'bg-music-2',  name:'The Seed of Heat and the Frolickers of Night'},
   {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
   {id:'bg-music-4',  name:'We Ascend (Celtic Voice)'},
-  {id:'bg-music-5',  name:'I Seek You in the Garden (Celtic Voice)'}
+  {id:'bg-music-5',  name:'I Seek You in the Garden (Celtic Voice)'},
+  {id:'bg-music-6',  name:'Des ténèbres de la terre ils élèvent'},
+  {id:'bg-music-7',  name:'The Consortium Anthem — Nine Species, One Purpose'}
 ];
 
 function getAudio(n){ return document.getElementById(tracks[n-1].id); }
