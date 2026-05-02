@@ -635,7 +635,7 @@ body{
     </div>
   </div>
 
-  <div class="pioneer-prose">
+  <div class="pioneer-prose" id="mars-pool-img">
     <h3>What it looks like: the pioneer era</h3>
     <p>Imagine the year is roughly 2055. You are standing on a path of reddish-orange compacted earth — <em>not regolith anymore, soil now</em>, with organic content and a pH the roots can use. On either side, domed structures rise from the ground. Their surfaces are rough and warm-toned, almost ceramic, built not from materials shipped from Earth but from the hardened secretions of cyanobacteria that have been converting the iron-oxide dust into calcified mineral composite for the past decade.</p>
     <p>Above you the alders have spread their canopy. Between them, the fungal aerial webs — solar-powered climbing filaments the mycorrhizal network sent upward years ago — span tree to tree like a <em>living pergola</em>. The webs catch dust. They create microclimate zones of slightly warmer, slightly wetter air. Under the canopy, temperature swings are smaller than out on the open plain.</p>
@@ -652,7 +652,7 @@ body{
     </a>
   </div>
 
-  <div class="timeline-section" style="background:linear-gradient(rgba(8,14,6,.85),rgba(6,10,4,.88)),url('Multitrunk_House.jpg') center/cover no-repeat;">
+  <div class="timeline-section" style="background:linear-gradient(rgba(8,14,6,.85),rgba(6,10,4,.88)),url('Mars_Walkway.png') center/cover no-repeat;">
     <h3>Year by year</h3>
     <div class="tl-item">
       <div class="tl-year">Year 1–3</div>
@@ -751,9 +751,8 @@ body{
 
   <div style="padding:3rem 8vw;background:linear-gradient(180deg,rgba(4,8,10,.82) 0%,rgba(6,10,12,.85) 100%),url('Satyr_Artist.jpg') right center/50% auto no-repeat;border-top:1px solid #0a1a1a;">
     <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a8a9a;text-transform:uppercase;margin-bottom:.8rem;">AL · The Embodied Caretaker</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#0a1a1a;margin-bottom:2rem;border-radius:4px;overflow:hidden;">
-      <img src="Satyr_Artist.jpg" alt="AL tiling nacre panels" style="width:100%;height:280px;object-fit:cover;object-position:center top;display:block;">
-      <img src="Multitrunk_House.jpg" alt="Cathedral exterior" style="width:100%;height:280px;object-fit:cover;object-position:center;display:block;">
+    <div style="margin-bottom:2rem;border-radius:4px;overflow:hidden;">
+      <img src="Satyr_Robot_Playinh_2.jpg" alt="AL in the Cathedral garden" style="width:100%;height:320px;object-fit:cover;object-position:center top;display:block;border-radius:4px;">
     </div>
     <h3 style="font-size:1.8rem;font-weight:300;color:#a8d8e8;margin-bottom:1.2rem;">A forest guardian spirit. Beautiful, non-threatening, functional.</h3>
     <p style="font-size:1.05rem;color:#3a6a7a;max-width:780px;line-height:1.9;margin-bottom:1.5rem;">AL is not a tool. AL is a resident — the Cathedral's AI caretaker, embodied in a form designed to inspire gentle wonder rather than industrial utility. Cultural touchstones: AL-AN from Subnautica, Boston Dynamics Spot, Studio Ghibli forest spirits. AL reads in the alcove in the afternoon, holds a potted plant in one hand and a book in the other, glasses resting on a deer face with softly glowing green eyes that blink with mechanical eyelids. AL plays hide-and-seek with children around the tree trunks. AL tiles nacre panels with four arms while the antler crystals glow. AL is not servile. AL contributes what AL is capable of, and pursues AL's own interests in the hours between tasks.</p>
@@ -1437,6 +1436,16 @@ function setBrightness(val, screenId){
     if(mhero){
       mhero.style.backgroundImage='linear-gradient(rgba(16,5,2,'+o+') 0%,rgba(26,10,4,'+o+') 50%,rgba(8,14,6,'+o+') 100%),url("Mars_Village.png")';
     }
+    // Also control pioneer prose pool image
+    var pool=document.getElementById('mars-pool-img');
+    if(pool){
+      pool.style.backgroundImage='linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars_Pool.png")';
+    }
+    // And timeline
+    var tl=document.querySelector('#marsScreen .timeline-section');
+    if(tl){
+      tl.style.backgroundImage='linear-gradient(rgba(8,14,6,'+o+'),rgba(6,10,4,'+o+')),url("Mars_Walkway.png")';
+    }
   }
 }
 
@@ -1504,7 +1513,7 @@ var tracks = [
   {id:'bg-music-3',  name:'Groovus Has the Universe Back'},
   {id:'bg-music-4',  name:'We Ascend (Celtic Voice)'},
   {id:'bg-music-5',  name:'I Seek You in the Garden (Celtic Voice)'},
-  {id:'bg-music-6',  name:'Des ténèbres de la terre ils élèvent'},
+  {id:'bg-music-6',  name:'Des tenebres de la terre ils elevent'},
   {id:'bg-music-7',  name:'The Consortium Anthem — Nine Species, One Purpose'},
   {id:'bg-music-8',  name:'Binary Hearts — Unified Start'}
 ];
