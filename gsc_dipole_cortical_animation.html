@@ -1,5 +1,32 @@
-
 <style>
+:root {
+  --font-sans: 'Arial', system-ui, sans-serif;
+  --color-background-secondary: #1a1a1a;
+  --color-text-primary: #c2c0b6;
+  --color-text-secondary: #888780;
+  --color-border-tertiary: #2a2a2a;
+  --color-border-secondary: #3a3a3a;
+  --border-radius-md: 6px;
+  --color-background-success: rgba(59,109,17,0.2);
+  --color-text-success: #97C459;
+  --color-background-info: rgba(24,95,165,0.2);
+  --color-text-info: #85B7EB;
+  --color-border-info: #185FA5;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background-secondary: #f0f0f0;
+    --color-text-primary: #1a1a1a;
+    --color-text-secondary: #55554f;
+    --color-border-tertiary: #ddd;
+    --color-border-secondary: #ccc;
+    --color-background-success: rgba(59,109,17,0.1);
+    --color-text-success: #3B6D11;
+    --color-background-info: rgba(24,95,165,0.1);
+    --color-text-info: #185FA5;
+    --color-border-info: #4a8fd4;
+  }
+}
 h2.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font-sans)}
@@ -20,103 +47,103 @@ body{font-family:var(--font-sans)}
 <h2 class="sr-only">Interactive animation of tungsten-carbon dipole array detecting gravitational signals and routing them through the dorsal column pathway to G1, G2, and GMA cortical areas in the posterior parietal cortex</h2>
 
 <div class="source-btns">
-  <button class="btn active" onclick="setSource('mountain')">distant mountain</button>
-  <button class="btn" onclick="setSource('car')">moving car</button>
-  <button class="btn" onclick="setSource('underground')">underground mass</button>
-  <button class="btn" onclick="setSource('asteroid')">approaching asteroid</button>
+<button class="btn active" onclick="setSource('mountain', event)">distant mountain</button>
+<button class="btn" onclick="setSource('car', event)">moving car</button>
+<button class="btn" onclick="setSource('underground', event)">underground mass</button>
+<button class="btn" onclick="setSource('asteroid', event)">approaching asteroid</button>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-  <canvas id="dipoleCanvas" width="320" height="220" style="width:100%;border-radius:var(--border-radius-md);background:var(--color-background-secondary)"></canvas>
-  <canvas id="cortexCanvas" width="320" height="220" style="width:100%;border-radius:var(--border-radius-md);background:var(--color-background-secondary)"></canvas>
+<canvas id="dipoleCanvas" width="320" height="220" style="width:100%;border-radius:var(--border-radius-md);background:var(--color-background-secondary)"></canvas>
+<canvas id="cortexCanvas" width="320" height="220" style="width:100%;border-radius:var(--border-radius-md);background:var(--color-background-secondary)"></canvas>
 </div>
 
 <div class="row">
-  <div class="panel">
-    <div class="label">G1 — primary gravitational cortex</div>
-    <div class="val" id="g1val">0.0 pT/m</div>
-    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">areas 5 + 7b · somatotopic map · 10–20 cm²</div>
-    <div class="sig-bar"><div class="sig-fill" id="g1bar" style="width:0%;background:#639922"></div></div>
-  </div>
-  <div class="panel">
-    <div class="label">G2 — directional gradient</div>
-    <div class="val" id="g2val">0.0 nT/m²</div>
-    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">areas 2 + 5L · source localization</div>
-    <div class="sig-bar"><div class="sig-fill" id="g2bar" style="width:0%;background:#185FA5"></div></div>
-  </div>
-  <div class="panel">
-    <div class="label">GMA — gravitational motor anticipation</div>
-    <div class="val" id="gmaval">inactive</div>
-    <div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">area 5M · trajectory prediction · motor planning</div>
-    <div class="sig-bar"><div class="sig-fill" id="gmabar" style="width:0%;background:#854F0B"></div></div>
-  </div>
+<div class="panel">
+<div class="label">G1 — primary gravitational cortex</div>
+<div class="val" id="g1val">0.0 pT/m</div>
+<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">areas 5 + 7b · somatotopic map · 10–20 cm²</div>
+<div class="sig-bar"><div class="sig-fill" id="g1bar" style="width:0%;background:#639922"></div></div>
+</div>
+<div class="panel">
+<div class="label">G2 — directional gradient</div>
+<div class="val" id="g2val">0.0 nT/m²</div>
+<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">areas 2 + 5L · source localization</div>
+<div class="sig-bar"><div class="sig-fill" id="g2bar" style="width:0%;background:#185FA5"></div></div>
+</div>
+<div class="panel">
+<div class="label">GMA — gravitational motor anticipation</div>
+<div class="val" id="gmaval">inactive</div>
+<div style="font-size:11px;color:var(--color-text-secondary);margin-top:2px">area 5M · trajectory prediction · motor planning</div>
+<div class="sig-bar"><div class="sig-fill" id="gmabar" style="width:0%;background:#854F0B"></div></div>
+</div>
 </div>
 
 <div class="panel">
-  <div class="label">Gravitational map — cortical reconstruction</div>
-  <canvas id="mapCanvas" width="640" height="90" style="width:100%;border-radius:4px"></canvas>
+<div class="label">Gravitational map — cortical reconstruction</div>
+<canvas id="mapCanvas" width="640" height="90" style="width:100%;border-radius:4px"></canvas>
 </div>
 
 <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
-  <span style="font-size:12px;color:var(--color-text-secondary)">competing noise suppressed</span>
-  <div style="flex:1;height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden">
-    <div id="noisebar" style="height:100%;border-radius:2px;background:#A32D2D;transition:width 0.5s" ></div>
-  </div>
-  <span style="font-size:12px;color:var(--color-text-secondary)">TRN gate</span>
-  <div style="width:48px;height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden">
-    <div id="trnbar" style="height:100%;border-radius:2px;background:#639922;transition:width 0.5s"></div>
-  </div>
+<span style="font-size:12px;color:var(--color-text-secondary)">competing noise suppressed</span>
+<div style="flex:1;height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden">
+<div id="noisebar" style="height:100%;border-radius:2px;background:#A32D2D;transition:width 0.5s" ></div>
+</div>
+<span style="font-size:12px;color:var(--color-text-secondary)">TRN gate</span>
+<div style="width:48px;height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden">
+<div id="trnbar" style="height:100%;border-radius:2px;background:#639922;transition:width 0.5s"></div>
+</div>
 </div>
 
 <script>
 const SOURCES = {
-  mountain: {
-    name:'distant mountain',
-    dir: 200, dist: 4000, mass: 2e12,
-    g1: 0.82, g2: 0.45, gma: 0.12,
-    g1label:'0.8 pT/m gradient', g2label:'0.4 nT/m²', gmalabel:'low — static source',
-    noise: 28, trn: 72,
-    desc:'Broad, slow signal — low gradient change rate. Cortex habituates slowly to background.',
-    mapType:'mountain'
-  },
-  car: {
-    name:'moving car',
-    dir: 90, dist: 25, mass: 1500,
-    g1: 0.55, g2: 0.88, gma: 0.91,
-    g1label:'0.5 pT/m gradient', g2label:'0.9 nT/m²', gmalabel:'high — trajectory active',
-    noise: 18, trn: 85,
-    desc:'Rapidly changing gradient. GMA fires strongly — motor cortex prepares trajectory prediction.',
-    mapType:'car'
-  },
-  underground: {
-    name:'underground mass',
-    dir: 270, dist: 8, mass: 5e8,
-    g1: 0.94, g2: 0.62, gma: 0.22,
-    g1label:'0.9 pT/m gradient', g2label:'0.6 nT/m²', gmalabel:'low — stationary',
-    noise: 22, trn: 80,
-    desc:'Strong vertical gradient. G1 somatotopic map activates foot/leg regions heavily. Classic geological anomaly signature.',
-    mapType:'underground'
-  },
-  asteroid: {
-    name:'approaching asteroid',
-    dir: 45, dist: 1200, mass: 8e11,
-    g1: 0.71, g2: 0.96, gma: 0.98,
-    g1label:'0.7 pT/m gradient', g2label:'1.0 nT/m²', gmalabel:'critical — collision alert',
-    noise: 8, trn: 96,
-    desc:'Rapidly increasing gradient. TRN suppresses all competing channels. Full attention recruited. GMA: time-to-impact estimation.',
-    mapType:'asteroid'
-  }
+mountain: {
+name:'distant mountain',
+dir: 200, dist: 4000, mass: 2e12,
+g1: 0.82, g2: 0.45, gma: 0.12,
+g1label:'0.8 pT/m gradient', g2label:'0.4 nT/m²', gmalabel:'low — static source',
+noise: 28, trn: 72,
+desc:'Broad, slow signal — low gradient change rate. Cortex habituates slowly to background.',
+mapType:'mountain'
+},
+car: {
+name:'moving car',
+dir: 90, dist: 25, mass: 1500,
+g1: 0.55, g2: 0.88, gma: 0.91,
+g1label:'0.5 pT/m gradient', g2label:'0.9 nT/m²', gmalabel:'high — trajectory active',
+noise: 18, trn: 85,
+desc:'Rapidly changing gradient. GMA fires strongly — motor cortex prepares trajectory prediction.',
+mapType:'car'
+},
+underground: {
+name:'underground mass',
+dir: 270, dist: 8, mass: 5e8,
+g1: 0.94, g2: 0.62, gma: 0.22,
+g1label:'0.9 pT/m gradient', g2label:'0.6 nT/m²', gmalabel:'low — stationary',
+noise: 22, trn: 80,
+desc:'Strong vertical gradient. G1 somatotopic map activates foot/leg regions heavily. Classic geological anomaly signature.',
+mapType:'underground'
+},
+asteroid: {
+name:'approaching asteroid',
+dir: 45, dist: 1200, mass: 8e11,
+g1: 0.71, g2: 0.96, gma: 0.98,
+g1label:'0.7 pT/m gradient', g2label:'1.0 nT/m²', gmalabel:'critical — collision alert',
+noise: 8, trn: 96,
+desc:'Rapidly increasing gradient. TRN suppresses all competing channels. Full attention recruited. GMA: time-to-impact estimation.',
+mapType:'asteroid'
+}
 };
 
 let current = SOURCES.mountain;
 let frame = 0;
 let phase = 0;
 
-function setSource(key) {
-  current = SOURCES[key];
-  document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  phase = 0;
+function setSource(key, ev) {
+current = SOURCES[key];
+document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+(ev || window.event).currentTarget.classList.add('active');
+phase = 0;
 }
 
 const dC = document.getElementById('dipoleCanvas');
@@ -129,394 +156,337 @@ const mCtx = mC.getContext('2d');
 const isDark = () => window.matchMedia('(prefers-color-scheme:dark)').matches;
 
 function getColors() {
-  const d = isDark();
-  return {
-    bg: d ? '#1a1a1a' : '#f5f5f5',
-    text: d ? '#c2c0b6' : '#3d3d3a',
-    muted: d ? '#6a6a62' : '#9a9a90',
-    teal: d ? '#1D9E75' : '#0F6E56',
-    amber: d ? '#EF9F27' : '#BA7517',
-    blue: d ? '#378ADD' : '#185FA5',
-    red: d ? '#E24B4A' : '#A32D2D',
-    green: d ? '#97C459' : '#3B6D11',
-    purple: d ? '#7F77DD' : '#534AB7',
-    gray: d ? '#888780' : '#5F5E5A',
-    line: d ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
-  };
+const d = isDark();
+return {
+bg: d ? '#1a1a1a' : '#f5f5f5',
+text: d ? '#c2c0b6' : '#3d3d3a',
+muted: d ? '#6a6a62' : '#9a9a90',
+teal: d ? '#1D9E75' : '#0F6E56',
+amber: d ? '#EF9F27' : '#BA7517',
+blue: d ? '#378ADD' : '#185FA5',
+red: d ? '#E24B4A' : '#A32D2D',
+green: d ? '#97C459' : '#3B6D11',
+purple: d ? '#7F77DD' : '#534AB7',
+gray: d ? '#888780' : '#5F5E5A',
+line: d ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+};
 }
 
-// Dipole array - 6x5 grid of dipoles
 function drawDipoles() {
-  const ctx = dCtx;
-  const W = dC.width, H = dC.height;
-  const c = getColors();
-  ctx.clearRect(0,0,W,H);
-
-  const COLS=6, ROWS=5;
-  const pw=44, ph=36;
-  const ox=(W - COLS*pw)/2, oy=(H - ROWS*ph)/2 + 8;
-
-  // source direction indicator
-  const rad = (current.dir - 90) * Math.PI/180;
-  const cx=W/2, cy=H/2;
-  ctx.save();
-  ctx.globalAlpha=0.18;
-  ctx.beginPath();
-  ctx.arc(cx,cy,70,0,Math.PI*2);
-  ctx.fillStyle=c.amber;
-  ctx.fill();
-  ctx.restore();
-
-  ctx.save();
-  ctx.globalAlpha=0.7;
-  ctx.strokeStyle=c.amber;
-  ctx.lineWidth=1.5;
-  ctx.setLineDash([4,4]);
-  ctx.beginPath();
-  ctx.moveTo(cx,cy);
-  ctx.lineTo(cx+60*Math.cos(rad), cy+60*Math.sin(rad));
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.restore();
-
-  // draw dipoles
-  for(let row=0;row<ROWS;row++) {
-    for(let col=0;col<COLS;col++) {
-      const x = ox + col*pw + pw/2;
-      const y = oy + row*ph + ph/2;
-
-      // signal strength varies by proximity to source direction
-      const dx = (col/(COLS-1) - 0.5);
-      const dy = (row/(ROWS-1) - 0.5);
-      const srcX = Math.cos(rad)*0.5 + 0.5;
-      const srcY = Math.sin(rad)*0.5 + 0.5;
-      const dist = Math.sqrt((dx-srcX+0.5)**2 + (dy-srcY+0.5)**2);
-      const base = current.g1 * Math.max(0, 1 - dist*1.2);
-      const sig = base + 0.1*Math.sin(frame*0.04 + col*0.7 + row*0.5);
-
-      // tungsten (heavy end - dark circle)
-      ctx.beginPath();
-      ctx.arc(x-6, y, 5, 0, Math.PI*2);
-      ctx.fillStyle = c.gray;
-      ctx.globalAlpha = 0.9;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-
-      // H-N bridge
-      ctx.beginPath();
-      ctx.moveTo(x-1, y);
-      ctx.lineTo(x+1, y);
-      const bridgeColor = sig > 0.5 ? c.amber : sig > 0.2 ? c.teal : c.muted;
-      ctx.strokeStyle = bridgeColor;
-      ctx.lineWidth = sig > 0.3 ? 2 : 1;
-      ctx.globalAlpha = 0.5 + sig*0.5;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-
-      // carbon (light end - small open circle)
-      ctx.beginPath();
-      ctx.arc(x+6, y, 3, 0, Math.PI*2);
-      ctx.strokeStyle = c.teal;
-      ctx.lineWidth = 1;
-      ctx.globalAlpha = 0.4 + sig*0.6;
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-
-      // activation glow
-      if(sig > 0.4) {
-        ctx.beginPath();
-        ctx.arc(x, y, 9+sig*5, 0, Math.PI*2);
-        ctx.fillStyle = c.amber;
-        ctx.globalAlpha = sig * 0.22;
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-
-      // signal pulse traveling upward when firing
-      if(sig > 0.35 && frame % 20 < 10) {
-        const pulseY = y - ((frame % 20)/20)*18;
-        ctx.beginPath();
-        ctx.arc(x, pulseY, 2, 0, Math.PI*2);
-        ctx.fillStyle = c.amber;
-        ctx.globalAlpha = 0.7 * (1 - (frame%20)/20);
-        ctx.fill();
-        ctx.globalAlpha = 1;
-      }
-    }
-  }
-
-  // labels
-  ctx.fillStyle = c.text;
-  ctx.font = '11px var(--font-sans, sans-serif)';
-  ctx.textAlign = 'center';
-  ctx.fillText('W₆ · H-N · C₁₂H₂₄ dipole array', W/2, H-10);
-  ctx.fillStyle = c.muted;
-  ctx.font = '10px var(--font-sans, sans-serif)';
-  ctx.fillText(current.name, W/2, H-22);
+const ctx = dCtx;
+const W = dC.width, H = dC.height;
+const c = getColors();
+ctx.clearRect(0,0,W,H);
+const COLS=6, ROWS=5;
+const pw=44, ph=36;
+const ox=(W - COLS*pw)/2, oy=(H - ROWS*ph)/2 + 8;
+const rad = (current.dir - 90) * Math.PI/180;
+const cx=W/2, cy=H/2;
+ctx.save();
+ctx.globalAlpha=0.18;
+ctx.beginPath();
+ctx.arc(cx,cy,70,0,Math.PI*2);
+ctx.fillStyle=c.amber;
+ctx.fill();
+ctx.restore();
+ctx.save();
+ctx.globalAlpha=0.7;
+ctx.strokeStyle=c.amber;
+ctx.lineWidth=1.5;
+ctx.setLineDash([4,4]);
+ctx.beginPath();
+ctx.moveTo(cx,cy);
+ctx.lineTo(cx+60*Math.cos(rad), cy+60*Math.sin(rad));
+ctx.stroke();
+ctx.setLineDash([]);
+ctx.restore();
+for(let row=0;row<ROWS;row++) {
+for(let col=0;col<COLS;col++) {
+const x = ox + col*pw + pw/2;
+const y = oy + row*ph + ph/2;
+const dx = (col/(COLS-1) - 0.5);
+const dy = (row/(ROWS-1) - 0.5);
+const srcX = Math.cos(rad)*0.5 + 0.5;
+const srcY = Math.sin(rad)*0.5 + 0.5;
+const dist = Math.sqrt((dx-srcX+0.5)**2 + (dy-srcY+0.5)**2);
+const base = current.g1 * Math.max(0, 1 - dist*1.2);
+const sig = base + 0.1*Math.sin(frame*0.04 + col*0.7 + row*0.5);
+ctx.beginPath();
+ctx.arc(x-6, y, 5, 0, Math.PI*2);
+ctx.fillStyle = c.gray;
+ctx.globalAlpha = 0.9;
+ctx.fill();
+ctx.globalAlpha = 1;
+ctx.beginPath();
+ctx.moveTo(x-1, y);
+ctx.lineTo(x+1, y);
+const bridgeColor = sig > 0.5 ? c.amber : sig > 0.2 ? c.teal : c.muted;
+ctx.strokeStyle = bridgeColor;
+ctx.lineWidth = sig > 0.3 ? 2 : 1;
+ctx.globalAlpha = 0.5 + sig*0.5;
+ctx.stroke();
+ctx.globalAlpha = 1;
+ctx.beginPath();
+ctx.arc(x+6, y, 3, 0, Math.PI*2);
+ctx.strokeStyle = c.teal;
+ctx.lineWidth = 1;
+ctx.globalAlpha = 0.4 + sig*0.6;
+ctx.stroke();
+ctx.globalAlpha = 1;
+if(sig > 0.4) {
+ctx.beginPath();
+ctx.arc(x, y, 9+sig*5, 0, Math.PI*2);
+ctx.fillStyle = c.amber;
+ctx.globalAlpha = sig * 0.22;
+ctx.fill();
+ctx.globalAlpha = 1;
+}
+if(sig > 0.35 && frame % 20 < 10) {
+const pulseY = y - ((frame % 20)/20)*18;
+ctx.beginPath();
+ctx.arc(x, pulseY, 2, 0, Math.PI*2);
+ctx.fillStyle = c.amber;
+ctx.globalAlpha = 0.7 * (1 - (frame%20)/20);
+ctx.fill();
+ctx.globalAlpha = 1;
+}
+}
+}
+ctx.fillStyle = c.text;
+ctx.font = '11px var(--font-sans, sans-serif)';
+ctx.textAlign = 'center';
+ctx.fillText('W₆ · H-N · C₁₂H₂₄ dipole array', W/2, H-10);
+ctx.fillStyle = c.muted;
+ctx.font = '10px var(--font-sans, sans-serif)';
+ctx.fillText(current.name, W/2, H-22);
 }
 
-// Cortical map - shows G1, G2, GMA regions
 function drawCortex() {
-  const ctx = cCtx;
-  const W = cC.width, H = cC.height;
-  const c = getColors();
-  ctx.clearRect(0,0,W,H);
-
-  const t = frame * 0.03;
-
-  // G1 - primary gravitational cortex (areas 5+7b)
-  // Somatotopic body map strips
-  const g1a = current.g1 * (0.85 + 0.15*Math.sin(t));
-  const regions = [
-    {label:'foot/leg',x:42,y:55,w:28,h:90,act:g1a*1.2},
-    {label:'trunk',  x:76,y:65,w:26,h:80,act:g1a*0.9},
-    {label:'arm',    x:108,y:72,w:26,h:72,act:g1a*0.7},
-    {label:'head',   x:140,y:80,w:26,h:64,act:g1a*0.5},
-  ];
-
-  // G1 boundary
-  ctx.beginPath();
-  ctx.roundRect(28, 38, 152, 126, 8);
-  ctx.strokeStyle = c.green;
-  ctx.lineWidth = 0.8;
-  ctx.globalAlpha = 0.6;
-  ctx.stroke();
-  ctx.globalAlpha = 1;
-  ctx.fillStyle = c.green;
-  ctx.globalAlpha = 0.08;
-  ctx.fill();
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle = c.green;
-  ctx.font = '500 11px var(--font-sans,sans-serif)';
-  ctx.textAlign = 'left';
-  ctx.fillText('G1', 32, 52);
-
-  // Somatotopic strips
-  regions.forEach(r => {
-    const alpha = Math.min(1, r.act);
-    ctx.beginPath();
-    ctx.roundRect(r.x, r.y, r.w, r.h, 4);
-    ctx.fillStyle = c.green;
-    ctx.globalAlpha = 0.12 + alpha*0.45;
-    ctx.fill();
-    ctx.globalAlpha = 1;
-    ctx.strokeStyle = c.green;
-    ctx.lineWidth = 0.5;
-    ctx.globalAlpha = 0.5 + alpha*0.4;
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-    // label
-    ctx.fillStyle = c.muted;
-    ctx.font = '9px var(--font-sans,sans-serif)';
-    ctx.textAlign = 'center';
-    ctx.save();
-    ctx.translate(r.x+r.w/2, r.y + r.h/2);
-    ctx.rotate(-Math.PI/2);
-    ctx.fillText(r.label, 0, 0);
-    ctx.restore();
-  });
-
-  // G2 - directional gradient area
-  const g2a = current.g2 * (0.9 + 0.1*Math.sin(t*1.3));
-  ctx.beginPath();
-  ctx.roundRect(192, 38, 90, 80, 8);
-  ctx.strokeStyle = c.blue;
-  ctx.lineWidth = 0.8;
-  ctx.globalAlpha = 0.6;
-  ctx.stroke();
-  ctx.fillStyle = c.blue;
-  ctx.globalAlpha = 0.06 + g2a*0.18;
-  ctx.fill();
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle = c.blue;
-  ctx.font = '500 11px var(--font-sans,sans-serif)';
-  ctx.textAlign = 'left';
-  ctx.fillText('G2', 197, 52);
-  ctx.fillStyle = c.muted;
-  ctx.font = '9px var(--font-sans,sans-serif)';
-  ctx.fillText('directional', 197, 66);
-  ctx.fillText('gradient', 197, 78);
-
-  // Direction arrow in G2
-  const arad = (current.dir - 90) * Math.PI/180;
-  const ax=237, ay=92;
-  ctx.beginPath();
-  ctx.moveTo(ax, ay);
-  ctx.lineTo(ax+22*Math.cos(arad), ay+22*Math.sin(arad));
-  ctx.strokeStyle = c.blue;
-  ctx.lineWidth = 1.5;
-  ctx.globalAlpha = 0.5 + g2a*0.4;
-  ctx.stroke();
-  ctx.globalAlpha = 1;
-  ctx.beginPath();
-  ctx.arc(ax,ay,3,0,Math.PI*2);
-  ctx.fillStyle=c.blue;
-  ctx.globalAlpha=0.6;
-  ctx.fill();
-  ctx.globalAlpha=1;
-
-  // GMA - gravitational motor anticipation
-  const gmaa = current.gma * (0.85 + 0.15*Math.cos(t*0.9));
-  ctx.beginPath();
-  ctx.roundRect(192, 132, 90, 62, 8);
-  ctx.strokeStyle = c.amber;
-  ctx.lineWidth = 0.8;
-  ctx.globalAlpha = 0.5 + gmaa*0.4;
-  ctx.stroke();
-  ctx.fillStyle = c.amber;
-  ctx.globalAlpha = 0.06 + gmaa*0.22;
-  ctx.fill();
-  ctx.globalAlpha = 1;
-
-  ctx.fillStyle = c.amber;
-  ctx.font = '500 11px var(--font-sans,sans-serif)';
-  ctx.textAlign = 'left';
-  ctx.fillText('GMA', 197, 148);
-  ctx.fillStyle = c.muted;
-  ctx.font = '9px var(--font-sans,sans-serif)';
-  ctx.fillText('motor predict', 197, 162);
-  ctx.fillText('trajectory', 197, 174);
-
-  // neural pathway arrows from G1→G2→GMA
-  ctx.setLineDash([3,3]);
-  ctx.globalAlpha=0.4;
-  ctx.strokeStyle=c.teal;
-  ctx.lineWidth=0.8;
-  ctx.beginPath();
-  ctx.moveTo(180,85);ctx.lineTo(190,85);
-  ctx.moveTo(237,120);ctx.lineTo(237,130);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.globalAlpha=1;
-
-  // signal pulses on pathways when active
-  if(current.g2 > 0.5) {
-    const px = 180 + ((frame*2)%24);
-    ctx.beginPath();
-    ctx.arc(Math.min(px,190), 85, 2.5, 0, Math.PI*2);
-    ctx.fillStyle=c.teal;
-    ctx.globalAlpha=0.8;
-    ctx.fill();
-    ctx.globalAlpha=1;
-  }
-
-  ctx.fillStyle = c.muted;
-  ctx.font = '10px var(--font-sans,sans-serif)';
-  ctx.textAlign = 'center';
-  ctx.fillText('posterior parietal cortex', W/2, H-8);
+const ctx = cCtx;
+const W = cC.width, H = cC.height;
+const c = getColors();
+ctx.clearRect(0,0,W,H);
+const t = frame * 0.03;
+const g1a = current.g1 * (0.85 + 0.15*Math.sin(t));
+const regions = [
+{label:'foot/leg',x:42,y:55,w:28,h:90,act:g1a*1.2},
+{label:'trunk', x:76,y:65,w:26,h:80,act:g1a*0.9},
+{label:'arm', x:108,y:72,w:26,h:72,act:g1a*0.7},
+{label:'head', x:140,y:80,w:26,h:64,act:g1a*0.5},
+];
+ctx.beginPath();
+ctx.roundRect(28, 38, 152, 126, 8);
+ctx.strokeStyle = c.green;
+ctx.lineWidth = 0.8;
+ctx.globalAlpha = 0.6;
+ctx.stroke();
+ctx.globalAlpha = 1;
+ctx.fillStyle = c.green;
+ctx.globalAlpha = 0.08;
+ctx.fill();
+ctx.globalAlpha = 1;
+ctx.fillStyle = c.green;
+ctx.font = '500 11px var(--font-sans,sans-serif)';
+ctx.textAlign = 'left';
+ctx.fillText('G1', 32, 52);
+regions.forEach(r => {
+const alpha = Math.min(1, r.act);
+ctx.beginPath();
+ctx.roundRect(r.x, r.y, r.w, r.h, 4);
+ctx.fillStyle = c.green;
+ctx.globalAlpha = 0.12 + alpha*0.45;
+ctx.fill();
+ctx.globalAlpha = 1;
+ctx.strokeStyle = c.green;
+ctx.lineWidth = 0.5;
+ctx.globalAlpha = 0.5 + alpha*0.4;
+ctx.stroke();
+ctx.globalAlpha = 1;
+ctx.fillStyle = c.muted;
+ctx.font = '9px var(--font-sans,sans-serif)';
+ctx.textAlign = 'center';
+ctx.save();
+ctx.translate(r.x+r.w/2, r.y + r.h/2);
+ctx.rotate(-Math.PI/2);
+ctx.fillText(r.label, 0, 0);
+ctx.restore();
+});
+const g2a = current.g2 * (0.9 + 0.1*Math.sin(t*1.3));
+ctx.beginPath();
+ctx.roundRect(192, 38, 90, 80, 8);
+ctx.strokeStyle = c.blue;
+ctx.lineWidth = 0.8;
+ctx.globalAlpha = 0.6;
+ctx.stroke();
+ctx.fillStyle = c.blue;
+ctx.globalAlpha = 0.06 + g2a*0.18;
+ctx.fill();
+ctx.globalAlpha = 1;
+ctx.fillStyle = c.blue;
+ctx.font = '500 11px var(--font-sans,sans-serif)';
+ctx.textAlign = 'left';
+ctx.fillText('G2', 197, 52);
+ctx.fillStyle = c.muted;
+ctx.font = '9px var(--font-sans,sans-serif)';
+ctx.fillText('directional', 197, 66);
+ctx.fillText('gradient', 197, 78);
+const arad = (current.dir - 90) * Math.PI/180;
+const ax=237, ay=92;
+ctx.beginPath();
+ctx.moveTo(ax, ay);
+ctx.lineTo(ax+22*Math.cos(arad), ay+22*Math.sin(arad));
+ctx.strokeStyle = c.blue;
+ctx.lineWidth = 1.5;
+ctx.globalAlpha = 0.5 + g2a*0.4;
+ctx.stroke();
+ctx.globalAlpha = 1;
+ctx.beginPath();
+ctx.arc(ax,ay,3,0,Math.PI*2);
+ctx.fillStyle=c.blue;
+ctx.globalAlpha=0.6;
+ctx.fill();
+ctx.globalAlpha=1;
+const gmaa = current.gma * (0.85 + 0.15*Math.cos(t*0.9));
+ctx.beginPath();
+ctx.roundRect(192, 132, 90, 62, 8);
+ctx.strokeStyle = c.amber;
+ctx.lineWidth = 0.8;
+ctx.globalAlpha = 0.5 + gmaa*0.4;
+ctx.stroke();
+ctx.fillStyle = c.amber;
+ctx.globalAlpha = 0.06 + gmaa*0.22;
+ctx.fill();
+ctx.globalAlpha = 1;
+ctx.fillStyle = c.amber;
+ctx.font = '500 11px var(--font-sans,sans-serif)';
+ctx.textAlign = 'left';
+ctx.fillText('GMA', 197, 148);
+ctx.fillStyle = c.muted;
+ctx.font = '9px var(--font-sans,sans-serif)';
+ctx.fillText('motor predict', 197, 162);
+ctx.fillText('trajectory', 197, 174);
+ctx.setLineDash([3,3]);
+ctx.globalAlpha=0.4;
+ctx.strokeStyle=c.teal;
+ctx.lineWidth=0.8;
+ctx.beginPath();
+ctx.moveTo(180,85);ctx.lineTo(190,85);
+ctx.moveTo(237,120);ctx.lineTo(237,130);
+ctx.stroke();
+ctx.setLineDash([]);
+ctx.globalAlpha=1;
+if(current.g2 > 0.5) {
+const px = 180 + ((frame*2)%24);
+ctx.beginPath();
+ctx.arc(Math.min(px,190), 85, 2.5, 0, Math.PI*2);
+ctx.fillStyle=c.teal;
+ctx.globalAlpha=0.8;
+ctx.fill();
+ctx.globalAlpha=1;
+}
+ctx.fillStyle = c.muted;
+ctx.font = '10px var(--font-sans,sans-serif)';
+ctx.textAlign = 'center';
+ctx.fillText('posterior parietal cortex', W/2, H-8);
 }
 
-// Gravitational map - reconstructed percept
 function drawMap() {
-  const ctx = mCtx;
-  const W = mC.width, H = mC.height;
-  const c = getColors();
-  ctx.clearRect(0,0,W,H);
-
-  const t = frame * 0.025;
-  const type = current.mapType;
-
-  // background grid
-  ctx.strokeStyle = c.line;
-  ctx.lineWidth = 0.5;
-  for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-  for(let y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-
-  if(type==='mountain') {
-    // broad gentle hill shape
-    const gx = W*0.65;
-    for(let x=0;x<W;x+=2) {
-      const d = (x-gx);
-      const strength = current.g1 * Math.exp(-d*d/60000) * (0.9+0.1*Math.sin(t));
-      const barH = strength * (H-16);
-      ctx.fillStyle = c.green;
-      ctx.globalAlpha = 0.15 + strength*0.5;
-      ctx.fillRect(x, H-4-barH, 2, barH);
-      ctx.globalAlpha=1;
-    }
-    ctx.fillStyle=c.muted;
-    ctx.font='10px var(--font-sans,sans-serif)';
-    ctx.textAlign='right';
-    ctx.fillText('distant mountain mass →',W-8,H-8);
-  } else if(type==='car') {
-    // moving peak
-    const carX = (W*0.1 + ((frame*1.5)%(W*0.8)));
-    for(let x=0;x<W;x+=2) {
-      const d = x - carX;
-      const strength = current.g1 * Math.exp(-d*d/600) * (0.85+0.15*Math.sin(t*3));
-      const barH = strength * (H-16);
-      ctx.fillStyle = c.amber;
-      ctx.globalAlpha = 0.15 + strength*0.65;
-      ctx.fillRect(x, H-4-barH, 2, barH);
-      ctx.globalAlpha=1;
-    }
-    ctx.fillStyle=c.muted;
-    ctx.font='10px var(--font-sans,sans-serif)';
-    ctx.textAlign='left';
-    ctx.fillText('← moving vehicle gradient',8,H-8);
-  } else if(type==='underground') {
-    // vertical gradient across full base
-    for(let x=0;x<W;x+=2) {
-      const noise = 0.05*Math.sin(x*0.08+t)*Math.sin(x*0.03+t*0.7);
-      const strength = current.g1*(0.85+noise)*(0.9+0.1*Math.sin(t*0.5));
-      const barH = strength * (H-16);
-      ctx.fillStyle = c.blue;
-      ctx.globalAlpha = 0.12 + strength*0.4;
-      ctx.fillRect(x, H-4-barH, 2, barH);
-      ctx.globalAlpha=1;
-    }
-    ctx.fillStyle=c.muted;
-    ctx.font='10px var(--font-sans,sans-serif)';
-    ctx.textAlign='center';
-    ctx.fillText('subsurface mass — vertical gradient below feet',W/2,H-8);
-  } else if(type==='asteroid') {
-    // growing central peak
-    const growth = 0.4 + 0.6*(Math.sin(t*0.4)+1)/2;
-    for(let x=0;x<W;x+=2) {
-      const d = x - W*0.5;
-      const strength = current.g1 * growth * Math.exp(-d*d/8000) * (0.92+0.08*Math.sin(t*4));
-      const barH = strength * (H-16);
-      ctx.fillStyle = c.red;
-      ctx.globalAlpha = 0.15 + strength*0.7;
-      ctx.fillRect(x, H-4-barH, 2, barH);
-      ctx.globalAlpha=1;
-    }
-    ctx.fillStyle=c.red;
-    ctx.font='500 10px var(--font-sans,sans-serif)';
-    ctx.textAlign='center';
-    ctx.globalAlpha=0.8+0.2*Math.sin(t*5);
-    ctx.fillText('gradient increasing — GMA computing trajectory',W/2,12);
-    ctx.globalAlpha=1;
-  }
+const ctx = mCtx;
+const W = mC.width, H = mC.height;
+const c = getColors();
+ctx.clearRect(0,0,W,H);
+const t = frame * 0.025;
+const type = current.mapType;
+ctx.strokeStyle = c.line;
+ctx.lineWidth = 0.5;
+for(let x=0;x<W;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+for(let y=0;y<H;y+=20){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+if(type==='mountain') {
+const gx = W*0.65;
+for(let x=0;x<W;x+=2) {
+const d = (x-gx);
+const strength = current.g1 * Math.exp(-d*d/60000) * (0.9+0.1*Math.sin(t));
+const barH = strength * (H-16);
+ctx.fillStyle = c.green;
+ctx.globalAlpha = 0.15 + strength*0.5;
+ctx.fillRect(x, H-4-barH, 2, barH);
+ctx.globalAlpha=1;
+}
+ctx.fillStyle=c.muted;
+ctx.font='10px var(--font-sans,sans-serif)';
+ctx.textAlign='right';
+ctx.fillText('distant mountain mass →',W-8,H-8);
+} else if(type==='car') {
+const carX = (W*0.1 + ((frame*1.5)%(W*0.8)));
+for(let x=0;x<W;x+=2) {
+const d = x - carX;
+const strength = current.g1 * Math.exp(-d*d/600) * (0.85+0.15*Math.sin(t*3));
+const barH = strength * (H-16);
+ctx.fillStyle = c.amber;
+ctx.globalAlpha = 0.15 + strength*0.65;
+ctx.fillRect(x, H-4-barH, 2, barH);
+ctx.globalAlpha=1;
+}
+ctx.fillStyle=c.muted;
+ctx.font='10px var(--font-sans,sans-serif)';
+ctx.textAlign='left';
+ctx.fillText('← moving vehicle gradient',8,H-8);
+} else if(type==='underground') {
+for(let x=0;x<W;x+=2) {
+const noise = 0.05*Math.sin(x*0.08+t)*Math.sin(x*0.03+t*0.7);
+const strength = current.g1*(0.85+noise)*(0.9+0.1*Math.sin(t*0.5));
+const barH = strength * (H-16);
+ctx.fillStyle = c.blue;
+ctx.globalAlpha = 0.12 + strength*0.4;
+ctx.fillRect(x, H-4-barH, 2, barH);
+ctx.globalAlpha=1;
+}
+ctx.fillStyle=c.muted;
+ctx.font='10px var(--font-sans,sans-serif)';
+ctx.textAlign='center';
+ctx.fillText('subsurface mass — vertical gradient below feet',W/2,H-8);
+} else if(type==='asteroid') {
+const growth = 0.4 + 0.6*(Math.sin(t*0.4)+1)/2;
+for(let x=0;x<W;x+=2) {
+const d = x - W*0.5;
+const strength = current.g1 * growth * Math.exp(-d*d/8000) * (0.92+0.08*Math.sin(t*4));
+const barH = strength * (H-16);
+ctx.fillStyle = c.red;
+ctx.globalAlpha = 0.15 + strength*0.7;
+ctx.fillRect(x, H-4-barH, 2, barH);
+ctx.globalAlpha=1;
+}
+ctx.fillStyle=c.red;
+ctx.font='500 10px var(--font-sans,sans-serif)';
+ctx.textAlign='center';
+ctx.globalAlpha=0.8+0.2*Math.sin(t*5);
+ctx.fillText('gradient increasing — GMA computing trajectory',W/2,12);
+ctx.globalAlpha=1;
+}
 }
 
 function updateBars() {
-  const t = frame * 0.025;
-  const g1 = current.g1*(0.9+0.1*Math.sin(t));
-  const g2 = current.g2*(0.85+0.15*Math.sin(t*1.2));
-  const gma = current.gma*(0.88+0.12*Math.cos(t*0.9));
-
-  document.getElementById('g1bar').style.width = (g1*100)+'%';
-  document.getElementById('g2bar').style.width = (g2*100)+'%';
-  document.getElementById('gmabar').style.width = (gma*100)+'%';
-
-  document.getElementById('g1val').textContent = current.g1label;
-  document.getElementById('g2val').textContent = current.g2label;
-  document.getElementById('gmaval').textContent = current.gmalabel;
-
-  document.getElementById('noisebar').style.width = (100-current.noise)+'%';
-  document.getElementById('trnbar').style.width = current.trn+'%';
+const t = frame * 0.025;
+const g1 = current.g1*(0.9+0.1*Math.sin(t));
+const g2 = current.g2*(0.85+0.15*Math.sin(t*1.2));
+const gma = current.gma*(0.88+0.12*Math.cos(t*0.9));
+document.getElementById('g1bar').style.width = (g1*100)+'%';
+document.getElementById('g2bar').style.width = (g2*100)+'%';
+document.getElementById('gmabar').style.width = (gma*100)+'%';
+document.getElementById('g1val').textContent = current.g1label;
+document.getElementById('g2val').textContent = current.g2label;
+document.getElementById('gmaval').textContent = current.gmalabel;
+document.getElementById('noisebar').style.width = (100-current.noise)+'%';
+document.getElementById('trnbar').style.width = current.trn+'%';
 }
 
 function loop() {
-  frame++;
-  drawDipoles();
-  drawCortex();
-  drawMap();
-  updateBars();
-  requestAnimationFrame(loop);
+frame++;
+drawDipoles();
+drawCortex();
+drawMap();
+updateBars();
+requestAnimationFrame(loop);
 }
 
 loop();
