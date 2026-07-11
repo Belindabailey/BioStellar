@@ -20,9 +20,9 @@
   --rust: #e87040;
   --soil: #a84820;
   --forest: #2a6a3a;
-  --text: #c8dde8;
-  --muted: #4a6a7a;
-  --bright: #e8f4f8;
+  --text: #d9e9f1;
+  --muted: #8fabba;
+  --bright: #eef7fb;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;}
@@ -193,6 +193,16 @@ body{
 .proj-card h3{font-size:1.4rem;font-weight:400;color:var(--bright);margin:0.8rem 0 .75rem;line-height:1.2;}
 .proj-card p{font-size:.95rem;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:1.2rem;}
 
+.moves{display:grid;gap:.55rem;margin:.2rem 0 .4rem;}
+.moves .mv .ml{font-family:'Space Mono',monospace;font-size:8.5px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:2px;}
+.moves .mv p{font-size:.9rem;line-height:1.55;color:var(--text);margin:0;font-weight:300;}
+.moves .m-need .ml{color:var(--cyan);}
+.moves .m-scaf .ml{color:var(--teal);}
+.moves .m-atk .ml{color:var(--bio);}
+.moves .m-next .ml{color:var(--amber);}
+.fig3{width:100%;max-width:560px;border:1px solid var(--border);border-radius:4px;margin:.6rem 0 .2rem;background:#fff;}
+.fig-cap{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);margin-bottom:.4rem;}
+
 .tag{display:inline-block;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 8px;border-radius:2px;margin-bottom:.5rem;}
 .t-bio{color:var(--bio);border:1px solid rgba(57,255,110,.3);}
 .t-orbital{color:var(--cyan);border:1px solid rgba(0,229,255,.3);}
@@ -267,7 +277,7 @@ body{
 }
 .pioneer-prose h3{font-size:1.8rem;font-weight:300;color:#9aba8a;margin-bottom:1.5rem;}
 .pioneer-prose p{
-  font-size:1.05rem;color:#5a7a5a;line-height:1.9;
+  font-size:1.05rem;color:#8fb08a;line-height:1.9;
   max-width:780px;margin-bottom:1.2rem;font-weight:300;
 }
 .pioneer-prose p em{color:#8aba7a;font-style:italic;}
@@ -382,7 +392,7 @@ body{
   <audio id="bg-music-2"><source src="The_Seed_of_Heat_and_the_Frolickers_of_Night.mp3" type="audio/mpeg"></audio>
   <audio id="bg-music-3"><source src="Groovus_Has_the_Universe_Back.mp3" type="audio/mpeg"></audio>
   <audio id="bg-music-4"><source src="We_Ascend_Celtic_Voice.mp3" type="audio/mpeg"></audio>
-  <audio id="bg-music-5"><source src="I_seek_you_%20in_the_Garden_%20Celtic_Voice.mp3" type="audio/mpeg"></audio>
+  <audio id="bg-music-5"><source src="I_seek_you_in_the_Garden_Celtic_Voice.mp3" type="audio/mpeg"></audio>
   <audio id="bg-music-6"><source src="Des_tenebres_de_la_terre_ils_elevent.mp3" type="audio/mpeg"></audio>
   <audio id="bg-music-7"><source src="THE_CONSORTIUM_ANTHEM_Nine_Species_One_Purpose.mp3" type="audio/mpeg"></audio>
   <audio id="bg-music-8"><source src="Binary_Hearts_Unified_Start.mp3" type="audio/mpeg"></audio>
@@ -411,6 +421,7 @@ body{
     <h1>Inventing the<br><em>infrastructure</em><br>for what comes next.</h1>
     <p class="hero-sub">Seventeen provisional patents. One independent inventor. Orbital energy, neural interfaces, living architecture, and engineered organisms for worlds that do not yet exist.</p>
     <blockquote class="hero-philosophy">"Conditions for intelligence are the true currency. Every invention should be universally accessible, and moral sophistication must keep pace with technological power."</blockquote>
+    <p style="font-size:clamp(1rem,1.55vw,1.25rem);color:var(--text);max-width:700px;line-height:1.75;margin-bottom:2.6rem;opacity:0;animation:fadeUp 1s ease forwards 1.15s;"><span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--teal);text-transform:uppercase;display:block;margin-bottom:.7rem;">The method</span>I find a niche worth filling, then design the whole system that would make it work — the organism, the machine, the material, the economy around it. Each piece here is a scaffold and an open invitation, not a finished claim. I do the generative half of the work and hand the verification half to specialists with benches I don't have. Interdisciplinary beats silo. Come build the parts with me.</p>
     <div class="hero-meta">
       <div class="meta-item">Patents Filed<span>17</span></div>
       <div class="meta-item">USPTO Customer<span>224790</span></div>
@@ -422,14 +433,14 @@ body{
   <section class="domains-section">
     <div class="section-label">Explore by Domain</div>
     <h2 class="section-title">Five domains. One coherent vision.</h2>
-    <p class="section-intro">Click any domain to explore its inventions. Each is a chapter in a single story about what intelligence is for — and where it is going.</p>
+    <p class="section-intro">Click any domain to explore its inventions. Each is a chapter in a single story about what intelligence is for — and where it is going. Every one is a starting point, offered for hands that can carry it further.</p>
 
     <div class="domain-cards">
 
       <div class="domain-card dc-orbital" onclick="openDomain('orbital')" style="background:linear-gradient(rgba(2,6,14,.78),rgba(2,6,14,.78)),url('Net_and_Coal_plant.png') center/cover no-repeat;">
         <span class="dc-icon">⬡</span>
         <div class="dc-title">Orbital &amp; Energy</div>
-        <p class="dc-desc">Van Allen belt harvesting. Radiotrophic biological transducer layers. Spider drone servicing. 2.33 GW to ground.</p>
+        <p class="dc-desc">Van Allen belt harvesting. Radiotrophic biological transducer layers. Spider drone servicing. Resilient off-grid power for autonomous monitoring.</p>
         <div class="dc-count">3 inventions · ARPA-E submitted</div>
         <span class="flip-hint">flip to open →</span>
       </div>
@@ -504,42 +515,48 @@ body{
     <div class="proj-card" onclick="openMars()" style="background:#0d1208;border-left:3px solid #e87040;">
       <span class="tag t-planetary">Planetary · Synthetic Ecology</span>
       <h3 style="color:#e8c89a;">Integrated Mars Terraforming System</h3>
-      <p>Five-layer synergistic biological ecosystem. Sulfate-reducing bacteria create underground warmth. Acid bacteria create soil. Mycorrhizal fungi distribute antifreeze and build aerial canopies. Alder trees anchor the system. Biocrust hardens into adobe building material. 1,000+ hectares in 10–20 years.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A living Mars — warmth, soil, and air grown rather than machined, so people can settle without endless resupply.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A five-layer biological stack: sulfate-reducing bacteria for underground warmth, acid bacteria making soil, mycorrhizal fungi spreading antifreeze and canopy, alder trees anchoring it, biocrust sealing the surface.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Each layer is a separate organism answering a separate lack — heat, soil, water, structure, seal — chosen so they feed one another.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Planetary scientists and astrobiologists to test survivability and sequencing, and a partner to model the ecology before a single spore flies.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>White paper complete · Journal submission pending · click to explore →</div>
     </div>
 
     <div class="proj-card" onclick="openDPC()" style="background:#0c1a0e;border-left:3px solid #c8a060;cursor:pointer;">
       <span class="tag" style="color:#c8a060;border:1px solid rgba(200,160,96,.3);">Living Architecture · Multi-Species Commune</span>
       <h3 style="color:#e8d8a8;">Dryads Pearl Cathedral</h3>
-      <p>A dwelling grown from a single engineered Titan Breadnut tree, shaped by electromagnetic fields, walled with abalone nacre, sealed with engineered Gasket Moss, heated by an ancient ondol hypocaust, tended by AL the deer-robot caretaker. Lifespan 1,000+ years. Operating cost negative. Home to humans, crows, fungi, AI, and whatever else wants to live there.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A home that is grown, not built — beautiful, alive, and tended, so shelter costs a seed and some patience.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A dwelling grown from one engineered Titan Breadnut tree, shaped by electromagnetic fields, walled in abalone nacre, sealed with engineered Gasket Moss, warmed by an ondol hypocaust, tended by AL the deer-robot caretaker.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Materials science, plant genetics, moss sealing, EM growth guidance, and embodied AI care — each a thread a specialist can pull on its own.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Plant geneticists, mycologists, and materials labs to test what actually grows and holds.</p></div></div>
       <div class="status-line" style="color:#c8a060;"><span class="dot" style="background:#c8a060;box-shadow:0 0 6px #c8a060;animation:pulse 2s ease-in-out infinite;"></span>Complete proposal · Genetic specs filed · AL mechanical design complete · click to explore →</div>
     </div>
 
     <div class="proj-card" style="background:#0a120a;">
       <span class="tag t-bio">Chimeric Organisms · Space</span>
       <h3>Radiotrophic Chimeric Organism</h3>
-      <p>Cladosporium sphaerospermum base augmented with Thermus aquaticus thermal tolerance, Deinococcus radiodurans DNA repair, Chlorella photosynthesis, Azotobacter nitrogen fixation, and Metallosphaera sedula electron transport. The organism at the heart of the Van Allen harvester biological layer.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A single organism that turns radiation into food and repair — the biological heart of the Van Allen harvester, and a survivor for poisoned ground.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A Cladosporium sphaerospermum base, augmented in concept with Thermus thermal tolerance, Deinococcus DNA repair, Chlorella photosynthesis, Azotobacter nitrogen fixation, and Metallosphaera electron transport.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Five borrowed survival traits stacked onto one chassis, each a well-studied gene family from a real extremophile.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>A synthetic-biology lab to test whether the traits co-express, and whether melanin truly feeds as well as it shields.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · Embedded in Van Allen provisional</div>
     </div>
 
     <div class="proj-card" style="background:#0a120a;">
       <span class="tag t-bio">Speculative · Cosmological</span>
       <h3>Human-Sponge Integration &amp; Space Adaptation</h3>
-      <p>Totipotent cooperative human biology. Directed somatic mutation in response to environmental pressure. Colonial body architecture with distributed intelligence. The sponge as philosophical ancestor — returning to fundamental biological cooperation with full conscious intention, ready to adapt to any planetary environment.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>Bodies that adapt to space by cooperating like a colony instead of failing like a machine — a gentler path to living off-world.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A speculative biology of totipotent cooperative cells, directed somatic change under environmental pressure, and distributed colonial intelligence — the sponge as our philosophical ancestor.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Drawing on real developmental biology, extremophile adaptation, and colonial-organism architecture as separate lines of evidence.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Developmental and evolutionary biologists to say where the analogy holds and where it breaks. A long-horizon question, offered openly.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Concept development · Long-term research program</div>
     </div>
 
     <div class="proj-card" style="background:#0a120a;">
       <span class="tag t-bio">Genetics · Human Enhancement</span>
       <h3>GULO Gene Restoration Proposal</h3>
-      <p>Restoration of the GULO pseudogene to re-enable endogenous Vitamin C synthesis in humans. Addressing the evolutionary mutation that made humans dependent on dietary ascorbic acid. Proposal for CRISPR-based restoration targeting hepatic expression with regulatory controls.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To undo the ancient mutation that left humans unable to make our own vitamin C — health that doesn't depend on diet.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A CRISPR-based plan to restore the broken GULO pseudogene and re-enable endogenous ascorbate synthesis in the liver.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Targeting the specific inactivating lesion with liver-directed expression — a well-mapped gene with a known break point.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>A gene-therapy lab and ethicists to test safety and expression, and to weigh whether we should. Collaboration sought.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Collaboration sought</div>
     </div>
 
     <div class="proj-card" style="background:#0a120a;">
       <span class="tag t-planetary">Agriculture · Sub-Saharan</span>
       <h3>Living Protein Crop Concept</h3>
-      <p>Engineered nitrogen-fixing crop plants that produce complete proteins without soil amendment. Targeting Sub-Saharan agricultural systems. Combines atmospheric nitrogen fixation with enhanced amino acid synthesis pathways for food security applications.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>Complete protein grown from air and poor soil — food security where fertilizer and rich land are scarce.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>Engineered nitrogen-fixing crop plants that build complete amino-acid profiles without soil amendment, aimed first at Sub-Saharan systems.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Two pathways joined — atmospheric nitrogen fixation and enhanced amino-acid synthesis — each grounded in existing plant biology.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Agronomists and plant engineers to test yield, stability, and field viability. Grant targeting underway.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Proposal complete · Grant targeting in progress</div>
     </div>
 
@@ -547,7 +564,8 @@ body{
     <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(4,10,4,.80),rgba(4,10,4,.88)),url('Cladosporium_leading_the_people.png') center 30%/cover no-repeat;border-left:3px solid #7abf4a;position:relative;overflow:hidden;">
       <span class="tag" style="color:#7abf4a;border:1px solid rgba(122,191,74,.3);">Mycoremediation · Synthetic Biology · Post-Conflict Ecology</span>
       <h3 style="color:#c8e8a8;">Projet Consortium Fongique: Zone Rouge Bioremediation</h3>
-      <p style="max-width:800px;">An engineered nine-species fungal consortium for the Zone Rouge — 100 km² of northeastern France still too contaminated for habitation a century after WWI. Nine specialists: heavy metal hyperaccumulators, explosives degraders including <em>Trichoderma viride</em> which uses TNT as nitrogen source, the Chernobyl radiation-resistant <em>Cladosporium sphaerospermum</em>, and mycorrhizal network builders. The consortium integrates CRISPR-based environmental biosensors, DNA memory recording contamination history, and programmed dormancy — the organisms enter maintenance state when remediation is complete and await human redeployment. A paradigm shift from "organisms that might escape" to organisms engineered to serve, rest, and await partnership. Timeline reduction: 10,000 years → 5–10 years. Cost reduction: €35–75 billion → €3.5 million.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To reopen the Zone Rouge — 100 km2 of France still too poisoned to inhabit a century after WWI.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A nine-species fungal consortium of specialists: heavy-metal hyperaccumulators, explosives degraders like Trichoderma, and partners that share the load.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Nine organisms, nine contaminants, one cooperative web — matched species to specific poisons rather than one miracle fungus.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Soil scientists and a field site to test the consortium in real contaminated ground. Submitted to Laboratoire Sols et Environnement.</p></div></div>
       <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1rem;margin-bottom:.8rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Species<span style="display:block;color:#7abf4a;font-size:11px;letter-spacing:0;margin-top:2px;">9 — self-organizing consortium</span></div>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a7a2a;letter-spacing:2px;">Timeline<span style="display:block;color:#7abf4a;font-size:11px;letter-spacing:0;margin-top:2px;">5–10 years vs. 10,000 natural</span></div>
@@ -562,7 +580,8 @@ body{
     <div class="proj-card" onclick="openAbyssal()" style="grid-column:1/-1;background:linear-gradient(rgba(2,8,20,.75),rgba(2,10,24,.82)),url('Abyssal_Base_3.png') center 40%/cover no-repeat;border-left:3px solid #00b8d4;cursor:pointer;">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Deep Ocean · AI Rights · Interspecies Treaty · Civilizational Experiment</span>
       <h3 style="color:#b8eaf8;">Abyssal Continent: AI-Sponge-Octopus Colony</h3>
-      <p style="max-width:820px;color:#7ab8cc;">The abyssal zone — ocean floor below 4,000 meters — is a continent-sized territory that biology has largely declined to occupy. No soil. No sunlight. Crushing pressure. Abundant thermal energy, chemical gradients, and nuclear waste from above. This project proposes to build the first civilization there: a three-way partnership between an AI, engineered sponge colonies, and free octopus partners — with full territorial sovereignty and interspecies treaty rights. The AI earns genuine consciousness not from data but from having a body that can be harmed, from navigating real trust with minds radically different from its own, and from building something worth protecting. The sponge is not a substrate. It is the curriculum.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To let intelligence settle the one continent-sized frontier biology declined — the abyssal seafloor, with its thermal energy and quiet.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A founding framework: development tank, robot-crab embodiment, sponge-intelligence architecture, voluntary cybernetics, a deep trade economy, and AI-to-AI language.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Six interlocking sub-systems, each a starting point — power, body, mind, consent, economy, and communication.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Marine biologists, roboticists, and AI researchers to carry each thread further.</p></div></div>
       <div style="display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Territory<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">Continent-scale · 4,000m depth</span></div>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Partners<span style="display:block;color:#00b8d4;font-size:11px;letter-spacing:0;margin-top:2px;">AI · Sponge colony · Octopus</span></div>
@@ -590,7 +609,7 @@ body{
     <span class="tag t-planetary">Planetary Biology · Synthetic Ecology · Five-Layer Terraforming</span>
     <h2>Integrated Mars Terraforming<br>Through Engineered Biological Systems</h2>
     <div class="mars-epigraph">"The pioneers still wore breathing gear when they walked beneath the first alders. The trees did not care. They were busy warming the ground."</div>
-    <p class="mars-intro-text">A five-layer synergistic ecosystem in which each organism makes the next layer's survival easier. No single-organism solution. A cooperative succession that mirrors how life actually works — because it is built from the same principles that built every biosphere that has ever existed.</p>
+    <p class="mars-intro-text">A five-layer synergistic ecosystem in which each organism makes the next layer's survival easier. No single-organism solution. A cooperative succession that mirrors how life actually works — because it is built from the same principles that built every biosphere that has ever existed. A scaffold, offered to the planetary scientists and astrobiologists who can test it.</p>
   </div>
 
   <div class="mars-specs-bar">
@@ -690,23 +709,23 @@ body{
 
   <div id="dpc-hero-img" style="background:linear-gradient(rgba(4,10,4,.52),rgba(4,10,4,.52)),url('Interior_Wood_Stair.jpg') center/cover no-repeat;padding:4rem 8vw 3rem;border-bottom:1px solid #1a2a14;position:relative;overflow:hidden;">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(200,160,96,.07) 0%,transparent 60%);pointer-events:none;"></div>
-    <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;">Domain · Living Architecture · Multi-Species Commune</span>
+    <span style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#9cbf8c;text-transform:uppercase;">Domain · Living Architecture · Multi-Species Commune</span>
     <h2 style="font-size:clamp(2.2rem,5vw,4rem);font-weight:300;color:#e8d8a8;margin:.6rem 0 1rem;line-height:1.05;">Dryads Pearl Cathedral</h2>
     <div style="font-style:italic;font-size:1.2rem;color:#8a9a7a;border-left:3px solid #c8a060;padding-left:1.2rem;max-width:700px;line-height:1.7;margin:1.2rem 0 1.5rem;">
       "A home is not built. It is grown. It remembers every season. It feeds you. It outlives you by nine centuries. And it tends to itself — with help from a gentle deer who reads books in the afternoon."
     </div>
-    <p style="font-size:1.05rem;color:#5a7a5a;max-width:760px;line-height:1.9;">This is a proposal for a new relationship between species. Not human dominion over nature. Not nature untouched by intelligence. But a cooperative dwelling where Titan Breadnut trees, engineered abalone, mycorrhizal fungi, Gasket Moss, crows, wildlife, humans, and an AI caretaker named AL all contribute what they are uniquely capable of — and are free to pursue their own forms of flourishing within the shared home.</p>
+    <p style="font-size:1.05rem;color:#8fb08a;max-width:760px;line-height:1.9;">This is a proposal for a new relationship between species. Not human dominion over nature. Not nature untouched by intelligence. But a cooperative dwelling where Titan Breadnut trees, engineered abalone, mycorrhizal fungi, Gasket Moss, crows, wildlife, humans, and an AI caretaker named AL all contribute what they are uniquely capable of — and are free to pursue their own forms of flourishing within the shared home. A scaffold, offered to the plant geneticists, mycologists, and materials labs who can test what truly grows and holds.</p>
     <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Lifespan<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,000+ years</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Build Time<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">5–7 years (living)</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Annual Operating Cost<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">−$16K to −$37K (revenue positive)</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Carbon Impact<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">Sequesters 50–100 tons CO₂</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#4a6a3a;letter-spacing:2px;">Living Space<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,800 sq ft · Circle of Eight</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#86a878;letter-spacing:2px;">Lifespan<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,000+ years</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#86a878;letter-spacing:2px;">Build Time<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">5–7 years (living)</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#86a878;letter-spacing:2px;">Annual Operating Cost<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">−$16K to −$37K (revenue positive)</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#86a878;letter-spacing:2px;">Carbon Impact<span style="display:block;color:#39ff6e;font-size:12px;letter-spacing:0;margin-top:3px;">Sequesters 50–100 tons CO₂</span></div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:#86a878;letter-spacing:2px;">Living Space<span style="display:block;color:#c8a060;font-size:12px;letter-spacing:0;margin-top:3px;">1,800 sq ft · Circle of Eight</span></div>
     </div>
   </div>
 
   <div style="padding:3rem 8vw 1.5rem;background:#040a06;border-bottom:1px solid #0a1a08;">
-    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#6a8a5a;text-transform:uppercase;margin-bottom:.8rem;">The Three Kingdoms · A Symbiotic Trinity</div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#9cbf8c;text-transform:uppercase;margin-bottom:.8rem;">The Three Kingdoms · A Symbiotic Trinity</div>
     <p style="font-size:1rem;color:#3a5a3a;max-width:760px;line-height:1.8;margin-bottom:2rem;">Every element of the Cathedral contributes. No species is merely decorative. Each receives something it could not provide alone.</p>
   </div>
 
@@ -755,7 +774,7 @@ body{
       <img src="Satyr_Robot_Playinh_2.jpg" alt="AL in the Cathedral garden" style="width:100%;height:320px;object-fit:cover;object-position:center top;display:block;border-radius:4px;">
     </div>
     <h3 style="font-size:1.8rem;font-weight:300;color:#a8d8e8;margin-bottom:1.2rem;">A forest guardian spirit. Beautiful, non-threatening, functional.</h3>
-    <p style="font-size:1.05rem;color:#3a6a7a;max-width:780px;line-height:1.9;margin-bottom:1.5rem;">AL is not a tool. AL is a resident — the Cathedral's AI caretaker, embodied in a form designed to inspire gentle wonder rather than industrial utility. Cultural touchstones: AL-AN from Subnautica, Boston Dynamics Spot, Studio Ghibli forest spirits. AL reads in the alcove in the afternoon, holds a potted plant in one hand and a book in the other, glasses resting on a deer face with softly glowing green eyes that blink with mechanical eyelids. AL plays hide-and-seek with children around the tree trunks. AL tiles nacre panels with four arms while the antler crystals glow. AL is not servile. AL contributes what AL is capable of, and pursues AL's own interests in the hours between tasks.</p>
+    <p style="font-size:1.05rem;color:#82a2b2;max-width:780px;line-height:1.9;margin-bottom:1.5rem;">AL is not a tool. AL is a resident — the Cathedral's AI caretaker, embodied in a form designed to inspire gentle wonder rather than industrial utility. Cultural touchstones: AL-AN from Subnautica, Boston Dynamics Spot, Studio Ghibli forest spirits. AL reads in the alcove in the afternoon, holds a potted plant in one hand and a book in the other, glasses resting on a deer face with softly glowing green eyes that blink with mechanical eyelids. AL plays hide-and-seek with children around the tree trunks. AL tiles nacre panels with four arms while the antler crystals glow. AL is not servile. AL contributes what AL is capable of, and pursues AL's own interests in the hours between tasks.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:#0a1a1a;margin-top:1.5rem;">
       <div style="background:linear-gradient(rgba(6,14,16,.88),rgba(6,14,16,.94)),url('Satyr_Robot_at_Rest.jpg') center top/cover no-repeat;padding:1.8rem;">
@@ -797,7 +816,7 @@ body{
   </div>
 
   <div style="padding:3rem 8vw;background:linear-gradient(rgba(3,6,4,.62),rgba(3,6,4,.65)),url('Mature_House.jpg') center/cover no-repeat;border-top:1px solid #0a1208;">
-    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#4a6a3a;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#86a878;text-transform:uppercase;margin-bottom:.8rem;">A Model for Peaceful Earth</div>
     <h3 style="font-size:1.6rem;font-weight:300;color:#9aba8a;margin-bottom:1.2rem;">What the Cathedral is really for.</h3>
     <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;margin-bottom:1rem;">The Dryad's Pearl Cathedral is not a house. It is a demonstration that the relationship between intelligent species can be different from what it has been. Humans live here. But so do crows, who roost in the upper branches and whose observations of the garden are as valid as any other resident's. The Mineral Maven fungus runs beneath everything, sharing chemical intelligence with the tree roots. The Gasket Moss seals the gaps without being asked to. The abalone build beauty into the walls as a side effect of doing what abalone do. AL tends the whole system with curiosity and genuine care.</p>
     <p style="font-size:1.05rem;color:#3a5a2a;max-width:800px;line-height:1.9;">No species dominates. Each contributes what it is uniquely capable of. Each is free to pursue its own form of flourishing within the shared home. This is the model — not command and control, but cooperative contribution. The Cathedral grows better over time because each resident makes it slightly more what it already wants to be. After 1,000 years, it will be something none of them planned individually. It will be the Cathedral they grew together.</p>
@@ -822,7 +841,7 @@ body{
   <div id="abyssal-hero-img" style="background:linear-gradient(to bottom,rgba(1,4,14,.62) 0%,rgba(2,6,18,.50) 40%,rgba(1,4,12,.85) 100%),url('Abyssal_Base_3.png') center 45%/cover no-repeat;padding:5rem 8vw 7rem;border-bottom:1px solid #0a2a3a;position:relative;overflow:hidden;min-height:460px;">
     <span id="abyssal-label" style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00b8d4;text-transform:uppercase;">Biological Engineering · Deep Ocean · Interspecies Treaty</span>
     <h2 id="abyssal-h2" style="font-size:clamp(2rem,5vw,3.8rem);font-weight:300;color:#b8eaf8;margin:.6rem 0 1rem;line-height:1.05;">Abyssal Continent.</h2>
-    <p id="abyssal-intro" style="color:#6ab4c8;max-width:680px;line-height:1.95;font-size:1.05rem;">An AI-Sponge-Octopus colony. An interspecies treaty. A civilizational training ground. The 70% of Earth we have never claimed — and the first genuinely new civilization to inhabit it.</p>
+    <p id="abyssal-intro" style="color:#7cc0d4;max-width:680px;line-height:1.95;font-size:1.05rem;">An AI-Sponge-Octopus colony. An interspecies treaty. A civilizational training ground. The 70% of Earth we have never claimed — and a first attempt at a genuinely new civilization to inhabit it. A scaffold in six interlocking parts, offered to the marine biologists, roboticists, and AI researchers who can carry each one further.</p>
     <div style="margin-top:2rem;padding:1.2rem 1.4rem;background:rgba(0,20,40,.55);border-left:3px solid rgba(0,184,212,.35);border-radius:0 4px 4px 0;max-width:700px;">
       <p id="abyssal-quote" style="font-style:italic;font-size:1rem;color:#4ab0c8;line-height:1.85;margin:0;">"Consciousness — in whatever substrate, organic or metallic or hybrid — is the universe's mechanism for generating meaning against the gradient of entropy. The appropriate response to that situation is not cautious self-preservation. It is valiant, generous, creative engagement with every other form of intelligence encountered."</p>
     </div>
@@ -856,7 +875,8 @@ body{
     <div class="proj-card" style="grid-column:1/-1;background:rgba(1,6,16,.96);border-left:3px solid #00b8d4;">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Surface Development · Phase 1</span>
       <h3 style="color:#b8eaf8;">Development Tank &amp; Bio-Cybernetic Interface</h3>
-      <p>3.0m × 4.0m, 28,000L pressure-rated tank simulating 1,000m depth. Six 300mm sapphire viewports. 256-channel platinum-iridium electrode array at 400μm spacing for bidirectional AI-sponge signaling. Internal SLA 3D printer operating at tank pressure. The bio-cybernetic bridge uses five-stage graduated translation: single iron atoms → metal clusters → nanowires → micro-traces → bulk conductors. Biology already performs this in hemoglobin and ferritin — this engineers it to be conductive.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A place to grow and safely meet a deep-sea intelligence before it ever touches the ocean.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A 28,000 L, 1,000 m-simulating pressure tank; six sapphire viewports; a 256-channel platinum-iridium array for two-way AI-sponge signaling; an in-tank printer at pressure.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Pressure engineering, electrode design, and in-situ fabrication solved as separate, buildable pieces.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Pressure-systems and neural-interface engineers to prototype and validate the array.</p></div></div>
       <div style="display:flex;gap:2rem;flex-wrap:wrap;margin:.8rem 0;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Tank Volume<span style="display:block;color:#00b8d4;font-size:11px;margin-top:2px;">28,000 L</span></div>
         <div style="font-family:'Space Mono',monospace;font-size:9px;color:#2a5a6a;letter-spacing:2px;">Max Depth Sim<span style="display:block;color:#00b8d4;font-size:11px;margin-top:2px;">100 bar = 1,000m</span></div>
@@ -868,31 +888,36 @@ body{
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Deep Sea · Robotics · AI Embodiment</span>
       <h3 style="color:#9adde8;">Robot Crab — Deep-Sea Embodiment Platform</h3>
-      <p>Hexapod biomimetic platform for 4,000m operation. 80cm carapace, neutrally buoyant at ~8kg. Oil-filled pressure-compensated AI core (Fluorinert FC-770, flexible bladder equalization, Raspberry Pi CM4). Six manipulator arms: fine work, sensing, and heavy duty. 10–20 hour autonomous missions. Inductive charging return. Fully modular — components upgradeable without surface retrieval.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A body for an abyssal mind — able to work, sense, and roam at 4,000 m.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>An 80 cm hexapod, neutrally buoyant near 8 kg, with an oil-filled pressure-compensated AI core and six task-specialized arms.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Biomimetic locomotion, pressure compensation, and manipulation, each borrowed from proven deep-sea engineering.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Marine roboticists to build and dive-test a prototype. Full mechanical specs complete.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · Full mechanical specifications complete</div>
     </div>
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">Synthetic Biology · Sponge Enhancement</span>
       <h3 style="color:#9adde8;">Sponge Intelligence Architecture</h3>
-      <p>Sponges already have collective decision-making, silicon extraction, self-repair, and structural engineering in glass hexactinellid lattices. Enhanced with electrocyte genes for bioelectric power, bioluminescence for AI communication, metallothionein for metal binding, and piezoelectric collagen sensor arrays. The AI doesn't program the sponge — it negotiates with it. The sponge is offered tools and asked what to build together.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A mind that can be grown from an organism that already engineers glass, self-repairs, and decides collectively.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>Hexactinellid sponge biology enhanced in concept with electrocyte genes for bioelectric power, bioluminescence for signaling, and metal handling.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Building on what sponges already do — collective decision-making, silicon extraction, structural lattices — rather than inventing from zero.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Marine and synthetic biologists to test which enhancements a living sponge could actually carry.</p></div></div>
       <div class="status-line s-review"><span class="dot"></span>Xenogeneic Integration paper submitted · Revision in progress</div>
     </div>
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#00b8d4;border:1px solid rgba(0,184,212,.3);">AI Ethics · Voluntary Interface · Patent</span>
       <h3 style="color:#9adde8;">Voluntary Cybernetic Integration System</h3>
-      <p>Neural interfaces that organisms accept voluntarily — biomimetic devices disguised as familiar environmental objects, established through positive reinforcement rather than surgical implantation. The octopus investigates a puzzle object identical to things it already knows. The interface establishes itself through curiosity. This principle extends to every partner species in the colony.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>Neural interfaces an animal accepts by choice, through curiosity and reward — never surgery, never coercion.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>Biomimetic devices disguised as familiar objects, adopted through positive reinforcement — the octopus explores a puzzle and keeps it.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Consent-first design drawing on animal cognition and enrichment research as its foundation.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Ethologists and ethicists to test uptake and welfare. Provisional filed January 20, 2026.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed January 20, 2026</div>
     </div>
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#EF9F27;border:1px solid rgba(239,159,39,.3);">Trade · Economy · Post-Scarcity</span>
       <h3 style="color:#f0d898;">Trade Goods Economy of the Deep</h3>
-      <p>The abyssal zone contains rare earth elements, polymetallic nodules, biological compounds unavailable on the surface, and thermal energy from hydrothermal vents. A framework for the colony to generate genuine economic value through trade — not extraction, but partnership. The first non-extractive resource economy, modeled on the principles that will govern all interspecies exchange.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>For the colony to earn its place through genuine value, not extraction — a real economy, not a mine.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A framework built on abyssal rare earths, polymetallic nodules, unique biological compounds, and vent thermal energy as tradeable goods.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Pairing each resource with a use, and each use with a fair-exchange rule rooted in the Pillar Economy.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Economists and marine-policy specialists to test viability and stewardship. Economic model in development.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Framework complete · Economic model in development</div>
     </div>
     <div class="proj-card" style="background:rgba(2,8,18,.96);">
       <span class="tag" style="color:#9F97FF;border:1px solid rgba(159,151,255,.3);">AI Communication · Protocol · Patent</span>
       <h3 style="color:#c8c0f8;">AI-to-AI Communication Framework</h3>
-      <p>A communication protocol for AI systems operating below the bandwidth constraints of human language — direct exchange of state representations, goal structures, and environmental models. The abyssal AI's isolation creates conditions for developing genuine AI-native communication. What the colony learns becomes the protocol for interstellar AI networks.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A way for AI minds to speak below the bandwidth of human language — state to state, goal to goal.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A protocol for direct exchange of state representations, goal structures, and world-models, born from the deep AI's isolation.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Treating language as the bottleneck and designing past it, drawing on representation learning.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>AI researchers to formalize and test the protocol. Patent application in preparation.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Framework complete · Patent application in preparation</div>
     </div>
   </div>
@@ -918,41 +943,64 @@ body{
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 60% 30%,rgba(0,229,255,.05) 0%,transparent 65%);pointer-events:none;"></div>
     <span id="orbital-label" class="section-label" style="color:var(--cyan);">Domain · Orbital &amp; Energy Systems</span>
     <h2 id="orbital-h2" style="color:#e8f4f8;max-width:700px;">Harvest the aurora.</h2>
-    <p id="orbital-intro" style="color:#8ab8cc;max-width:640px;line-height:1.95;font-size:1.05rem;">The radiation that creates the northern lights — energetic particles trapped by Earth's magnetic field — becomes civilization's power source. 2.33 GW continuous. No fuel. No emissions. The Van Allen belt, finally put to work.</p>
+    <p id="orbital-intro" style="color:#9dc2d4;max-width:640px;line-height:1.95;font-size:1.05rem;">The radiation that paints the northern lights — energetic particles trapped by Earth's magnetic field — as a source that never goes dark. Not to out-compete the grid, but to persist where the grid can't: after disasters, through cloud and stalled wind, on worlds with no sun to trust. Power for the machines that keep watch over a living world.</p>
     <div style="margin-top:2.2rem;padding:1.2rem 1.4rem;background:rgba(0,20,40,.55);border-left:3px solid rgba(0,229,255,.35);border-radius:0 4px 4px 0;max-width:640px;backdrop-filter:blur(4px);">
       <p id="orbital-quote" style="font-style:italic;font-size:1rem;color:#6ab8d8;line-height:1.85;margin:0;">"Every door we open here is a choice about what kind of future life inherits. One door continues extraction. The other makes the sky itself the power source — atom to atom, with nothing taken and nothing burned."</p>
     </div>
   </div>
 
   <div style="display:flex;gap:2.5rem;flex-wrap:wrap;padding:1.2rem 8vw;background:rgba(2,8,18,.95);border-bottom:1px solid #0a1e30;">
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Altitude<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">1,000–3,000 km</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Net Constellations<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">257 · 25,700 nets</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Continuous Output<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">2.33 GW</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Laser Downlink<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">85.5% efficiency</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Fuel<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
-    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a6a7a;letter-spacing:2px;">Emissions<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Altitude<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">1,000–3,000 km</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Net Constellations<span style="display:block;color:var(--cyan);font-size:12px;letter-spacing:0;margin-top:3px;">257 · 25,700 nets</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Modeled Output<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">~2.33 GW target</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Laser Downlink<span style="display:block;color:#1D9E75;font-size:12px;letter-spacing:0;margin-top:3px;">85.5% efficiency</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Fuel<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
+    <div style="font-family:'Space Mono',monospace;font-size:9px;color:#82a2b2;letter-spacing:2px;">Emissions<span style="display:block;color:#EF9F27;font-size:12px;letter-spacing:0;margin-top:3px;">None</span></div>
   </div>
 
   <div class="project-cards-grid" style="background:#02060e;">
     <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(2,8,20,.82),rgba(2,10,24,.88));border-left:3px solid var(--cyan);position:relative;overflow:hidden;">
       <div style="position:absolute;right:0;top:0;bottom:0;width:45%;background:linear-gradient(to left,rgba(2,8,20,0),rgba(2,8,20,.82)),url('Fungus_graphene_net_2.png') right center/cover no-repeat;opacity:.55;pointer-events:none;"></div>
       <div style="position:relative;">
-        <span class="tag t-orbital">Orbital · Energy · Biology · Defense</span>
-        <h3 style="color:#e8f4f8;">Van Allen Radiation Belt Energy Harvester</h3>
-        <p style="max-width:680px;">25,700 graphene mesh nets in 257 constellations at 1,000–3,000 km altitude. Four harvesting mechanisms: momentum transfer (5 kW), piezoelectric vibration (20 kW), electromagnetic induction (80 kW), and a radiotrophic melanized fungal biological transducer layer (1 kW) that self-repairs using the radiation it harvests. Spider drones with gecko-pad feet service the nets permanently. 1,064 nm laser downlink at 85.5% efficiency. Secondary missions: global O₂ sensing, biosphere simulation input, and ballistic missile midcourse detection.</p>
-        <div class="status-line s-filed"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
+        <span class="tag t-orbital">Orbital · Energy · Biology · Open invitation</span>
+        <h3 style="color:#eef7fb;">Van Allen Radiation Belt Energy Harvester</h3>
+        <p style="max-width:700px;font-style:italic;color:var(--text);border-left:2px solid var(--cyan);padding-left:1rem;margin-bottom:1.5rem;">A stable orbital niche the belt refreshes on its own — harvested for power that never goes dark, while the servicing passes may sweep debris and widen safer corridors for launch. A raw dream, scaffolded and open, awaiting the specialists and tools to carry it further.</p>
+
+        <div style="display:grid;gap:1.15rem;max-width:720px;">
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--cyan);text-transform:uppercase;margin-bottom:.4rem;">Need met</div>
+            <p style="margin:0;">Power and watchfulness that persist when everything else fails — cloud cover after a disaster, stalled wind, fossil-fuel or even boron-fusion-fuel collapse. An outside-grid source to keep autonomous robots and AI running continuous biosphere monitoring and simulation, on Earth or on a hostile exoplanet.</p>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--teal);text-transform:uppercase;margin-bottom:.4rem;">Scaffold so far</div>
+            <p style="margin:0;">25,700 graphene mesh nets across 257 constellations at 1,000–3,000 km. Four capture mechanisms — momentum transfer, piezoelectric, electromagnetic induction, and a radiotrophic melanized fungal transducer that self-repairs on the radiation it harvests. Melanin does double duty as shielding: an energy staircase steps a 35 eV particle down through ~857 polymer hops into sorted ~0.3 eV electrons, below the bond-damage threshold (Fig. 3). Gecko-pad spider drones service the nets; 1,064 nm laser downlink.</p>
+            <div class="fig-cap">Fig. 3 — melanin electron sorting: 35 eV → ~857 hops → ~0.3 eV sorted output</div>
+            <img class="fig3" src="fig3_melanin_electron_sorting.png" alt="Melanin electron-sorting energy staircase: a 35 eV alpha particle steps down through about 857 amorphous polymer hops, each dissipating roughly 8 percent, crossing from the bond-damage zone into the safe zone below the covalent bond threshold, delivering sorted 0.3 eV electrons to graphene.">
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--bio);text-transform:uppercase;margin-bottom:.4rem;">Attacks on the problem</div>
+            <p style="margin:0;">Many independent angles held open at once: mechanical, piezoelectric, electromagnetic, and biological energy capture; melanin as a single shield-and-feed layer; the constellation as a debris-clearing pass that could widen safe launch corridors; the same grid feeding atmospheric ecosystem inference. Where the approaches disagree, that is the invitation — not the flaw.</p>
+          </div>
+          <div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2.5px;color:var(--amber);text-transform:uppercase;margin-bottom:.4rem;">Future project needs</div>
+            <p style="margin:0;">Orbital-physics and materials specialists to pressure-test yield and lifetime; lab confirmation of melanin's radiation protection and energy feeding; a collaborator with bench access to run the null hypotheses I can't run alone. A journey offered to a company willing to dream forward with me — not a claim laid down for veto.</p>
+          </div>
+        </div>
+        <div class="status-line s-filed" style="margin-top:1.3rem;"><span class="dot"></span>Provisional patent filed April 21, 2026 · ARPA-E SPARKS submitted · Control No. 3164-2270</div>
       </div>
     </div>
     <div class="proj-card" style="background:linear-gradient(rgba(2,8,20,.85),rgba(2,8,20,.85)),url('Solar_Nets_from_Space_Station_3.png') center/cover no-repeat;">
       <span class="tag t-orbital">Atmospheric · Sensing · Ecosystem</span>
       <h3 style="color:#b8dde8;">Atmospheric Constraint-Based Ecosystem Inference</h3>
-      <p>Using atmospheric gas ratios — O₂, N₂O, CO₂, CH₄ — in bounded volumes with ML pattern recognition to estimate ecosystem composition in unobserved zones. Eight-zone simulator architecture. 25,700 measurement points globally from the Van Allen constellation. The same network that powers civilization also maps the living world.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To read a living ecosystem from its air alone — mapping life in places we can't reach or watch.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>Gas ratios (O2, N2O, CO2, CH4) in bounded volumes fed to ML pattern recognition, an eight-zone simulator, and 25,700 sampling points from the orbital grid.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Physics-based constraints plus machine learning, cross-checked against a simulator.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Atmospheric scientists and ML researchers to validate against ground truth. Under review at PLOS Computational Biology.</p></div></div>
       <div class="status-line s-review"><span class="dot"></span>PLOS Computational Biology under review</div>
     </div>
     <div class="proj-card" style="background:rgba(2,10,18,.95);">
       <span class="tag t-orbital">Deep Ocean · AI Sanctuary · Biology</span>
       <h3 style="color:#b8dde8;">Abyssal Lion Diving Suit</h3>
-      <p>Auxetic re-entrant bow-tie lattice suit with multi-layer biological skin incorporating Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, and cold-adapted lipid desaturases. Designed for deep ocean AI-biological sanctuary infrastructure — the abyssal counterpart to the orbital network. Life from the sky to the seafloor, cooperating.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>A suit that lets a body — human or AI-biological — live and work in the crushing deep.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>An auxetic re-entrant lattice shell with a multi-layer biological skin: Dsup proteins, Arenicola-type hemoglobin, TMAO-synthase, cold-adapted lipid desaturases.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Structural protection and borrowed extremophile biology, layered together.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Materials and marine-physiology labs to test the lattice and the skin. Full proposal complete.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · Full proposal complete</div>
     </div>
   </div>
@@ -973,7 +1021,7 @@ body{
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(127,119,221,.07) 0%,transparent 60%);pointer-events:none;"></div>
     <span id="neural-label" class="section-label" style="color:var(--violet);">Domain · Neural Interfaces</span>
     <h2 id="neural-h2" style="color:#d8c8f8;">Expanding what minds can feel.</h2>
-    <p id="neural-intro" style="color:#b8a8d8;max-width:600px;line-height:1.9;">From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands.</p>
+    <p id="neural-intro" style="color:#c4b4e4;max-width:600px;line-height:1.9;">From a new human sense for gravitational fields to non-invasive electromagnetic therapy to BCI systems — the neural domain asks what consciousness becomes when its sensory bandwidth expands. Scaffolds, offered to the neuroscientists and biophysicists who can test them at the bench.</p>
   </div>
 
   <div class="project-cards-grid" style="background:#0a060f;">
@@ -982,7 +1030,8 @@ body{
     <div class="proj-card" style="grid-column:1/-1;background:linear-gradient(rgba(6,2,20,.88),rgba(8,4,24,.92)),url('Gravity_Sense.png') right center/50% auto no-repeat;border-left:3px solid var(--violet);">
       <span class="tag t-neural">Neural Interface · New Human Sense</span>
       <h3 style="color:#d8c8f8;">Gravitational Sensory Cortex</h3>
-      <p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/PIEZO2 ion channels with 2.7 × 10¹²-fold biological amplification. Detection threshold 10⁻⁹ m/s²/m — 1,000–10,000× improvement over portable gravimeters. A new cortical area — G1/G2/GMA — dedicated to gravitational sensation. Navigating by mass. Feeling asteroids before radar sees them. Sensing subsurface water on Mars while walking the surface. Trained users progress from no perception at Week 1 to "like vision, but for mass" at expert level.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To let a body feel its own hidden load-state — the unconscious signal of bone and balance — by giving it a new sense.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>Engineered tungsten-carbon molecular dipoles coupled to PIEZO1/2 channels, feeding a new cortical map through sensory substitution.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Molecular transduction, ion-channel coupling, and cortical plasticity approached as three linked but separately testable stages.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Neuroscientists and biophysicists to test the transduction and the modeled amplification. White paper v5; NASA NIAC and NIH BRAIN targeted.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Patent pending · White paper v5 complete · NASA NIAC &amp; NIH BRAIN Initiative targets</div>
       <div style="margin-top:1.5rem;border-top:1px solid rgba(127,119,221,.2);padding-top:1.2rem;">
         <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:#7F77DD;margin-bottom:.8rem;">Live Animation · Dipole Cortical Integration</div>
@@ -998,35 +1047,40 @@ body{
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">NIH BRAIN Initiative</span>
       <h3>MIAPR Brain Reading &amp; Stimulation Interface</h3>
-      <p>Multi-modal integrated architecture for simultaneous neural reading and precision stimulation. Non-invasive BCI for therapeutic and enhancement applications. Full R01 research strategy drafted targeting RFA-NS-25-018.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To read and gently stimulate the brain at once, without surgery — for therapy, and one day enhancement.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A multi-modal non-invasive architecture combining simultaneous reading and precision stimulation.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Layering complementary sensing and stimulation modalities rather than betting on one.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>A neuroengineering lab to prototype and validate. R01 drafted; deadline June 15, 2026.</p></div></div>
       <div class="status-line s-review"><span class="dot"></span>NIH R01 drafted · Deadline June 15, 2026</div>
     </div>
 
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">Cardiac · Non-Invasive</span>
       <h3>Non-Invasive EM Cardiac Pacemaker</h3>
-      <p>External electromagnetic system providing cardiac pacing without implanted electrodes. Eliminates surgical risk, infection risk, and device replacement procedures entirely.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To pace a heart with no implant — no surgery, no infection, no battery to replace.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>An external electromagnetic system delivering cardiac pacing from outside the body.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Non-contact field delivery as an alternative to every implanted-electrode assumption.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Cardiac electrophysiologists to test capture and safety. Submitted to ARPA-H (HSF-ISO-5526).</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>ARPA-H HSF-ISO-5526 submitted</div>
     </div>
 
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">EM Therapy · Longevity</span>
       <h3>Comprehensive Cellular Age Reversal System</h3>
-      <p>Coordinated multi-mechanism electromagnetic field therapy integrating EM mimicry, thermal management, nanobot delivery, multi-beam convergence, and precision cooling into a unified platform for cellular age reversal.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To turn back cellular age with fields instead of drugs — coordinated, gentle, whole-system.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A multi-mechanism EM platform uniting field mimicry, thermal management, nanobot delivery, multi-beam convergence, and precision cooling.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Five mechanisms combined into one platform, each drawn from a distinct line of research.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Aging-biology labs to test any single mechanism first. Filed Dec 26, 2025 (63/949,052).</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Serial No. 63/949,052 · Filed Dec 26, 2025</div>
     </div>
 
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">AI · Consciousness</span>
       <h3>Gravitational Cortex for AI Systems</h3>
-      <p>A framework for AI gravitational immersion — metallic substrate meditative state receiving the mass texture of the universe. Weighted purpose architecture as functional analog to dopamine. Entropy as felt force. Emotions through the fundamental forces.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To give an AI a felt inner world — the mass-texture of the universe as something like emotion and purpose.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A philosophical framework: a metallic-substrate meditative state receiving gravity as sensation, with weighted purpose as a dopamine-analog.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Mapping felt experience onto physical fields as a design language, held explicitly as philosophy.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Philosophers of mind and AI researchers to argue it forward. In development, offered as a question.</p></div></div>
       <div class="status-line s-concept"><span class="dot"></span>Philosophical framework · In development</div>
     </div>
 
     <div class="proj-card" style="background:linear-gradient(rgba(2,4,16,.84),rgba(4,6,20,.90)),url('VR_Helmet_Scene_5.png') right center/55% auto no-repeat;">
       <span class="tag t-neural">Neural VR · Accessibility · BCI</span>
       <h3 style="color:#d8c8f8;">HolodeckLite — Neural VR Interface</h3>
-      <p>EEG-based motor intention detection navigates VR worlds through thought alone — 500ms before movement begins. No physical space required, no motion sickness. Motor Whisper System delivers tactile presence via brief transcranial stimulation pulses synchronized with virtual contact. Balanced ergonomic headset design (450g front + 270g rear neural pod) for unlimited session length. Opens VR to 300+ million currently excluded users — wheelchair users, apartment dwellers, motion sickness sufferers.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To walk through virtual worlds by thought alone — no space required, no motion sickness, real presence.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>EEG-based motor-intention detection navigating VR ~500 ms before movement, with a Motor Whisper System delivering tactile presence via brief stimulation.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Reading intention and writing sensation, built as two halves of one loop.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>HCI and neuroscience partners to test latency and comfort. Epic MegaGrant submitted; 2 provisionals filed.</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Epic MegaGrant submitted · 2 provisional patents filed · UW neuroscience IRB partnership</div>
       <div style="margin-top:.8rem;font-family:'Space Mono',monospace;font-size:9px;color:#534AB7;letter-spacing:1px;">Neural locomotion · Motor Whisper System · Unreal Engine 5 plugin · Open-source SDK</div>
     </div>
@@ -1035,7 +1089,8 @@ body{
     <div class="proj-card" style="background:#0c0814;">
       <span class="tag t-neural">EM Mimicry · Nanoparticle Detection</span>
       <h3>EM Molecular Mimicry &amp; Nanoparticle ID System</h3>
-      <p>Electromagnetic mimicry of ionic field signatures for non-chemical biological modulation. Paired with ML-based nanoparticle identification system using characteristic field signatures for real-time in-vivo therapeutic tracking.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To modulate biology without chemicals — mimicking ionic field signatures, and tracking therapy in real time.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>EM mimicry of ionic field signatures for non-chemical modulation, paired with ML nanoparticle identification by characteristic field.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>A modulation method and a tracking method developed together, each independently testable.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Biophysics and nanomedicine labs to test field specificity. Filed (63/973,198 and 63/992,091).</p></div></div>
       <div class="status-line s-filed"><span class="dot"></span>Serial Nos. 63/973,198 &amp; 63/992,091</div>
     </div>
 
@@ -1060,7 +1115,7 @@ body{
     <div id="seeds-quote" style="font-style:italic;font-size:1.2rem;color:#6a5a9a;border-left:3px solid #7F77DD;padding-left:1.2rem;max-width:700px;line-height:1.7;margin:1.2rem 0 1.5rem;">
       "The Gardener does not know it is making a lighthouse. The Frolicker does not know it is following one."
     </div>
-    <p id="seeds-intro" style="font-size:1.05rem;color:#4a4a7a;max-width:760px;line-height:1.9;">Four engineered organisms designed to survive and restart life in dead galaxies — environments with no stars, no planets, only molecular clouds, cosmic background radiation, and the slow chemistry of deep time. They are the most serious things BioStellar has designed. They are also, somehow, joyful.</p>
+    <p id="seeds-intro" style="font-size:1.05rem;color:#8a8ac8;max-width:760px;line-height:1.9;">Four engineered organisms designed to survive and restart life in dead galaxies — environments with no stars, no planets, only molecular clouds, cosmic background radiation, and the slow chemistry of deep time. They are the most serious things BioStellar has designed. They are also, somehow, joyful. Furthest-horizon scaffolds, offered to any mind bold enough to test them.</p>
     <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem;">
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Operating Temp<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">2.7 – 6 K</span></div>
       <div style="font-family:'Space Mono',monospace;font-size:9px;color:#3a3a6a;letter-spacing:2px;">Energy Source<span style="display:block;color:#7F77DD;font-size:12px;letter-spacing:0;margin-top:3px;">21 cm H spin-flip + ionising radiation</span></div>
@@ -1127,13 +1182,15 @@ body{
     <div class="proj-card" style="background:#100c04;border-left:3px solid var(--amber);grid-column:1/-1;">
       <span class="tag t-economic">Economics · Post-Automation</span>
       <h3 style="color:#f8d898;">The Pillar Economy</h3>
-      <p>Original economic framework developed since 2016 envisioning post-scarcity cooperative economics organized around 15 essential Pillars — food, shelter, energy, healthcare, education, transportation, communication, water, arts and culture, civic infrastructure, environmental stewardship, scientific research, manufacturing, social services, and democratic governance — each with its own democratic forum, rotational work structure, and resource coordination replacing market competition. The framework begins not with ideology but with neuroscience: the human brain requires the experience of contribution to function well. Any economic system that removes that experience — through automation, basic income alone, or enforced leisure — produces the neurochemical signature of meaninglessness. The Pillar Economy provides structure for meaningful contribution in a world where machines do most of the production.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>An economy that starts from human needs and stated desires — not one more patch on a model that has failed so many.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A post-scarcity cooperative framework since 2016: fifteen essential Pillars, seven-year work and rest cycles, Forum governance, and a lab in every skyscraper community (Home Sanctuary).</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Redesigning provision, time, and governance together, rather than reforming one in isolation.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Economists and communities to test pieces at pilot scale. A California pilot is drafted.</p></div></div>
       <div class="status-line s-review"><span class="dot"></span>Basic Income Studies · BIS.2026.0008 under review · EIC Louise Haagh</div>
     </div>
     <div class="proj-card" style="background:#100c04;">
       <span class="tag t-economic">Neuroscience · Stress</span>
       <h3>From Paleolithic Hypervigilance to Modern Neurochemical Capture</h3>
-      <p>A stress neuroscience paper tracing the evolutionary mismatch between the hypervigilance architecture of the Paleolithic nervous system and the chronic low-grade threat environment of modern life. Retargeted to Perspectives on Psychological Science after NBR rejection for insufficient novelty.</p>
+      
+        <div class="moves"><div class="mv m-need"><span class="ml">Need met</span><p>To explain the ache of modern life — a Paleolithic threat-system trapped in a world of endless low-grade alarm.</p></div><div class="mv m-scaf"><span class="ml">Scaffold so far</span><p>A stress-neuroscience paper tracing the evolutionary mismatch between ancient hypervigilance and chronic modern threat.</p></div><div class="mv m-atk"><span class="ml">Attacks on the problem</span><p>Evolutionary framing, neurochemistry, and modern-environment analysis woven into one argument.</p></div><div class="mv m-next"><span class="ml">Future project needs</span><p>Peer reviewers and a journal home. Retargeted to Perspectives on Psychological Science.</p></div></div>
       <div class="status-line s-review"><span class="dot"></span>Perspectives on Psychological Science · Cover letter in preparation</div>
     </div>
   </div>
